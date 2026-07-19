@@ -13,3 +13,7 @@
 ## 2026-07-19 — mapa danych świata
 - Scena gry ładuje pełną populację i markery regionów z JSON.
 - Dodano proceduralny renderer ośmiu regionów oraz uniwersalną interakcję z NPC.
+
+## 2026-07-19 — grafiki reprezentatywne
+- Dodano własną ilustrowaną mapę świata, arkusz aktorów i arkusz rekwizytów/walki.
+- Mapa została podpięta jako tło renderowane przez scenę Godot.

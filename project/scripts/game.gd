@@ -3,6 +3,9 @@ extends Node2D
 
 const WORLD := Rect2(40, 70, 1070, 530)
 const INTERACT_DISTANCE := 58.0
+const MAP_TEXTURE: Texture2D = preload("res://assets/generated/world_map_painted.png")
+const ACTORS_TEXTURE: Texture2D = preload("res://assets/generated/actors_sheet.png")
+const PROPS_TEXTURE: Texture2D = preload("res://assets/generated/combat_props.png")
 var player: Vector2
 var message := "Przybyłeś z listem, którego nie pisałeś."
 var message_timer := 7.0
@@ -266,6 +269,8 @@ func _draw() -> void:
 	var day: float = sin((GameState.world_minutes / 1440.0) * TAU - PI / 2.0) * 0.25 + 0.75
 	draw_rect(Rect2(Vector2.ZERO, Vector2(1152, 648)), Color("101412"))
 	draw_rect(WORLD, Color(0.12 * day, 0.19 * day, 0.14 * day))
+	# Własna, wygenerowana ilustracja stanowi podstawę mapy; kod dodaje interaktywne warstwy ponad nią.
+	draw_texture_rect(MAP_TEXTURE, WORLD, false, Color(1.0, 1.0, 1.0, day))
 	# road, marsh, old palisade and rebel fire: procedural original placeholders.
 	draw_rect(Rect2(50, 340, 1050, 75), Color("4b4030")); draw_circle(Vector2(870, 210), 84, Color("273a33")); draw_rect(Rect2(190, 120, 225, 145), Color("34383a")); draw_rect(Rect2(430, 420, 205, 120), Color("3a2922"))
 	for x: float in range(55, 1100, 38): draw_line(Vector2(x, 120), Vector2(x + 14, 145), Color("745841"), 3.0)
@@ -286,4 +291,5 @@ func _draw() -> void:
 			draw_string(ThemeDB.fallback_font, npc_positions[id] + Vector2(-30, -18), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
 	if wolf_hp > 0:
 		draw_circle(wolf_position, 16, Color("6c6555")); draw_circle(wolf_position + Vector2(10, -3), 3, Color("d84535")); draw_string(ThemeDB.fallback_font, wolf_position + Vector2(-38, -24), "Wilk z mielizny", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("e6d8c2"))
+	# Arkusze aktorów i rekwizytów pozostają źródłem grafik dla następnego kroku animacji.
 	draw_circle(player, 13 + attack_timer * 20, Color("e6d3a4")); draw_line(player, get_global_mouse_position(), Color("e8bb68"), 2.0)

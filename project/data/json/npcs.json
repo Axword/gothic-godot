@@ -1,0 +1,5 @@
+[
+  {"id":"boruta","name":"Boruta","role":"strażnik wału","faction":"Zakon Żelaznej Miary","dialogue":"boruta","routine":"patrol_wal"},
+  {"id":"mira","name":"Mira","role":"zbieraczka żaru","faction":"Wolny Żar","dialogue":"mira","routine":"ognisko"},
+  {"id":"wrona","name":"Wrona","role":"kartografka szczeliny","faction":"neutralna","dialogue":"wrona","routine":"pomiary"}
+]

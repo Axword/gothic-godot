@@ -1,0 +1,25 @@
+; Engine configuration file.
+; Zgnilizna vertical slice -- Godot 4.3+
+config_version=5
+
+[application]
+config/name="Zgnilizna: Iskra pod Mułem"
+run/main_scene="res://scenes/game.tscn"
+config/features=PackedStringArray("4.3")
+
+[display]
+window/size/viewport_width=1152
+window/size/viewport_height=648
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+
+[autoload]
+GameState="*res://autoload/game_state.gd"
+DataLoader="*res://autoload/data_loader.gd"
+SaveSystem="*res://autoload/save_system.gd"

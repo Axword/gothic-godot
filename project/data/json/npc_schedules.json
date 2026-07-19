@@ -1,0 +1,5 @@
+[
+  {"id":"patrol_wal","npc_id":"boruta","from":"08:00","to":"18:00","marker":"wal","activity":"patrol","fallback":"wartownia"},
+  {"id":"ognisko","npc_id":"mira","from":"06:00","to":"20:00","marker":"ognisko","activity":"work","fallback":"namiot_miry"},
+  {"id":"pomiary","npc_id":"wrona","from":"09:00","to":"17:00","marker":"szczelina","activity":"survey","fallback":"barak_wrony"}
+]

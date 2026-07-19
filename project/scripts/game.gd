@@ -10,8 +10,11 @@ var selected: String = ""
 var attack_timer := 0.0
 var wolf_hp := 32
 var wolf_position := Vector2(725, 315)
-var npc_positions: Dictionary = {"boruta": Vector2(330, 220), "mira": Vector2(515, 455), "wrona": Vector2(865, 250)}
-var npc_names: Dictionary = {"boruta": "Boruta, strażnik wału", "mira": "Mira, zbieraczka żaru", "wrona": "Wrona, kartografka"}
+var npc_positions: Dictionary = {}
+var npc_names: Dictionary = {}
+var npc_data: Dictionary = {}
+var location_positions: Dictionary = {}
+var npc_home: Dictionary = {}
 var dialogue: Dictionary = {}
 var dialogue_open := false
 var lock_open := false
@@ -26,6 +29,7 @@ var choices: VBoxContainer
 func _ready() -> void:
 	_ensure_input_map()
 	player = GameState.player_position
+	_load_world_population()
 	_build_ui()
 	SaveSystem.saved.connect(_notice)
 	GameState.changed.connect(queue_redraw)
@@ -45,6 +49,25 @@ func _ensure_input_map() -> void:
 		var mouse_event := InputEventMouseButton.new()
 		mouse_event.button_index = MOUSE_BUTTON_LEFT
 		InputMap.action_add_event("attack", mouse_event)
+
+func _load_world_population() -> void:
+	for location: Dictionary in DataLoader.load_array("res://data/json/world_locations.json"):
+		var marker: Dictionary = location.get("marker", {})
+		location_positions[str(location.get("id", ""))] = Vector2(float(marker.get("x", 500)), float(marker.get("y", 330)))
+	var faction_homes := {"Zakon Żelaznej Miary": "wal_miary", "Wolny Żar": "oboz_zaru", "neutralna": "trakt_mulu"}
+	var index := 0
+	for npc: Dictionary in DataLoader.load_array("res://data/json/npcs.json"):
+		var id := str(npc.get("id", "")); var faction := str(npc.get("faction", "neutralna"))
+		var home_id := str(faction_homes.get(faction, "trakt_mulu"))
+		# Neutralni są rozrzuceni po terenie, obozy mają zwarte, czytelne skupiska.
+		if faction == "neutralna":
+			var neutral_regions := ["trakt_mulu", "las_trzcin", "bagno_bezdechu", "kamieniolom_tamy", "wydmy_popiolu", "szczelina_glosu"]
+			home_id = neutral_regions[index % neutral_regions.size()]
+		var home: Vector2 = location_positions.get(home_id, Vector2(500, 330))
+		var offset := Vector2(float((index * 31) % 92 - 46), float((index * 47) % 64 - 32))
+		npc_positions[id] = home + offset; npc_home[id] = home + offset
+		npc_names[id] = "%s, %s" % [str(npc.get("name", "Nieznany")), str(npc.get("role", "mieszkaniec"))]
+		npc_data[id] = npc; index += 1
 
 func _build_ui() -> void:
 	ui = CanvasLayer.new(); add_child(ui)
@@ -89,10 +112,17 @@ func _handle_world_input() -> void:
 
 func _update_npc_routines() -> void:
 	var hour: int = int(GameState.world_minutes / 60.0) % 24
-	# Three deliberately different, data-backed routines: patrol, work, survey.
-	npc_positions["boruta"] = Vector2(310 + sin(GameState.world_minutes * 0.04) * 55, 220) if hour >= 8 and hour < 18 else Vector2(270, 170)
-	npc_positions["mira"] = Vector2(515, 455 + sin(GameState.world_minutes * 0.12) * 10) if hour >= 6 and hour < 20 else Vector2(560, 500)
-	npc_positions["wrona"] = Vector2(865, 250) if hour >= 9 and hour < 17 else Vector2(930, 180)
+	for id: String in npc_positions:
+		var home: Vector2 = npc_home.get(id, npc_positions[id])
+		var npc: Dictionary = npc_data.get(id, {})
+		var role := str(npc.get("role", ""))
+		# Patrolujący krążą w dzień; pracownicy wykonują krótkie ruchy, śpiący wracają do fallbacku.
+		if hour >= 22 or hour < 6:
+			npc_positions[id] = home
+		elif role in ["guard", "captain", "fighter", "bandit"]:
+			npc_positions[id] = home + Vector2(sin(GameState.world_minutes * 0.035 + home.x) * 24.0, cos(GameState.world_minutes * 0.035 + home.y) * 16.0)
+		else:
+			npc_positions[id] = home + Vector2(sin(GameState.world_minutes * 0.07 + home.y) * 6.0, 0.0)
 
 func nearest_target() -> String:
 	var best := ""; var distance := INTERACT_DISTANCE
@@ -108,10 +138,11 @@ func nearest_target() -> String:
 func interact() -> void:
 	selected = nearest_target()
 	match selected:
-		"boruta", "mira", "wrona": _start_dialogue(selected)
 		"chest": _open_lock()
 		"wolf": _notice(true, "Wilk nie prowadzi rozmów. Zwykle.")
-		_: _notice(true, "Tu nic nie odpowiada.")
+		_:
+			if npc_data.has(selected): _start_dialogue(selected)
+			else: _notice(true, "Tu nic nie odpowiada.")
 
 func attack() -> void:
 	attack_timer = 0.18
@@ -135,12 +166,20 @@ func cast_fire() -> void:
 func _start_dialogue(id: String) -> void:
 	dialogue_open = true; panel.visible = true
 	match id:
-		"boruta":
+		"npc_boruta":
 			_show_choices("[b]Boruta:[/b] List pachnie mokrym prochem. Tak pachną rzeczy, które nie chcą żyć.\n\n„Jeżeli dotarłeś, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Pokaż list.", "boruta_list"], ["Odejdź.", "close"]])
-		"mira":
+		"npc_mira":
 			_show_choices("[b]Mira:[/b] Wrona mierzy szczelinę, Boruta mierzy ludzi. Oboje wychodzą na oszustów, tylko jeden nosi hełm.", [["Zapytaj o Iskrę.", "mira_quest"], ["Odejdź.", "close"]])
-		"wrona":
+		"npc_wrona":
 			_show_choices("[b]Wrona:[/b] Szczelina nie jest dziurą. Jest ustami. A coś pod bagnem uczy się mówić.", [["Oddaj pieczęć z kufra.", "wrona_end"], ["Odejdź.", "close"]])
+		_:
+			var npc: Dictionary = npc_data.get(id, {})
+			var name := str(npc.get("name", "Mieszkaniec"))
+			var faction := str(npc.get("faction", "neutralna"))
+			var trainer := ""
+			if npc.has("trainer_skills"):
+				trainer = " Potrafię uczyć: " + ", ".join(npc.get("trainer_skills", [])) + "."
+			_show_choices("[b]%s:[/b] Na tym trakcie nawet błoto ma stronę. Ja należę do: %s.%s" % [name, faction, trainer], [["Zapytaj o pogłoski.", "rumor"], ["Odejdź.", "close"]])
 
 func _show_choices(text: String, entries: Array) -> void:
 	panel_text.text = text
@@ -156,6 +195,9 @@ func _choose(choice: String) -> void:
 		_lock_input("R")
 		return
 	match choice:
+
+		"rumor":
+			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])
 		"boruta_list":
 			GameState.advance_quest("speak")
 			_show_choices("[b]Boruta:[/b] Pieczęć jest prawdziwa. To gorzej. Zabij wilka przy kamieniu i sprawdź kufer Miry. Ona ma klucz albo kłamstwo.", [["Rozumiem.", "close"]])
@@ -229,10 +271,19 @@ func _draw() -> void:
 	for x: float in range(55, 1100, 38): draw_line(Vector2(x, 120), Vector2(x + 14, 145), Color("745841"), 3.0)
 	draw_circle(Vector2(520, 475), 16, Color("d06b35")); draw_circle(Vector2(520, 475), 7, Color("f6c56d"))
 	draw_rect(Rect2(625, 440, 30, 24), Color("754a28")); draw_rect(Rect2(628, 435, 24, 8), Color("bf9655"))
+	# Czytelna mapa całej krainy: osady, trakt, las, bagno, kamieniołom, plaża i Szczelina.
+	var regions := [{"p":Vector2(195,155),"n":"Wał Miary","c":Color("4f5961")},{"p":Vector2(440,480),"n":"Obóz Żaru","c":Color("6b382c")},{"p":Vector2(500,340),"n":"Trakt Mułu","c":Color("5a4b35")},{"p":Vector2(765,305),"n":"Las Trzcin","c":Color("29452f")},{"p":Vector2(865,445),"n":"Bagno Bezdechu","c":Color("335548")},{"p":Vector2(190,270),"n":"Kamieniołom","c":Color("56504b")},{"p":Vector2(155,515),"n":"Wydmy Popiołu","c":Color("756347")},{"p":Vector2(925,170),"n":"Szczelina Głosu","c":Color("4b3155")}]
+	for region: Dictionary in regions:
+		var pos: Vector2 = region["p"]; draw_circle(pos, 60, region["c"]); draw_string(ThemeDB.fallback_font, pos + Vector2(-48, -67), str(region["n"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("ddd2bd"))
+	for tree_pos: Vector2 in [Vector2(700,250),Vector2(740,360),Vector2(800,330),Vector2(775,240)]: draw_circle(tree_pos, 18, Color("1e3527"))
 	# actors
 	for id: String in npc_positions:
-		var color := Color("7890a0") if id == "boruta" else (Color("c06d4f") if id == "mira" else Color("ad9a62"))
-		draw_circle(npc_positions[id], 13, color); draw_string(ThemeDB.fallback_font, npc_positions[id] + Vector2(-30, -22), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
+		var faction := str(npc_data.get(id, {}).get("faction", "neutralna"))
+		var color := Color("7890a0") if faction == "Zakon Żelaznej Miary" else (Color("c06d4f") if faction == "Wolny Żar" else Color("ad9a62"))
+		var radius := 9.0 if id.begins_with("npc_") else 13.0
+		draw_circle(npc_positions[id], radius, color)
+		if player.distance_to(npc_positions[id]) < 95.0:
+			draw_string(ThemeDB.fallback_font, npc_positions[id] + Vector2(-30, -18), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
 	if wolf_hp > 0:
 		draw_circle(wolf_position, 16, Color("6c6555")); draw_circle(wolf_position + Vector2(10, -3), 3, Color("d84535")); draw_string(ThemeDB.fallback_font, wolf_position + Vector2(-38, -24), "Wilk z mielizny", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("e6d8c2"))
 	draw_circle(player, 13 + attack_timer * 20, Color("e6d3a4")); draw_line(player, get_global_mouse_position(), Color("e8bb68"), 2.0)

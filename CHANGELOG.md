@@ -9,3 +9,7 @@
 - Uzupełniono katalogi JSON o pełne minima danych wskazane w briefie.
 - Dodano niezależne autoloady QuestSystem, CombatSystem, CrimeSystem, TrainerSystem i WorldTime.
 - Usunięto podwójne naliczanie czasu w scenie vertical slice.
+
+## 2026-07-19 — mapa danych świata
+- Scena gry ładuje pełną populację i markery regionów z JSON.
+- Dodano proceduralny renderer ośmiu regionów oraz uniwersalną interakcję z NPC.

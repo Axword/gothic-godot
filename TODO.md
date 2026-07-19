@@ -15,3 +15,7 @@
 ## P0 — pozostałe po iteracji danych
 - [ ] Podłączyć pełną bazę questów, NPC i trenerów do map/scen (obecna scena demonstruje 3 NPC).
 - [ ] Zaimplementować komplet UI, AI, łuk, kradzież, skórowanie i finał jako grywalne sceny, a nie wyłącznie dane/systemy.
+
+## P1 — mapa
+- [ ] Zastąpić proceduralne kształty TileMapLayer i oryginalnym atlasem pixel-art.
+- [ ] Podłączyć kolizje, AStarGrid2D oraz AI walki wszystkich populacji do regionów.

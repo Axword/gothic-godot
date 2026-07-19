@@ -1,5 +1,1449 @@
 [
-  {"id":"boruta","name":"Boruta","role":"strażnik wału","faction":"Zakon Żelaznej Miary","dialogue":"boruta","routine":"patrol_wal"},
-  {"id":"mira","name":"Mira","role":"zbieraczka żaru","faction":"Wolny Żar","dialogue":"mira","routine":"ognisko"},
-  {"id":"wrona","name":"Wrona","role":"kartografka szczeliny","faction":"neutralna","dialogue":"wrona","routine":"pomiary"}
+  {
+    "id": "npc_boruta",
+    "name": "Boruta",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_boruta",
+    "trainer_skills": [
+      "sword"
+    ]
+  },
+  {
+    "id": "npc_dargan",
+    "name": "Dargan",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_dargan"
+  },
+  {
+    "id": "npc_huta",
+    "name": "Huta",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_huta"
+  },
+  {
+    "id": "npc_krzem",
+    "name": "Krzem",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_krzem"
+  },
+  {
+    "id": "npc_lenda",
+    "name": "Lenda",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_lenda"
+  },
+  {
+    "id": "npc_msciwoj",
+    "name": "Mściwój",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "rdzawy_kolec"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_msciwoj"
+  },
+  {
+    "id": "npc_narda",
+    "name": "Narda",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "sierp_popiolu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_narda"
+  },
+  {
+    "id": "npc_oset",
+    "name": "Oset",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "miecz_starej_tamy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_oset"
+  },
+  {
+    "id": "npc_przemet",
+    "name": "Przemęt",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "ostrze_kanałowe"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_przemet"
+  },
+  {
+    "id": "npc_ruda",
+    "name": "Ruda",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zab_wydmy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_ruda"
+  },
+  {
+    "id": "npc_sek",
+    "name": "Sęk",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_przewoznika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_sek"
+  },
+  {
+    "id": "npc_twarda",
+    "name": "Twarda",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "krawedz_zaru"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_twarda"
+  },
+  {
+    "id": "npc_udar",
+    "name": "Udar",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "szabla_wrony"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_udar"
+  },
+  {
+    "id": "npc_wrzos",
+    "name": "Wrzos",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "młotny_miecz"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wrzos"
+  },
+  {
+    "id": "npc_zadra",
+    "name": "Zadra",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "pazur_bezdechu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zadra"
+  },
+  {
+    "id": "npc_zmij",
+    "name": "Żmij",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_wartownika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zmij"
+  },
+  {
+    "id": "npc_barwa",
+    "name": "Barwa",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "hak_smolny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_barwa"
+  },
+  {
+    "id": "npc_cios",
+    "name": "Cios",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "kosa_czernicy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_cios"
+  },
+  {
+    "id": "npc_debik",
+    "name": "Dębik",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "stal_zapory"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_debik"
+  },
+  {
+    "id": "npc_iglica",
+    "name": "Iglica",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "ostrze_podmulne"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_iglica"
+  },
+  {
+    "id": "npc_mira",
+    "name": "Mira",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_mira"
+  },
+  {
+    "id": "npc_pomyk",
+    "name": "Płomyk",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_pomyk"
+  },
+  {
+    "id": "npc_rzesa",
+    "name": "Rzęsa",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_rzesa"
+  },
+  {
+    "id": "npc_saba",
+    "name": "Saba",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_saba"
+  },
+  {
+    "id": "npc_tepa",
+    "name": "Tępa",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_tepa"
+  },
+  {
+    "id": "npc_ula",
+    "name": "Ula",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "rdzawy_kolec"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_ula"
+  },
+  {
+    "id": "npc_wicher",
+    "name": "Wicher",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "sierp_popiolu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wicher"
+  },
+  {
+    "id": "npc_zgar",
+    "name": "Zgar",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "miecz_starej_tamy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zgar",
+    "trainer_skills": [
+      "lockpicking",
+      "theft"
+    ]
+  },
+  {
+    "id": "npc_aga",
+    "name": "Aga",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "ostrze_kanałowe"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_aga"
+  },
+  {
+    "id": "npc_bruzda",
+    "name": "Bruzda",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zab_wydmy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_bruzda"
+  },
+  {
+    "id": "npc_czajka",
+    "name": "Czajka",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_przewoznika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_czajka"
+  },
+  {
+    "id": "npc_dym",
+    "name": "Dym",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "krawedz_zaru"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_dym"
+  },
+  {
+    "id": "npc_futra",
+    "name": "Futra",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "szabla_wrony"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_futra"
+  },
+  {
+    "id": "npc_gnat",
+    "name": "Gnat",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "młotny_miecz"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_gnat"
+  },
+  {
+    "id": "npc_huk",
+    "name": "Huk",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "pazur_bezdechu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_huk"
+  },
+  {
+    "id": "npc_igieka",
+    "name": "Igiełka",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_wartownika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_igieka"
+  },
+  {
+    "id": "npc_jasiek",
+    "name": "Jasiek",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "hak_smolny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_jasiek"
+  },
+  {
+    "id": "npc_kora",
+    "name": "Kora",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "kosa_czernicy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_kora"
+  },
+  {
+    "id": "npc_ata",
+    "name": "Łata",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "stal_zapory"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_ata"
+  },
+  {
+    "id": "npc_miedz",
+    "name": "Miedź",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "ostrze_podmulne"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_miedz"
+  },
+  {
+    "id": "npc_wrona",
+    "name": "Wrona",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wrona",
+    "trainer_skills": [
+      "fire_spell",
+      "ice_spell"
+    ]
+  },
+  {
+    "id": "npc_biel",
+    "name": "Biel",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_biel"
+  },
+  {
+    "id": "npc_czernica",
+    "name": "Czernica",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_czernica",
+    "trainer_skills": [
+      "bow"
+    ]
+  },
+  {
+    "id": "npc_dudek",
+    "name": "Dudek",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_dudek"
+  },
+  {
+    "id": "npc_echa",
+    "name": "Echa",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_echa"
+  },
+  {
+    "id": "npc_fala",
+    "name": "Fala",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "rdzawy_kolec"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_fala"
+  },
+  {
+    "id": "npc_gawron",
+    "name": "Gawron",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "sierp_popiolu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_gawron"
+  },
+  {
+    "id": "npc_hala",
+    "name": "Hala",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "miecz_starej_tamy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_hala"
+  },
+  {
+    "id": "npc_iskra",
+    "name": "Iskra",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "ostrze_kanałowe"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_iskra"
+  },
+  {
+    "id": "npc_jelen",
+    "name": "Jeleń",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zab_wydmy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_jelen",
+    "trainer_skills": [
+      "skinning"
+    ]
+  },
+  {
+    "id": "npc_kes",
+    "name": "Kęs",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_przewoznika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_kes"
+  },
+  {
+    "id": "npc_lipa",
+    "name": "Lipa",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "krawedz_zaru"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_lipa"
+  },
+  {
+    "id": "npc_mewa",
+    "name": "Mewa",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "szabla_wrony"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_mewa"
+  },
+  {
+    "id": "npc_nurek",
+    "name": "Nurek",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "młotny_miecz"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_nurek"
+  },
+  {
+    "id": "npc_oko",
+    "name": "Oko",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "pazur_bezdechu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_oko"
+  },
+  {
+    "id": "npc_pioun",
+    "name": "Piołun",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_wartownika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_pioun"
+  },
+  {
+    "id": "npc_rybak",
+    "name": "Rybak",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "hak_smolny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_rybak"
+  },
+  {
+    "id": "npc_szum",
+    "name": "Szum",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "kosa_czernicy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_szum"
+  },
+  {
+    "id": "npc_trzcina",
+    "name": "Trzcina",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "stal_zapory"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_trzcina"
+  },
+  {
+    "id": "npc_uskok",
+    "name": "Uskok",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "ostrze_podmulne"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_uskok"
+  },
+  {
+    "id": "npc_wydra",
+    "name": "Wydra",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wydra"
+  },
+  {
+    "id": "npc_zimorodek",
+    "name": "Zimorodek",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zimorodek"
+  },
+  {
+    "id": "npc_zuraw",
+    "name": "Żuraw",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zuraw"
+  },
+  {
+    "id": "npc_aster",
+    "name": "Aster",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_aster"
+  },
+  {
+    "id": "npc_bysk",
+    "name": "Błysk",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_bysk"
+  }
 ]

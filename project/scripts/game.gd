@@ -59,7 +59,6 @@ func _build_ui() -> void:
 func _process(delta: float) -> void:
 	if not dialogue_open and not lock_open and not journal_open:
 		_move_player(delta)
-		GameState.world_minutes += delta * 4.0
 		_handle_world_input()
 	attack_timer = maxf(0.0, attack_timer - delta)
 	message_timer = maxf(0.0, message_timer - delta)

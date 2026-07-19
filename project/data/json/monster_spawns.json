@@ -1,0 +1,50 @@
+[
+  {
+    "id": "spawn_wilk_z_mielizny",
+    "monster_id": "wilk_z_mielizny",
+    "region": "forest",
+    "count": 2,
+    "night_only": false,
+    "respawn_seconds": 240
+  },
+  {
+    "id": "spawn_ropucha_mulowa",
+    "monster_id": "ropucha_mulowa",
+    "region": "swamp",
+    "count": 3,
+    "night_only": false,
+    "respawn_seconds": 240
+  },
+  {
+    "id": "spawn_krab_wydmowy",
+    "monster_id": "krab_wydmowy",
+    "region": "beach",
+    "count": 4,
+    "night_only": false,
+    "respawn_seconds": 240
+  },
+  {
+    "id": "spawn_golem_tamy",
+    "monster_id": "golem_tamy",
+    "region": "quarry",
+    "count": 2,
+    "night_only": false,
+    "respawn_seconds": 240
+  },
+  {
+    "id": "spawn_upior_bezdechu",
+    "monster_id": "upior_bezdechu",
+    "region": "shrine",
+    "count": 3,
+    "night_only": true,
+    "respawn_seconds": 240
+  },
+  {
+    "id": "spawn_komar_krwawy",
+    "monster_id": "komar_krwawy",
+    "region": "swamp",
+    "count": 4,
+    "night_only": false,
+    "respawn_seconds": 240
+  }
+]

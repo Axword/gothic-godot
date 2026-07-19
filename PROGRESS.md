@@ -12,3 +12,9 @@
 - [ ] Przenieść świat do scen TileMapLayer i aktorów `CharacterBody2D`.
 - [ ] Dodać dwa obozy, pełną bazę danych i system questów zamiast wycinka.
 - [ ] Zautomatyzować smoke test na binarce Godot w CI.
+
+## Zrealizowane — iteracja danych i systemów
+- [x] Pełne minima katalogu danych: 65 NPC i harmonogramy, 20 mieczy, 10 łuków, 4 pancerze, 10 roślin, 6 mikstur, 6 stworów, dwa czary.
+- [x] 5 questów Zakonu, 5 Wolnego Żaru i 10 pobocznych jako dane JSON.
+- [x] Modułowe systemy questów, treningu, przestępstw, czasu i formuł walki.
+- [x] Test reguł walki do uruchomienia headless.

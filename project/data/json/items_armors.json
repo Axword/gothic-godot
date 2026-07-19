@@ -1,0 +1,34 @@
+[
+  {
+    "id": "plaszcz_miernika",
+    "name": "Płaszcz Miernika",
+    "armor": 2,
+    "faction": "Zakon Żelaznej Miary",
+    "available_to_player": true,
+    "asset": "res://assets/generated/armor/plaszcz_miernika.png"
+  },
+  {
+    "id": "kolczuga_walu",
+    "name": "Kolczuga Wału",
+    "armor": 5,
+    "faction": "Zakon Żelaznej Miary",
+    "available_to_player": true,
+    "asset": "res://assets/generated/armor/kolczuga_walu.png"
+  },
+  {
+    "id": "skora_zaru",
+    "name": "Skóra Żaru",
+    "armor": 3,
+    "faction": "Wolny Żar",
+    "available_to_player": true,
+    "asset": "res://assets/generated/armor/skora_zaru.png"
+  },
+  {
+    "id": "pancerz_popiolu",
+    "name": "Pancerz Popiołu",
+    "armor": 6,
+    "faction": "Wolny Żar",
+    "available_to_player": true,
+    "asset": "res://assets/generated/armor/pancerz_popiolu.png"
+  }
+]

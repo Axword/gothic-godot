@@ -1,1 +1,35 @@
-[{"id":"quest_iskra","title":"Iskra pod Mułem","stages":[{"id":"start","objective":"Porozmawiaj z Borutą."},{"id":"speak","objective":"Zabij wilka z mielizny."},{"id":"wolf","objective":"Otwórz skrzynię Miry."},{"id":"chest","objective":"Dostarcz Pieczęć Iskry Wronie."},{"id":"complete","objective":"Wybór frakcji zostaje zapowiedziany."}],"reward":{"xp":60}}]
+[
+  {
+    "id": "quest_iskra",
+    "title": "Iskra pod Mułem",
+    "type": "main",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Porozmawiaj z Borutą."
+      },
+      {
+        "id": "speak",
+        "objective": "Zabij wilka z mielizny."
+      },
+      {
+        "id": "wolf",
+        "objective": "Otwórz skrzynię Miry."
+      },
+      {
+        "id": "chest",
+        "objective": "Dostarcz Pieczęć Iskry Wronie."
+      },
+      {
+        "id": "complete",
+        "objective": "Przygotuj wybór frakcji."
+      }
+    ],
+    "rewards": {
+      "xp": 60,
+      "items": [
+        "pieczec_iskry"
+      ]
+    }
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "mikstura_zycia",
+    "name": "Mikstura Życia",
+    "category": "potion",
+    "effect": "heal",
+    "amount": 30,
+    "value": 20,
+    "asset": "res://assets/generated/potions/mikstura_zycia.png"
+  },
+  {
+    "id": "mikstura_many",
+    "name": "Mikstura Many",
+    "category": "potion",
+    "effect": "mana",
+    "amount": 25,
+    "value": 30,
+    "asset": "res://assets/generated/potions/mikstura_many.png"
+  },
+  {
+    "id": "wywar_sily",
+    "name": "Wywar Siły",
+    "category": "potion",
+    "effect": "strength",
+    "amount": 2,
+    "value": 40,
+    "asset": "res://assets/generated/potions/wywar_sily.png"
+  },
+  {
+    "id": "wywar_zrecznosci",
+    "name": "Wywar Zręczności",
+    "category": "potion",
+    "effect": "dexterity",
+    "amount": 2,
+    "value": 50,
+    "asset": "res://assets/generated/potions/wywar_zrecznosci.png"
+  },
+  {
+    "id": "olej_ognia",
+    "name": "Olej Ognia",
+    "category": "potion",
+    "effect": "fire_damage",
+    "amount": 10,
+    "value": 60,
+    "asset": "res://assets/generated/potions/olej_ognia.png"
+  },
+  {
+    "id": "nalewka_lodu",
+    "name": "Nalewka Lodu",
+    "category": "potion",
+    "effect": "ice_damage",
+    "amount": 10,
+    "value": 70,
+    "asset": "res://assets/generated/potions/nalewka_lodu.png"
+  }
+]

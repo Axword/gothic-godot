@@ -1,1 +1,68 @@
-[{"id":"wilk_z_mielizny","name":"Wilk z mielizny","biome":"trakt","behavior":"ambush","hp":32,"damage":7,"loot":["skora_wilka"]}]
+[
+  {
+    "id": "wilk_z_mielizny",
+    "name": "Wilk z mielizny",
+    "biome": "forest",
+    "behavior": "pack",
+    "hp": 32,
+    "damage": 7,
+    "armor": 0,
+    "loot_table": "loot_wilk_z_mielizny",
+    "asset": "res://assets/generated/monsters/wilk_z_mielizny.png"
+  },
+  {
+    "id": "ropucha_mulowa",
+    "name": "Ropucha Mułowa",
+    "biome": "swamp",
+    "behavior": "tank",
+    "hp": 85,
+    "damage": 13,
+    "armor": 1,
+    "loot_table": "loot_ropucha_mulowa",
+    "asset": "res://assets/generated/monsters/ropucha_mulowa.png"
+  },
+  {
+    "id": "krab_wydmowy",
+    "name": "Krab Wydmowy",
+    "biome": "beach",
+    "behavior": "solo",
+    "hp": 44,
+    "damage": 9,
+    "armor": 2,
+    "loot_table": "loot_krab_wydmowy",
+    "asset": "res://assets/generated/monsters/krab_wydmowy.png"
+  },
+  {
+    "id": "golem_tamy",
+    "name": "Golem Tamy",
+    "biome": "quarry",
+    "behavior": "tank",
+    "hp": 140,
+    "damage": 19,
+    "armor": 3,
+    "loot_table": "loot_golem_tamy",
+    "asset": "res://assets/generated/monsters/golem_tamy.png"
+  },
+  {
+    "id": "upior_bezdechu",
+    "name": "Upiór Bezdechu",
+    "biome": "shrine",
+    "behavior": "night_ranged",
+    "hp": 38,
+    "damage": 12,
+    "armor": 4,
+    "loot_table": "loot_upior_bezdechu",
+    "asset": "res://assets/generated/monsters/upior_bezdechu.png"
+  },
+  {
+    "id": "komar_krwawy",
+    "name": "Komar Krwawy",
+    "biome": "swamp",
+    "behavior": "pack",
+    "hp": 20,
+    "damage": 5,
+    "armor": 5,
+    "loot_table": "loot_komar_krwawy",
+    "asset": "res://assets/generated/monsters/komar_krwawy.png"
+  }
+]

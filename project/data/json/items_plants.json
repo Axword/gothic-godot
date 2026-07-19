@@ -1,0 +1,82 @@
+[
+  {
+    "id": "trzcina_mana",
+    "name": "Trzcina Many",
+    "category": "plant",
+    "effect": "mana +5",
+    "biome": "swamp",
+    "asset": "res://assets/generated/plants/trzcina_mana.png"
+  },
+  {
+    "id": "korzen_walu",
+    "name": "Korzeń Wału",
+    "category": "plant",
+    "effect": "hp +8",
+    "biome": "forest",
+    "asset": "res://assets/generated/plants/korzen_walu.png"
+  },
+  {
+    "id": "grzyb_kaszel",
+    "name": "Grzyb Kaszel",
+    "category": "plant",
+    "effect": "antidote",
+    "biome": "quarry",
+    "asset": "res://assets/generated/plants/grzyb_kaszel.png"
+  },
+  {
+    "id": "kwiat_zaru",
+    "name": "Kwiat Żaru",
+    "category": "plant",
+    "effect": "fire reagent",
+    "biome": "beach",
+    "asset": "res://assets/generated/plants/kwiat_zaru.png"
+  },
+  {
+    "id": "mch_niemowy",
+    "name": "Mech Niemowy",
+    "category": "plant",
+    "effect": "silence resist",
+    "biome": "swamp",
+    "asset": "res://assets/generated/plants/mch_niemowy.png"
+  },
+  {
+    "id": "alga_szara",
+    "name": "Alga Szara",
+    "category": "plant",
+    "effect": "stamina +5",
+    "biome": "forest",
+    "asset": "res://assets/generated/plants/alga_szara.png"
+  },
+  {
+    "id": "kolczatka",
+    "name": "Kolczatka",
+    "category": "plant",
+    "effect": "bleed reagent",
+    "biome": "quarry",
+    "asset": "res://assets/generated/plants/kolczatka.png"
+  },
+  {
+    "id": "mięta_bagienna",
+    "name": "Mięta Bagienna",
+    "category": "plant",
+    "effect": "calm",
+    "biome": "beach",
+    "asset": "res://assets/generated/plants/mięta_bagienna.png"
+  },
+  {
+    "id": "lisc_wrony",
+    "name": "Liść Wrony",
+    "category": "plant",
+    "effect": "focus",
+    "biome": "swamp",
+    "asset": "res://assets/generated/plants/lisc_wrony.png"
+  },
+  {
+    "id": "jagoda_mulu",
+    "name": "Jagoda Mułu",
+    "category": "plant",
+    "effect": "poison resist",
+    "biome": "forest",
+    "asset": "res://assets/generated/plants/jagoda_mulu.png"
+  }
+]

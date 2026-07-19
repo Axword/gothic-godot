@@ -11,3 +11,7 @@
 
 ## P2
 - [ ] Finalne sprite’y, VFX, audio i eksport Windows.
+
+## P0 — pozostałe po iteracji danych
+- [ ] Podłączyć pełną bazę questów, NPC i trenerów do map/scen (obecna scena demonstruje 3 NPC).
+- [ ] Zaimplementować komplet UI, AI, łuk, kradzież, skórowanie i finał jako grywalne sceny, a nie wyłącznie dane/systemy.

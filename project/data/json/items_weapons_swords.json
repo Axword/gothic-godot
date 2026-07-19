@@ -1,1 +1,222 @@
-[{"id":"miecz_iskrowy","name":"Miecz Iskrowy","category":"sword","damage":10,"required_strength":3,"value":18,"description":"Krótka stal po kimś, kto nie wrócił."}]
+[
+  {
+    "id": "miecz_iskrowy",
+    "name": "Miecz Iskrowy",
+    "category": "sword",
+    "damage": 8,
+    "required_strength": 2,
+    "value": 15,
+    "mass": 1.8,
+    "asset": "res://assets/generated/weapons/miecz_iskrowy.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "tasak_rzeczny",
+    "name": "Tasak Rzeczny",
+    "category": "sword",
+    "damage": 10,
+    "required_strength": 3,
+    "value": 40,
+    "mass": 1.92,
+    "asset": "res://assets/generated/weapons/tasak_rzeczny.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "sztych_poborcy",
+    "name": "Sztych Poborcy",
+    "category": "sword",
+    "damage": 12,
+    "required_strength": 4,
+    "value": 65,
+    "mass": 2.04,
+    "asset": "res://assets/generated/weapons/sztych_poborcy.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "klinga_mielizny",
+    "name": "Klinga Mielizny",
+    "category": "sword",
+    "damage": 14,
+    "required_strength": 5,
+    "value": 90,
+    "mass": 2.16,
+    "asset": "res://assets/generated/weapons/klinga_mielizny.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "zelazo_boruty",
+    "name": "Żelazo Boruty",
+    "category": "sword",
+    "damage": 16,
+    "required_strength": 6,
+    "value": 115,
+    "mass": 2.28,
+    "asset": "res://assets/generated/weapons/zelazo_boruty.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "rdzawy_kolec",
+    "name": "Rdzawy Kolec",
+    "category": "sword",
+    "damage": 18,
+    "required_strength": 7,
+    "value": 140,
+    "mass": 2.4,
+    "asset": "res://assets/generated/weapons/rdzawy_kolec.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "sierp_popiolu",
+    "name": "Sierp Popiołu",
+    "category": "sword",
+    "damage": 20,
+    "required_strength": 8,
+    "value": 165,
+    "mass": 2.52,
+    "asset": "res://assets/generated/weapons/sierp_popiolu.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "miecz_starej_tamy",
+    "name": "Miecz Starej Tamy",
+    "category": "sword",
+    "damage": 22,
+    "required_strength": 9,
+    "value": 190,
+    "mass": 2.64,
+    "asset": "res://assets/generated/weapons/miecz_starej_tamy.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "ostrze_kanałowe",
+    "name": "Ostrze Kanałowe",
+    "category": "sword",
+    "damage": 24,
+    "required_strength": 10,
+    "value": 215,
+    "mass": 2.76,
+    "asset": "res://assets/generated/weapons/ostrze_kanałowe.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "zab_wydmy",
+    "name": "Ząb Wydmy",
+    "category": "sword",
+    "damage": 26,
+    "required_strength": 11,
+    "value": 240,
+    "mass": 2.88,
+    "asset": "res://assets/generated/weapons/zab_wydmy.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "miecz_przewoznika",
+    "name": "Miecz Przewoźnika",
+    "category": "sword",
+    "damage": 28,
+    "required_strength": 12,
+    "value": 265,
+    "mass": 3.0,
+    "asset": "res://assets/generated/weapons/miecz_przewoznika.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "krawedz_zaru",
+    "name": "Krawędź Żaru",
+    "category": "sword",
+    "damage": 30,
+    "required_strength": 13,
+    "value": 290,
+    "mass": 3.12,
+    "asset": "res://assets/generated/weapons/krawedz_zaru.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "szabla_wrony",
+    "name": "Szabla Wrony",
+    "category": "sword",
+    "damage": 32,
+    "required_strength": 14,
+    "value": 315,
+    "mass": 3.24,
+    "asset": "res://assets/generated/weapons/szabla_wrony.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "młotny_miecz",
+    "name": "Młotny Miecz",
+    "category": "sword",
+    "damage": 34,
+    "required_strength": 15,
+    "value": 340,
+    "mass": 3.36,
+    "asset": "res://assets/generated/weapons/młotny_miecz.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "pazur_bezdechu",
+    "name": "Pazur Bezdechu",
+    "category": "sword",
+    "damage": 36,
+    "required_strength": 16,
+    "value": 365,
+    "mass": 3.48,
+    "asset": "res://assets/generated/weapons/pazur_bezdechu.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "miecz_wartownika",
+    "name": "Miecz Wartownika",
+    "category": "sword",
+    "damage": 38,
+    "required_strength": 17,
+    "value": 390,
+    "mass": 3.6,
+    "asset": "res://assets/generated/weapons/miecz_wartownika.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "hak_smolny",
+    "name": "Hak Smolny",
+    "category": "sword",
+    "damage": 40,
+    "required_strength": 18,
+    "value": 415,
+    "mass": 3.72,
+    "asset": "res://assets/generated/weapons/hak_smolny.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "kosa_czernicy",
+    "name": "Kosa Czernicy",
+    "category": "sword",
+    "damage": 42,
+    "required_strength": 19,
+    "value": 440,
+    "mass": 3.84,
+    "asset": "res://assets/generated/weapons/kosa_czernicy.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "stal_zapory",
+    "name": "Stal Zapory",
+    "category": "sword",
+    "damage": 44,
+    "required_strength": 20,
+    "value": 465,
+    "mass": 3.96,
+    "asset": "res://assets/generated/weapons/stal_zapory.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  },
+  {
+    "id": "ostrze_podmulne",
+    "name": "Ostrze Podmulne",
+    "category": "sword",
+    "damage": 46,
+    "required_strength": 21,
+    "value": 490,
+    "mass": 4.08,
+    "asset": "res://assets/generated/weapons/ostrze_podmulne.png",
+    "description": "Oryginalne ostrze z pogranicza Zgnilizny."
+  }
+]

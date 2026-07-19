@@ -1,0 +1,312 @@
+[
+  {
+    "id": "q_glodny_rybak",
+    "title": "Sprawa: Glodny Rybak",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_martwa_wydra",
+    "title": "Sprawa: Martwa Wydra",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_kwiaty_mulu",
+    "title": "Sprawa: Kwiaty Mulu",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_ciepla_sowa",
+    "title": "Sprawa: Ciepla Sowa",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_dlug_karczmy",
+    "title": "Sprawa: Dlug Karczmy",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_zlamany_wioslarz",
+    "title": "Sprawa: Zlamany Wioslarz",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_maly_przemyt",
+    "title": "Sprawa: Maly Przemyt",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_sen_w_bagnie",
+    "title": "Sprawa: Sen W Bagnie",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_przesolone_mieso",
+    "title": "Sprawa: Przesolone Mieso",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_kamien_pod_tama",
+    "title": "Sprawa: Kamien Pod Tama",
+    "type": "side",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź dowód, walcz albo zawrzyj układ."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  }
+]

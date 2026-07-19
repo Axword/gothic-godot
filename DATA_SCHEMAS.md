@@ -9,3 +9,7 @@ Każdy rekord ma stabilne tekstowe `id` w formacie `a-z`, cyfry i `_`. `data/sch
 - `quests_main.json`: kolejne etapy, cele i nagroda.
 
 Zapis w `user://` ma pole `version`; `SaveSystem` odrzuca zapis z nowszego schematu i stosuje wartości domyślne przy brakujących polach.
+
+## Rozbudowana zawartość
+
+W tej iteracji wszystkie wymagane katalogi danych są obecne: 20 mieczy, 10 łuków, 4 pancerze gracza, 10 roślin, 6 mikstur, trofea, 65 NPC (20 Zakon, 20 Wolny Żar, 25 neutralnych), 260 wpisów rutyn, 6 potworów i spawnów, lokacje, loot, trenerzy, czary, questy oraz trzy pliki dialogowe. Referencje są ID, nigdy ścieżkami do instancji runtime.

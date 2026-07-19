@@ -25,3 +25,7 @@ Jedna ręcznie narysowana proceduralnie lokacja, cykl dnia/nocy, 3 NPC z innymi 
 ## Status
 
 Pełne minima z pierwotnego briefu (65 NPC, wszystkie frakcje i zawartość) **nie są jeszcze implementowane**. Aktualny PR świadomie dostarcza uruchamialny vertical slice i modularny punkt startowy zamiast udawać ukończoną produkcję.
+
+## Rozszerzona baza danych
+
+Druga iteracja zawiera również pełną projektową bazę danych wymaganej skali (65 NPC, 260 wpisów rutyn, 20 mieczy, 10 łuków, 4 pancerze, 10 roślin, 6 mikstur, 6 stworów, 2 czary i 21 questów). Aktualnie grywalna scena nadal jest pionowym wycinkiem z trzema NPC; pozostałe rekordy są przygotowanym kanonicznym contentem do podpięcia pod kolejne sceny.

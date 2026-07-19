@@ -13,3 +13,7 @@ W `project/assets/generated/` znajdują się trzy autorskie grafiki rastrowe, wy
 - `combat_props.png` — zestaw rekwizytów dla broni, skrzyń, roślin, mikstur oraz sześciu archetypów stworów; przygotowany do pocięcia na ikony i SpriteFrames.
 
 Są to grafiki własne projektu, nie import cudzych plików ani elementów z istniejących gier. Wciąż wymagają fazy technicznego atlasowania przed finalną animacją.
+
+## Animacja prototypowa
+
+`ProceduralActor` ma sześć stanów animacji renderowanych przez Godot: `IDLE`, `WALK`, `ATTACK`, `CAST`, `HIT`, `DEATH`. Pozwala to zachować czytelność prototypu nawet przed pocięciem arkusza aktorów na finalne SpriteFrames. W działającej scenie mapa stosuje te same zasady wizualne: oddech/idle, kołysanie chodu, łuk miecza, puls Iskry, błysk trafienia i zanik śmierci wilka.

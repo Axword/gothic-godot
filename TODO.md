@@ -19,3 +19,7 @@
 ## P1 — mapa
 - [ ] Zastąpić proceduralne kształty TileMapLayer i oryginalnym atlasem pixel-art.
 - [ ] Podłączyć kolizje, AStarGrid2D oraz AI walki wszystkich populacji do regionów.
+
+## P1 — animacje
+- [ ] Pociąć `actors_sheet.png` na finalny atlas i podmienić proceduralne sylwetki na SpriteFrames 4-kierunkowe.
+- [ ] Dodać AnimationTree dla kombosów miecza, łuku i reakcji AI.

@@ -11,6 +11,11 @@ var message := "Przybyłeś z listem, którego nie pisałeś."
 var message_timer := 7.0
 var selected: String = ""
 var attack_timer := 0.0
+var cast_timer := 0.0
+var player_facing := Vector2.DOWN
+var player_is_walking := false
+var wolf_death_timer := 0.0
+var wolf_hit_timer := 0.0
 var wolf_hp := 32
 var wolf_position := Vector2(725, 315)
 var npc_positions: Dictionary = {}
@@ -87,6 +92,9 @@ func _process(delta: float) -> void:
 		_move_player(delta)
 		_handle_world_input()
 	attack_timer = maxf(0.0, attack_timer - delta)
+	cast_timer = maxf(0.0, cast_timer - delta)
+	wolf_hit_timer = maxf(0.0, wolf_hit_timer - delta)
+	wolf_death_timer = maxf(0.0, wolf_death_timer - delta)
 	message_timer = maxf(0.0, message_timer - delta)
 	_update_npc_routines()
 	_update_ui()
@@ -94,6 +102,9 @@ func _process(delta: float) -> void:
 
 func _move_player(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	player_is_walking = direction.length_squared() > 0.01
+	if player_is_walking:
+		player_facing = direction.normalized()
 	player += direction * 180.0 * delta
 	player.x = clampf(player.x, WORLD.position.x + 12, WORLD.end.x - 12)
 	player.y = clampf(player.y, WORLD.position.y + 12, WORLD.end.y - 12)
@@ -148,10 +159,12 @@ func interact() -> void:
 			else: _notice(true, "Tu nic nie odpowiada.")
 
 func attack() -> void:
-	attack_timer = 0.18
+	attack_timer = 0.30
 	if player.distance_to(wolf_position) < 70 and wolf_hp > 0:
 		wolf_hp -= 10 + GameState.strength
+		wolf_hit_timer = 0.18
 		if wolf_hp <= 0:
+			wolf_death_timer = 0.9
 			GameState.defeated.append("wilk_z_mielizny")
 			GameState.add_item("skora_wilka", 1); GameState.gain_xp(35)
 			if GameState.quest_stage == "speak": GameState.advance_quest("wolf")
@@ -159,6 +172,7 @@ func attack() -> void:
 		else: _notice(true, "Stal trafia: wilk warczy.")
 
 func cast_fire() -> void:
+	cast_timer = 0.42
 	if GameState.mana < 5: _notice(false, "Za mało many."); return
 	GameState.mana -= 5
 	if player.distance_to(wolf_position) < 240 and wolf_hp > 0:
@@ -286,10 +300,28 @@ func _draw() -> void:
 		var faction := str(npc_data.get(id, {}).get("faction", "neutralna"))
 		var color := Color("7890a0") if faction == "Zakon Żelaznej Miary" else (Color("c06d4f") if faction == "Wolny Żar" else Color("ad9a62"))
 		var radius := 9.0 if id.begins_with("npc_") else 13.0
-		draw_circle(npc_positions[id], radius, color)
-		if player.distance_to(npc_positions[id]) < 95.0:
-			draw_string(ThemeDB.fallback_font, npc_positions[id] + Vector2(-30, -18), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
-	if wolf_hp > 0:
-		draw_circle(wolf_position, 16, Color("6c6555")); draw_circle(wolf_position + Vector2(10, -3), 3, Color("d84535")); draw_string(ThemeDB.fallback_font, wolf_position + Vector2(-38, -24), "Wilk z mielizny", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("e6d8c2"))
-	# Arkusze aktorów i rekwizytów pozostają źródłem grafik dla następnego kroku animacji.
-	draw_circle(player, 13 + attack_timer * 20, Color("e6d3a4")); draw_line(player, get_global_mouse_position(), Color("e8bb68"), 2.0)
+		var npc_bob := sin(Time.get_ticks_msec() * 0.005 + npc_positions[id].x) * 1.5
+		var visual_npc := npc_positions[id] + Vector2(0.0, npc_bob)
+		draw_circle(visual_npc, radius, color)
+		if player.distance_to(visual_npc) < 95.0:
+			draw_string(ThemeDB.fallback_font, visual_npc + Vector2(-30, -18), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
+	# Wilk ma czytelne stany: idle, trafienie z błyskiem i śmierć z zanikiem.
+	if wolf_hp > 0 or wolf_death_timer > 0.0:
+		var wolf_alpha := 1.0 if wolf_hp > 0 else wolf_death_timer / 0.9
+		var recoil := Vector2(-wolf_hit_timer * 70.0, 0.0)
+		draw_circle(wolf_position + recoil, 16, Color(0.42, 0.40, 0.33, wolf_alpha))
+		draw_circle(wolf_position + recoil + Vector2(10, -3), 3, Color(0.85, 0.27, 0.21, wolf_alpha))
+		if wolf_hit_timer > 0.0: draw_arc(wolf_position + recoil, 22, 0.0, TAU, 16, Color("f2d27d"), 2.0)
+		draw_string(ThemeDB.fallback_font, wolf_position + Vector2(-38, -24), "Wilk z mielizny", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("e6d8c2"))
+	# Gracz: idle (oddech), chód (bujanie), atak (łuk miecza), rzucanie (krąg Iskry).
+	var bob := sin(Time.get_ticks_msec() * 0.006) * (2.0 if player_is_walking else 0.8)
+	var visual_player := player + Vector2(0.0, bob)
+	draw_circle(visual_player, 13, Color("e6d3a4"))
+	var sword_direction := player_facing
+	if attack_timer > 0.0:
+		sword_direction = player_facing.rotated((0.30 - attack_timer) * 8.0)
+		draw_arc(visual_player + sword_direction * 14.0, 16, sword_direction.angle() - 1.0, sword_direction.angle() + 1.0, 10, Color("e8bb68"), 3.0)
+	if cast_timer > 0.0:
+		var pulse := 12.0 + sin(cast_timer * 28.0) * 4.0
+		draw_circle(visual_player + player_facing * 20.0, pulse, Color(0.92, 0.38, 0.12, cast_timer * 1.4))
+		draw_arc(visual_player, 23, 0.0, TAU, 18, Color("f5b85d"), 1.5)

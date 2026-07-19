@@ -23,3 +23,9 @@
 - [x] Proceduralna mapa całego regionu z ośmioma wymaganymi biomami/regionami.
 - [x] Rozmieszczenie 65 NPC ładowane z JSON oraz zachowania dobowe dla populacji.
 - [x] Interakcja i widoczne etykiety dla każdego NPC w zasięgu gracza; specjalne dialogi Boruty, Miry i Wrony pozostają osią wycinka.
+
+## Zrealizowane — animacje prototypowe
+- [x] Widoczne stany gracza: idle, chód, atak i rzucanie czaru.
+- [x] Widoczne stany wilka: idle, trafienie i śmierć.
+- [x] Kołysanie idle/chodu populacji NPC.
+- [x] Reużywalna scena `ProceduralActor` z sześcioma stanami animacji.

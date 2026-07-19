@@ -17,3 +17,7 @@
 ## 2026-07-19 — grafiki reprezentatywne
 - Dodano własną ilustrowaną mapę świata, arkusz aktorów i arkusz rekwizytów/walki.
 - Mapa została podpięta jako tło renderowane przez scenę Godot.
+
+## 2026-07-19 — animacje
+- Dodano proceduralne animacje postaci i potwora w grywalnej scenie.
+- Dodano reużywalną scenę ProceduralActor dla przyszłych NPC i potworów.

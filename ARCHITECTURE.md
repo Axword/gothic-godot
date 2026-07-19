@@ -1,6 +1,6 @@
 # Architektura
 
-`project/` jest samodzielnym projektem Godot 4.3+.
+`project/` jest samodzielnym projektem Godot 4.7+.
 
 - `autoload/game_state.gd`: stan runtime, sygnały, XP i inwentarz.
 - `autoload/data_loader.gd`: typed gateway JSON i kontrola duplikatów ID.

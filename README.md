@@ -1,10 +1,10 @@
 # Zgnilizna: Iskra pod Mułem
 
-Grywalny, autorski vertical slice action RPG 2D dla **Godot 4.3+**. Projekt nie używa nazw, świata, dialogów ani zasobów z istniejących gier. Jest to fundament do rozbudowy pełnej krótkiej gry opisanej w `what_to_do.md`.
+Grywalny, autorski vertical slice action RPG 2D dla **Godot 4.7+**. Projekt nie używa nazw, świata, dialogów ani zasobów z istniejących gier. Jest to fundament do rozbudowy pełnej krótkiej gry opisanej w `what_to_do.md`.
 
 ## Uruchomienie
 
-1. Otwórz katalog `project/` w Godot Engine 4.3 lub nowszym.
+1. Otwórz katalog `project/` w Godot Engine 4.7 lub nowszym.
 2. Uruchom `scenes/game.tscn` (`F6`) albo projekt (`F5`).
 3. Opcjonalna kontrola danych: `godot --headless --path project --script res://tests/validate_data.gd`.
 

@@ -21,3 +21,10 @@
 ## 2026-07-19 — animacje
 - Dodano proceduralne animacje postaci i potwora w grywalnej scenie.
 - Dodano reużywalną scenę ProceduralActor dla przyszłych NPC i potworów.
+
+## 2026-07-19 — zgodność Godot 4.7
+- Zmieniono feature flag projektu na Godot 4.7 i usunięto niejednoznaczne wnioskowanie typu `Variant` w rendererze NPC.
+
+## 2026-07-19 — naprawa Godot 4.7.1
+- Naprawiono błąd parsera `visual_npc`: wynik słownika jest teraz jawnie konwertowany do `Vector2`.
+- Ustawiono feature flag projektu na 4.7 / GL Compatibility.

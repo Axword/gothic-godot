@@ -100,3 +100,6 @@
 
 ## 2026-07-19 — pościg i alarm NPC
 - Dodano AI pościgu/ataku/powrotu dla agresywnych ludzi oraz lokalną reakcję grupy.
+
+## 2026-07-20 — proceduralne SFX
+- Dodano AudioSystem i własne proceduralne WAV-y dla kluczowych akcji.

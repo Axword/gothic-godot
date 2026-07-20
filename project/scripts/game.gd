@@ -403,6 +403,7 @@ func _update_bandit_aggression(delta: float) -> void:
 			_start_robbery(id)
 
 func _start_robbery(id: String) -> void:
+	AudioSystem.play_effect("alarm")
 	var npc: Dictionary = npc_data.get(id, {})
 	dialogue_open = true; panel.visible = true
 	GameState.flags["robbery_id"] = id
@@ -531,6 +532,7 @@ func _damage_creature(creature_id: String, damage: int) -> void:
 
 func attack() -> void:
 	attack_timer = 0.30
+	AudioSystem.play_effect("sword_hit")
 	var creature_target := _nearest_combat_target(150.0)
 	var hostile_id := _nearest_hostile()
 	if not creature_target.is_empty() and creature_target != "wolf" and creatures.has(creature_target):
@@ -570,6 +572,7 @@ func fire_bow() -> void:
 	_notice(true, "Strzała trzcinowa świszczy w ciemności.")
 
 func cast_ice() -> void:
+	AudioSystem.play_effect("ice_cast")
 	if not GameState.learned_spells.has("lodowy_kolec") or GameState.mana < 7:
 		_notice(false, "Nie znasz Lodowego Kolca albo brakuje many."); return
 	GameState.mana -= 7; cast_timer = 0.42
@@ -591,6 +594,7 @@ func _nearest_combat_target(maximum_distance: float) -> String:
 	return ""
 
 func cast_fire() -> void:
+	AudioSystem.play_effect("fire_cast")
 	cast_timer = 0.42
 	if GameState.mana < 5: _notice(false, "Za mało many."); return
 	GameState.mana -= 5
@@ -789,6 +793,7 @@ func _lock_input(value: String) -> void:
 	elif sequence == expected:
 		GameState.opened_chests.append(current_chest_id); GameState.add_item(str(chest.get("reward", "zlote_znaki"))); GameState.gain_xp(25)
 		if current_chest_id == "skrzynia_popiolu" and GameState.quest_stage == "wolf": GameState.advance_quest("chest")
+		AudioSystem.play_effect("chest_open")
 		lock_open = false; _close_panel(); _notice(true, "Zamek puszcza. W środku: " + str(chest.get("reward", "łup")).replace("_", " ") + ".")
 
 func _input(event: InputEvent) -> void:

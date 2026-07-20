@@ -29,3 +29,7 @@ Dodano cztery aktywa pancerzy SVG: `plaszcz_miernika.svg`, `kolczuga_walu.svg`, 
 ## Aktywne assety stworów
 
 Do sceny podpięto własne sprite’y SVG: ropucha mułowa, krab wydmowy, golem tamy, upiór Bezdechu oraz komar krwawy. Razem z wilkiem stanowią sześć rozpoznawalnych sylwetek gatunków.
+
+## Audio/VFX prototypu
+
+Działające efekty audio są krótkimi własnymi WAV-ami dla miecza, ognia, lodu, skrzyni i alarmu. Są odtwarzane przez `AudioSystem` na magistrali Master. Wizualnie czary mają pulsujące kręgi/pociski, trafienie bestii i agresja mają czytelne pierścienie.

@@ -13,3 +13,7 @@ Nie użyto zasobów zewnętrznych. Grafika vertical slice jest rysowana procedur
 ## Własne sprite’y SVG
 
 `player.svg`, `order_guard.svg`, `rebel.svg`, `neutral.svg` i `wolf.svg` zostały narysowane od podstaw w repozytorium jako wektorowe, pixel-artowe sylwetki. Nie zawierają zasobów stron trzecich.
+
+## Własne efekty dźwiękowe
+
+`project/assets/audio/*.wav` powstały proceduralnie w repozytorium z prostych fal sinusoidalnych/szumu: uderzenie miecza, Iskra, Lodowy Kolec, skrzynia i alarm. Nie użyto nagrań ani bibliotek osób trzecich.

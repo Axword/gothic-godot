@@ -117,3 +117,7 @@
 ## Zrealizowane — AI ludzi
 - [x] Wrogi bandyci/strażnicy ścigają gracza, atakują i wracają do rutyny po utracie celu.
 - [x] Lokalny alarm wciąga pobliskich strażników i wojowników tej samej frakcji.
+
+## Zrealizowane — audio i VFX
+- [x] Własne proceduralne SFX miecza, obu czarów, skrzyni i alarmu.
+- [x] AudioSystem na magistrali Master oraz podpięcie dźwięków do interakcji.

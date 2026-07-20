@@ -36,7 +36,7 @@ func load_slot(slot: int = 1) -> bool:
 	var pos: Dictionary = data.get("player_position", {})
 	GameState.player_position = Vector2(float(pos.get("x", 13000)), float(pos.get("y", 7000)))
 	var safe_pos: Dictionary = data.get("last_safe_position", pos)
-	GameState.last_safe_position = Vector2(float(safe_pos.get("x", GameState.player_position.x)), float(safe_pos.get("y", GameState.player_position.y))
+	GameState.last_safe_position = Vector2(float(safe_pos.get("x", GameState.player_position.x)), float(safe_pos.get("y", GameState.player_position.y)))
 	GameState.hp = int(data.get("hp", 60)); GameState.mana = int(data.get("mana", 20))
 	GameState.level = int(data.get("level", 1)); GameState.xp = int(data.get("xp", 0))
 	GameState.learning_points = int(data.get("learning_points", 1)); GameState.world_minutes = float(data.get("world_minutes", 420))

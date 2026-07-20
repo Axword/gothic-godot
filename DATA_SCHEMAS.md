@@ -21,3 +21,7 @@ W tej iteracji wszystkie wymagane katalogi danych są obecne: 20 mieczy, 10 łuk
 ### Runtime skrzyń
 
 Skrzynie świata wykorzystują stabilne ID, poziom `1–3`, sekwencję i ID nagrody. Stan otwarcia trafia do `GameState.opened_chests`, a następnie do slotu zapisu.
+
+### world_chests.json
+
+Kanoniczna lista skrzyń świata. Rekord zawiera stabilne `id`, `position` (`x`, `y`), `level` 1–3, sekwencję zamka oraz `reward` odwołujący się do istniejącego ID przedmiotu. Walidator kontroluje unikalność oraz referencję nagrody.

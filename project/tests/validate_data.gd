@@ -1,7 +1,7 @@
 extends SceneTree
 ## Run: godot --headless --path project --script res://tests/validate_data.gd
 func _init() -> void:
-	var array_paths: Array[String] = ["npcs.json", "npc_schedules.json", "items_weapons_swords.json", "items_weapons_bows.json", "items_armors.json", "items_plants.json", "items_potions.json", "items_trophies.json", "items_misc.json", "monsters.json", "monster_spawns.json", "quests_main.json", "quests_old_faction.json", "quests_new_faction.json", "quests_side.json", "trainers.json", "world_locations.json", "loot_tables.json", "spells.json"]
+	var array_paths: Array[String] = ["npcs.json", "npc_schedules.json", "items_weapons_swords.json", "items_weapons_bows.json", "items_armors.json", "items_plants.json", "items_potions.json", "items_trophies.json", "items_misc.json", "monsters.json", "monster_spawns.json", "quests_main.json", "quests_old_faction.json", "quests_new_faction.json", "quests_side.json", "trainers.json", "world_locations.json", "world_chests.json", "loot_tables.json", "spells.json"]
 	var data: Dictionary = {}; var failed := false
 	for file_name: String in array_paths:
 		var path := "res://data/json/" + file_name
@@ -21,6 +21,11 @@ func _init() -> void:
 		if not npc_ids.has(str(row.get("npc_id", ""))): push_error("Trener wskazuje nieistniejącego NPC: " + str(row)); failed = true
 	for row: Dictionary in data.get("monster_spawns.json", []):
 		if not monster_ids.has(str(row.get("monster_id", ""))): push_error("Spawn wskazuje nieistniejącego potwora: " + str(row)); failed = true
+	var item_ids := {}
+	for file_name: String in ["items_weapons_swords.json", "items_weapons_bows.json", "items_armors.json", "items_plants.json", "items_potions.json", "items_trophies.json", "items_misc.json"]:
+		for item: Dictionary in data.get(file_name, []): item_ids[str(item.get("id", ""))] = true
+	for chest: Dictionary in data.get("world_chests.json", []):
+		if not item_ids.has(str(chest.get("reward", ""))): push_error("Skrzynia ma brakującą nagrodę: " + str(chest)); failed = true
 	print("DATA VALIDATION " + ("FAILED" if failed else "PASSED")); quit(1 if failed else 0)
 
 func _ids(rows: Array) -> Dictionary:

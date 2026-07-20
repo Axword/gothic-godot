@@ -138,11 +138,9 @@ func _blocked(position: Vector2) -> bool:
 	return false
 
 func _setup_world_chests() -> void:
-	world_chests = {
-		"skrzynia_popiolu": {"position": Vector2(15100, 9600), "level": 1, "sequence": "LRL", "reward": "pieczec_iskry", "name": "Skrzynia z popiołu"},
-		"skrzynia_kamieniolomu": {"position": Vector2(4700, 6800), "level": 2, "sequence": "RLLR", "reward": "luk_2", "name": "Skrzynia kamieniołomu"},
-		"skrzynia_szczeliny": {"position": Vector2(22900, 3500), "level": 3, "sequence": "LRRLL", "reward": "pancerz_popiolu", "name": "Skrzynia Szczeliny"}
-	}
+	for record: Dictionary in DataLoader.load_array("res://data/json/world_chests.json"):
+		var position_data: Dictionary = record.get("position", {})
+		world_chests[str(record.get("id", ""))] = {"position": Vector2(float(position_data.get("x", 0)), float(position_data.get("y", 0))), "level": int(record.get("level", 1)), "sequence": str(record.get("sequence", "LRL")), "reward": str(record.get("reward", "zlote_znaki")), "name": str(record.get("name", "Skrzynia"))}
 
 func _near_chest() -> String:
 	for chest_id: String in world_chests:

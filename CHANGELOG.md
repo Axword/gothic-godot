@@ -88,3 +88,6 @@
 
 ## 2026-07-19 — zamki I–III
 - Rozszerzono minigrę o trzy skrzynie, rangi zamków i różne sekwencje.
+
+## 2026-07-19 — czterdzieści skrzyń świata
+- Zastąpiono trzy skrzynie 40 skrzyniami danych, z nagrodami walidowanymi względem katalogu przedmiotów.

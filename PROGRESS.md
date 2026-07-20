@@ -101,3 +101,7 @@
 - [x] Trzy skrzynie świata o poziomach zamka 1–3 i innych sekwencjach.
 - [x] Wyższe poziomy respektują rangę otwierania zamków.
 - [x] Skrzynie dają realne łuki/pancerz/przedmiot questowy i nie odradzają się po wczytaniu.
+
+## Zrealizowane — gęstość eksploracji
+- [x] 40 skrzyń rozmieszczonych w ośmiu regionach świata.
+- [x] Skrzynie są ładowane z kanonicznego `world_chests.json`, a nie definiowane w kodzie.

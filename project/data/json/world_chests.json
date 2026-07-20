@@ -1,0 +1,442 @@
+[
+  {
+    "id": "skrzynia_popiolu",
+    "name": "Skrzynia z popiołu",
+    "position": {
+      "x": 15100,
+      "y": 9600
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "pieczec_iskry"
+  },
+  {
+    "id": "skrzynia_kamieniolomu",
+    "name": "Skrzynia kamieniołomu",
+    "position": {
+      "x": 4700,
+      "y": 6800
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "wytrych"
+  },
+  {
+    "id": "skrzynia_szczeliny",
+    "name": "Skrzynia Szczeliny",
+    "position": {
+      "x": 22900,
+      "y": 3500
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "mikstura_zycia"
+  },
+  {
+    "id": "chest_04",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 2000,
+      "y": 1400
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "mikstura_many"
+  },
+  {
+    "id": "chest_05",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 5800,
+      "y": 1100
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "wywar_sily"
+  },
+  {
+    "id": "chest_06",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 6800,
+      "y": 3600
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "wywar_zrecznosci"
+  },
+  {
+    "id": "chest_07",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 7800,
+      "y": 5300
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "olej_ognia"
+  },
+  {
+    "id": "chest_08",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 9500,
+      "y": 6400
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "nalewka_lodu"
+  },
+  {
+    "id": "chest_09",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 11200,
+      "y": 7600
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "tasak_rzeczny"
+  },
+  {
+    "id": "chest_10",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 12900,
+      "y": 8500
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "sztych_poborcy"
+  },
+  {
+    "id": "chest_11",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 15800,
+      "y": 9000
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "klinga_mielizny"
+  },
+  {
+    "id": "chest_12",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 17000,
+      "y": 7800
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "zelazo_boruty"
+  },
+  {
+    "id": "chest_13",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 18100,
+      "y": 5100
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "rdzawy_kolec"
+  },
+  {
+    "id": "chest_14",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 19500,
+      "y": 4200
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "sierp_popiolu"
+  },
+  {
+    "id": "chest_15",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 20700,
+      "y": 6800
+    },
+    "level": 1,
+    "sequence": "LRL",
+    "reward": "miecz_starej_tamy"
+  },
+  {
+    "id": "chest_16",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 21700,
+      "y": 8700
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "ostrze_kanałowe"
+  },
+  {
+    "id": "chest_17",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 23600,
+      "y": 10500
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "zab_wydmy"
+  },
+  {
+    "id": "chest_18",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 24500,
+      "y": 12200
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "miecz_przewoznika"
+  },
+  {
+    "id": "chest_19",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 5000,
+      "y": 11800
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "krawedz_zaru"
+  },
+  {
+    "id": "chest_20",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 3800,
+      "y": 10200
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "szabla_wrony"
+  },
+  {
+    "id": "chest_21",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 8500,
+      "y": 10400
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "młotny_miecz"
+  },
+  {
+    "id": "chest_22",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 12100,
+      "y": 11200
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "pazur_bezdechu"
+  },
+  {
+    "id": "chest_23",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 15000,
+      "y": 12400
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "miecz_wartownika"
+  },
+  {
+    "id": "chest_24",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 18000,
+      "y": 12200
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "hak_smolny"
+  },
+  {
+    "id": "chest_25",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 20800,
+      "y": 12600
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "kosa_czernicy"
+  },
+  {
+    "id": "chest_26",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 24500,
+      "y": 5000
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "stal_zapory"
+  },
+  {
+    "id": "chest_27",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 12500,
+      "y": 4500
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "ostrze_podmulne"
+  },
+  {
+    "id": "chest_28",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 9200,
+      "y": 2600
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "luk_2"
+  },
+  {
+    "id": "chest_29",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 6200,
+      "y": 5700
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "luk_3"
+  },
+  {
+    "id": "chest_30",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 3000,
+      "y": 7500
+    },
+    "level": 2,
+    "sequence": "RLLR",
+    "reward": "luk_4"
+  },
+  {
+    "id": "chest_31",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 15500,
+      "y": 6700
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "luk_5"
+  },
+  {
+    "id": "chest_32",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 18500,
+      "y": 9300
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "luk_6"
+  },
+  {
+    "id": "chest_33",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 22000,
+      "y": 2200
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "luk_7"
+  },
+  {
+    "id": "chest_34",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 23500,
+      "y": 3800
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "luk_8"
+  },
+  {
+    "id": "chest_35",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 2650,
+      "y": 11500
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "luk_9"
+  },
+  {
+    "id": "chest_36",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 5200,
+      "y": 12400
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "luk_10"
+  },
+  {
+    "id": "chest_37",
+    "name": "Skrzynia podróżna",
+    "position": {
+      "x": 7300,
+      "y": 7100
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "pancerz_popiolu"
+  },
+  {
+    "id": "chest_38",
+    "name": "Skrzynia pogranicza",
+    "position": {
+      "x": 9900,
+      "y": 9300
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "kolczuga_walu"
+  },
+  {
+    "id": "chest_39",
+    "name": "Skrzynia strażnicza",
+    "position": {
+      "x": 13500,
+      "y": 6000
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "skora_zaru"
+  },
+  {
+    "id": "chest_40",
+    "name": "Skrzynia ukryta",
+    "position": {
+      "x": 17500,
+      "y": 3500
+    },
+    "level": 3,
+    "sequence": "LRRLL",
+    "reward": "strzala_trzcinowa"
+  }
+]

@@ -78,3 +78,6 @@
 
 ## 2026-07-19 — przeszkody i sen
 - Dodano kolizje struktur świata oraz łóżka z przyspieszeniem czasu.
+
+## 2026-07-19 — pickupy roślin i mikstur
+- Dodano punkty zbioru wszystkich roślin/mikstur, trwałe zapamiętywanie ich stanu i użycie podstawowych mikstur.

@@ -85,3 +85,8 @@
 ## Zrealizowane — kolizje i sen
 - [x] Kolizje ręcznie projektowanych landmarków i ruch ze ślizganiem po osi.
 - [x] Dwa interaktywne posłania i przyspieszanie czasu do świtu/zmroku.
+
+## Zrealizowane — przedmioty świata i używanie
+- [x] Wszystkie 10 roślin i 6 mikstur są fizycznymi punktami podnoszenia na mapie.
+- [x] Zebrane przedmioty pozostają zebrane po zapisie/wczytaniu.
+- [x] Mikstura Życia i Mikstura Many mają działające użycie w ekwipunku.

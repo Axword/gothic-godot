@@ -24,6 +24,7 @@ var quest_stage: String = "start"
 var flags: Dictionary = {}
 var opened_chests: Array[String] = []
 var defeated: Array[String] = []
+var taken_pickups: Array[String] = []
 
 func reset() -> void:
 	player_position = Vector2(13000, 7000)
@@ -42,6 +43,7 @@ func reset() -> void:
 	flags = {}
 	opened_chests = []
 	defeated = []
+	taken_pickups = []
 	changed.emit()
 
 func add_quest(quest_id: String) -> void:

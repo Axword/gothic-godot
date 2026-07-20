@@ -7,7 +7,7 @@ func save_slot(slot: int = 1) -> bool:
 		"hp": GameState.hp, "mana": GameState.mana, "level": GameState.level, "xp": GameState.xp,
 		"learning_points": GameState.learning_points, "world_minutes": GameState.world_minutes,
 		"inventory": GameState.inventory, "equipped": GameState.equipped, "learned_spells": GameState.learned_spells, "quest": {"id": GameState.active_quest, "stage": GameState.quest_stage},
-		"flags": GameState.flags, "faction_choice": GameState.faction_choice, "opened_chests": GameState.opened_chests, "defeated": GameState.defeated
+		"flags": GameState.flags, "faction_choice": GameState.faction_choice, "taken_pickups": GameState.taken_pickups, "opened_chests": GameState.opened_chests, "defeated": GameState.defeated
 	}
 	var file := FileAccess.open("user://save_%d.json" % slot, FileAccess.WRITE)
 	if file == null:
@@ -37,6 +37,6 @@ func load_slot(slot: int = 1) -> bool:
 	GameState.learning_points = int(data.get("learning_points", 1)); GameState.world_minutes = float(data.get("world_minutes", 420))
 	GameState.inventory = data.get("inventory", {}).duplicate(); GameState.equipped = data.get("equipped", {"weapon": "miecz_iskrowy", "armor": "plaszcz_miernika"}).duplicate(); GameState.learned_spells.assign(data.get("learned_spells", ["iskra"])); var quest: Dictionary = data.get("quest", {})
 	GameState.active_quest = str(quest.get("id", "quest_iskra")); GameState.quest_stage = str(quest.get("stage", "start"))
-	GameState.flags = data.get("flags", {}).duplicate(); GameState.faction_choice = str(data.get("faction_choice", "")); GameState.opened_chests.assign(data.get("opened_chests", [])); GameState.defeated.assign(data.get("defeated", []))
+	GameState.flags = data.get("flags", {}).duplicate(); GameState.taken_pickups.assign(data.get("taken_pickups", [])); GameState.faction_choice = str(data.get("faction_choice", "")); GameState.opened_chests.assign(data.get("opened_chests", [])); GameState.defeated.assign(data.get("defeated", []))
 	GameState.changed.emit(); saved.emit(true, "Wczytano slot %d." % slot)
 	return true

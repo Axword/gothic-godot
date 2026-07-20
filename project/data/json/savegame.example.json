@@ -33,5 +33,6 @@
     "iskra",
     "lodowy_kolec"
   ],
-  "faction_choice": ""
+  "faction_choice": "",
+  "taken_pickups": []
 }

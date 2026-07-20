@@ -46,6 +46,7 @@ var npc_home: Dictionary = {}
 var creatures: Dictionary = {}
 var world_obstacles: Array[Rect2] = []
 var beds: Array[Vector2] = [Vector2(2400, 2900), Vector2(15100, 10600)]
+var world_pickups: Dictionary = {}
 var creature_attack_cooldown: float = 0.0
 var dialogue: Dictionary = {}
 var dialogue_open := false
@@ -67,6 +68,7 @@ func _ready() -> void:
 	_load_world_population()
 	_load_creatures()
 	_setup_world_collisions()
+	_setup_world_pickups()
 	_create_camera()
 	_build_ui()
 	_show_intro()
@@ -131,6 +133,32 @@ func _blocked(position: Vector2) -> bool:
 	for obstacle: Rect2 in world_obstacles:
 		if obstacle.grow(52.0).has_point(position): return true
 	return false
+
+func _setup_world_pickups() -> void:
+	# Każda roślina i każda mikstura ma fizyczny punkt zbioru; ID jest kanoniczne z JSON.
+	var placements := {
+		"trzcina_mana": Vector2(20500, 10500), "korzen_walu": Vector2(6800, 4700), "grzyb_kaszel": Vector2(21500, 11800),
+		"kwiat_zaru": Vector2(4100, 6900), "mch_niemowy": Vector2(18600, 5500), "alga_szara": Vector2(2900, 12600),
+		"kolczatka": Vector2(20100, 9300), "mięta_bagienna": Vector2(22300, 10200), "lisc_wrony": Vector2(17800, 6500), "jagoda_mulu": Vector2(23000, 11400),
+		"mikstura_zycia": Vector2(14200, 10100), "mikstura_many": Vector2(20900, 9800), "wywar_sily": Vector2(4300, 5200),
+		"wywar_zrecznosci": Vector2(17800, 4700), "olej_ognia": Vector2(22300, 3300), "nalewka_lodu": Vector2(2500, 11900)
+	}
+	for item_id: String in placements:
+		world_pickups[item_id] = {"position": placements[item_id], "taken": GameState.taken_pickups.has(item_id)}
+
+func _near_pickup() -> String:
+	for item_id: String in world_pickups:
+		var pickup: Dictionary = world_pickups[item_id]
+		var position: Vector2 = pickup.get("position", Vector2.ZERO)
+		if not bool(pickup.get("taken", false)) and player.distance_to(position) < 145.0: return item_id
+	return ""
+
+func _collect_pickup(item_id: String) -> void:
+	var pickup: Dictionary = world_pickups[item_id]
+	pickup["taken"] = true; world_pickups[item_id] = pickup
+	if not GameState.taken_pickups.has(item_id): GameState.taken_pickups.append(item_id)
+	GameState.add_item(item_id)
+	_notice(true, "Podnosisz: " + item_id.replace("_", " ") + ".")
 
 func _load_creatures() -> void:
 	# Stałe spawny reprezentują wszystkie gatunki danych, bez skalowania poziomu.
@@ -294,6 +322,10 @@ func nearest_target() -> String:
 
 func interact() -> void:
 	selected = nearest_target()
+	var pickup_id := _near_pickup()
+	if not pickup_id.is_empty():
+		_collect_pickup(pickup_id)
+		return
 	if wolf_hp <= 0 and wolf_death_timer <= 0.0 and player.distance_to(wolf_position) < 180.0:
 		_harvest_wolf()
 		return
@@ -336,6 +368,13 @@ func _harvest_wolf() -> void:
 		_notice(true, "Pozyskujesz: " + trophy.replace("_", " ") + ".")
 
 func _near_bed() -> bool:
+	for item_id: String in world_pickups:
+		var pickup: Dictionary = world_pickups[item_id]
+		if bool(pickup.get("taken", false)): continue
+		var pickup_pos: Vector2 = pickup.get("position", Vector2.ZERO)
+		var pickup_color := Color("77ae55") if not item_id.begins_with("mikstura") and not item_id.begins_with("wywar") and item_id != "olej_ognia" and item_id != "nalewka_lodu" else Color("d5524b")
+		draw_circle(pickup_pos, 42.0, Color("19201a")); draw_circle(pickup_pos, 29.0, pickup_color)
+		if player.distance_to(pickup_pos) < 240.0: draw_string(ThemeDB.fallback_font, pickup_pos + Vector2(-100, -60), item_id.replace("_", " "), HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Color.WHITE)
 	for bed: Vector2 in beds:
 		if player.distance_to(bed) < 180.0: return true
 	return false
@@ -553,6 +592,12 @@ func _choose(choice: String) -> void:
 		"fight_bandit":
 			var fight_id := str(GameState.flags.get("robbery_id", "")); hostile_npcs[fight_id] = true
 			_close_panel(); _notice(false, "Bandyta rusza do ataku!")
+		"use_life_potion":
+			if GameState.remove_item("mikstura_zycia", 1): GameState.hp = mini(GameState.max_hp, GameState.hp + 30); _notice(true, "Ciepło wraca do kości.")
+			_show_inventory()
+		"use_mana_potion":
+			if GameState.remove_item("mikstura_many", 1): GameState.mana = mini(GameState.max_mana, GameState.mana + 25); _notice(true, "Gorzki smak budzi iskry w głowie.")
+			_show_inventory()
 		"equip_sword":
 			GameState.equip("miecz_iskrowy", "weapon"); _show_inventory()
 		"equip_bow":
@@ -638,7 +683,11 @@ func _show_inventory() -> void:
 	var inventory_lines: Array[String] = []
 	for item_id: String in GameState.inventory:
 		inventory_lines.append("• %s × %d" % [item_id.replace("_", " ").capitalize(), int(GameState.inventory[item_id])])
-	_show_choices("[b]Ekwipunek[/b]\nBroń: %s | Pancerz: %s\n\n%s" % [str(GameState.equipped.get("weapon", "brak")), str(GameState.equipped.get("armor", "brak")), "\n".join(inventory_lines)], [["Załóż Miecz Iskrowy", "equip_sword"], ["Załóż Łuk Wiklinowy", "equip_bow"], ["Załóż Płaszcz Miernika", "equip_armor"], ["Zamknij", "close"]])
+	var options: Array = [["Załóż Miecz Iskrowy", "equip_sword"], ["Załóż Łuk Wiklinowy", "equip_bow"], ["Załóż Płaszcz Miernika", "equip_armor"]]
+	if GameState.inventory.has("mikstura_zycia"): options.append(["Wypij Miksturę Życia", "use_life_potion"])
+	if GameState.inventory.has("mikstura_many"): options.append(["Wypij Miksturę Many", "use_mana_potion"])
+	options.append(["Zamknij", "close"])
+	_show_choices("[b]Ekwipunek[/b]\nBroń: %s | Pancerz: %s\n\n%s" % [str(GameState.equipped.get("weapon", "brak")), str(GameState.equipped.get("armor", "brak")), "\n".join(inventory_lines)], options)
 
 func _show_journal() -> void:
 	journal_open = not journal_open; panel.visible = journal_open
@@ -667,7 +716,9 @@ func _update_ui() -> void:
 	var target := nearest_target()
 	var context := ""
 	if not dialogue_open and not lock_open and not journal_open:
-		if target == "chest": context = "[E] Otwórz skrzynię z popiołu"
+		var pickup_id := _near_pickup()
+		if not pickup_id.is_empty(): context = "[E] Podnieś: " + pickup_id.replace("_", " ")
+		elif target == "chest": context = "[E] Otwórz skrzynię z popiołu"
 		elif target == "wolf": context = "[LPM] Atakuj wilka"
 		elif not target.is_empty(): context = "[E] Rozmawiaj: " + str(npc_names[target]) + "  |  [R] Spróbuj okraść"
 		elif _near_bed(): context = "[E] Śpij"
@@ -733,6 +784,13 @@ func _draw() -> void:
 	for camp_x: float in range(7000, 22000, 1200):
 		draw_line(Vector2(camp_x, 8800), Vector2(camp_x + 300, 9100), Color("573728"), 90.0)
 	draw_circle(Vector2(14500, 10300), 260.0, Color("d06b35")); draw_circle(Vector2(14500, 10300), 110.0, Color("f6c56d"))
+	for item_id: String in world_pickups:
+		var pickup: Dictionary = world_pickups[item_id]
+		if bool(pickup.get("taken", false)): continue
+		var pickup_pos: Vector2 = pickup.get("position", Vector2.ZERO)
+		var pickup_color := Color("77ae55") if not item_id.begins_with("mikstura") and not item_id.begins_with("wywar") and item_id != "olej_ognia" and item_id != "nalewka_lodu" else Color("d5524b")
+		draw_circle(pickup_pos, 42.0, Color("19201a")); draw_circle(pickup_pos, 29.0, pickup_color)
+		if player.distance_to(pickup_pos) < 240.0: draw_string(ThemeDB.fallback_font, pickup_pos + Vector2(-100, -60), item_id.replace("_", " "), HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Color.WHITE)
 	for bed: Vector2 in beds:
 		draw_rect(Rect2(bed - Vector2(100, 50), Vector2(200, 100)), Color("74543c")); draw_line(bed - Vector2(90, 20), bed + Vector2(90, 20), Color("d7c29a"), 16.0)
 	# actors

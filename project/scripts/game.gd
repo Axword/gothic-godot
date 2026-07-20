@@ -143,15 +143,34 @@ func _show_shop() -> void:
 	var shop: Dictionary = shops.get(current_shop_id, {})
 	var options: Array = []
 	for entry: Dictionary in shop.get("stock", []):
-		options.append(["Kup %s — %d Znaków" % [str(entry.get("item_id", "")).replace("_", " ").capitalize(), int(entry.get("price", 0))], "buy_" + str(entry.get("item_id", ""))])
+		var price := _shop_price(shop, int(entry.get("price", 0)))
+		options.append(["Kup %s — %d Znaków" % [str(entry.get("item_id", "")).replace("_", " ").capitalize(), price], "buy_" + str(entry.get("item_id", ""))])
+	options.append(["Sprzedaj wszystkie trofea", "sell_trophies"])
 	options.append(["Odejdź.", "close"])
-	_show_choices("[b]%s[/b]\nMasz: %d Znaków.\nCeny zmienią się, gdy wybierzesz stronę." % [str(shop.get("name", "Handel")), int(GameState.inventory.get("zlote_znaki", 0))], options)
+	var discount := " (zniżka frakcyjna)" if _shop_discount(shop) else ""
+	_show_choices("[b]%s[/b]\nMasz: %d Znaków.%s" % [str(shop.get("name", "Handel")), int(GameState.inventory.get("zlote_znaki", 0)), discount], options)
+
+func _shop_discount(shop: Dictionary) -> bool:
+	var owner: Dictionary = npc_data.get(str(shop.get("npc_id", "")), {})
+	return not GameState.faction_choice.is_empty() and GameState.faction_choice == str(owner.get("faction", ""))
+
+func _shop_price(shop: Dictionary, base_price: int) -> int:
+	return maxi(1, int(ceil(float(base_price) * (0.85 if _shop_discount(shop) else 1.0))))
+
+func _sell_trophies() -> void:
+	var sold := 0
+	for item_id: String in ["skora_wilka", "kieł_wilka", "gruczol_ropuchy", "oko_upiora", "odlamek_golema", "skorupa_kraba"]:
+		while GameState.remove_item(item_id, 1): sold += 1
+	if sold > 0:
+		GameState.add_item("zlote_znaki", sold * 10); _notice(true, "Sprzedajesz trofea za %d Znaków." % (sold * 10))
+	else: _notice(false, "Nie masz trofeów do sprzedania.")
+	_show_shop()
 
 func _buy_item(item_id: String) -> void:
 	var shop: Dictionary = shops.get(current_shop_id, {})
 	for entry: Dictionary in shop.get("stock", []):
 		if str(entry.get("item_id", "")) == item_id:
-			var price := int(entry.get("price", 0))
+			var price := _shop_price(shop, int(entry.get("price", 0)))
 			if GameState.remove_item("zlote_znaki", price):
 				GameState.add_item(item_id); _notice(true, "Kupujesz: " + item_id.replace("_", " ") + ".")
 			else: _notice(false, "Brakuje Znaków.")
@@ -621,6 +640,9 @@ func _choose(choice: String) -> void:
 		return
 	if choice == "lock_r":
 		_lock_input("R")
+		return
+	if choice == "sell_trophies":
+		_sell_trophies()
 		return
 	if choice.begins_with("buy_") and choice != "buy_training":
 		_buy_item(choice.trim_prefix("buy_"))

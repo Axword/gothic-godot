@@ -109,3 +109,7 @@
 ## Zrealizowane — handel
 - [x] Trzy działające sklepy powiązane z konkretnymi NPC.
 - [x] Kupowanie broni, łuków, amunicji, mikstur i wywarów za Znaki.
+
+## Zrealizowane — ekonomia frakcyjna
+- [x] Sklepy stosują zniżkę dla gracza należącego do frakcji sprzedawcy.
+- [x] Trofea bestii można sprzedać zbiorczo u każdego sprzedawcy.

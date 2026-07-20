@@ -94,3 +94,6 @@
 
 ## 2026-07-19 — handel
 - Dodano shops.json, walidację ofert i dialogowe zakupy u kowala/przemytników.
+
+## 2026-07-19 — sprzedaż i zniżki
+- Dodano sprzedaż trofeów oraz 15% zniżkę frakcyjną w sklepach.

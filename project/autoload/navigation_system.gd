@@ -24,7 +24,7 @@ func next_point(from: Vector2, target: Vector2) -> Vector2:
 	var start := world_to_cell(from)
 	var end := world_to_cell(target)
 	if not grid.is_in_boundsv(start) or not grid.is_in_boundsv(end): return target
-	var path: PackedVector2iArray = grid.get_id_path(start, end, true)
+	var path: Array[Vector2i] = grid.get_id_path(start, end, true)
 	if path.size() < 2: return target
 	return cell_to_world(path[1])
 

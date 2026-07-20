@@ -13,3 +13,7 @@ var visual_npc: Vector2 = npc_position + Vector2(0.0, npc_bob)
 ```
 
 Ten wzorzec należy zachować przy każdym dostępie do dynamicznych danych JSON lub słowników runtime.
+
+## AStarGrid2D
+
+`AStarGrid2D.get_id_path()` w używanej konfiguracji Godot zwraca `Array[Vector2i]`; projekt nie używa nieistniejącego typu `PackedVector2iArray`.

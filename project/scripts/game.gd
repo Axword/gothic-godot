@@ -61,6 +61,9 @@ var inventory_open := false
 var projectile_flash_timer := 0.0
 var projectile_flash_position := Vector2.ZERO
 var game_over_open := false
+var map_open := false
+var map_overlay: Control
+var map_player_marker: Label
 var ui: CanvasLayer
 var hud: Label
 var prompt: Label
@@ -95,7 +98,7 @@ func _create_camera() -> void:
 	add_child(camera)
 
 func _ensure_input_map() -> void:
-	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "pause_menu": KEY_ESCAPE, "open_character": KEY_C, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
+	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "pause_menu": KEY_ESCAPE, "open_character": KEY_C, "open_map": KEY_M, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
 	for action: String in bindings:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -109,6 +112,7 @@ func _ensure_input_map() -> void:
 		InputMap.action_add_event("attack", mouse_event)
 
 func _load_world_population() -> void:
+	map_player_marker = Label.new(); map_player_marker.text = "✦ Ty"; map_player_marker.add_theme_font_size_override("font_size", 16); map_player_marker.add_theme_color_override("font_color", Color("ffffff")); map_overlay.add_child(map_player_marker)
 	for location: Dictionary in DataLoader.load_array("res://data/json/world_locations.json"):
 		var marker: Dictionary = location.get("marker", {})
 		location_positions[str(location.get("id", ""))] = Vector2(float(marker.get("x", 500)), float(marker.get("y", 330)))
@@ -248,9 +252,19 @@ func _build_ui() -> void:
 	var column := VBoxContainer.new(); margin.add_child(column)
 	panel_text = RichTextLabel.new(); panel_text.bbcode_enabled = true; panel_text.custom_minimum_size = Vector2(0, 115); panel_text.fit_content = true; panel_text.add_theme_font_size_override("normal_font_size", 17); column.add_child(panel_text)
 	choices = VBoxContainer.new(); column.add_child(choices)
+	map_overlay = Control.new(); map_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); map_overlay.visible = false; ui.add_child(map_overlay)
+	var map_shade := ColorRect.new(); map_shade.color = Color(0.02, 0.025, 0.02, 0.92); map_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); map_overlay.add_child(map_shade)
+	var map_title := Label.new(); map_title.text = "MAPA ZGNILIZNY  —  [M] zamknij"; map_title.position = Vector2(390, 24); map_title.add_theme_font_size_override("font_size", 22); map_overlay.add_child(map_title)
+	var map_texture := TextureRect.new(); map_texture.texture = MAP_TEXTURE; map_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE; map_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED; map_texture.position = Vector2(130, 70); map_texture.size = Vector2(890, 500); map_overlay.add_child(map_texture)
+	map_player_marker = Label.new(); map_player_marker.text = "✦ Ty"; map_player_marker.add_theme_font_size_override("font_size", 16); map_player_marker.add_theme_color_override("font_color", Color("ffffff")); map_overlay.add_child(map_player_marker)
+	for location: Dictionary in DataLoader.load_array("res://data/json/world_locations.json"):
+		var marker: Dictionary = location.get("marker", {})
+		var x := 130.0 + float(marker.get("x", 0)) / WORLD.size.x * 890.0
+		var y := 70.0 + float(marker.get("y", 0)) / WORLD.size.y * 500.0
+		var dot := Label.new(); dot.text = "● " + str(location.get("name", "")); dot.position = Vector2(x - 12, y - 8); dot.add_theme_font_size_override("font_size", 13); dot.add_theme_color_override("font_color", Color("f3c86c")); map_overlay.add_child(dot)
 
 func _process(delta: float) -> void:
-	if not dialogue_open and not lock_open and not journal_open and not inventory_open:
+	if not dialogue_open and not lock_open and not journal_open and not inventory_open and not map_open:
 		_move_player(delta)
 		_handle_world_input()
 	attack_timer = maxf(0.0, attack_timer - delta)
@@ -265,6 +279,7 @@ func _process(delta: float) -> void:
 	_update_hostile_npc_ai(delta)
 	_check_player_defeat()
 	_update_ui()
+	_update_map_marker()
 	queue_redraw()
 
 func _check_player_defeat() -> void:
@@ -295,6 +310,8 @@ func _handle_world_input() -> void:
 		player = GameState.player_position
 	if Input.is_action_just_pressed("pause_menu"):
 		_show_pause_menu()
+	if Input.is_action_just_pressed("open_map"):
+		_toggle_map()
 	if Input.is_action_just_pressed("open_character"):
 		_show_character()
 	if Input.is_action_just_pressed("open_inventory"):
@@ -821,6 +838,15 @@ func _show_pause_menu() -> void:
 	dialogue_open = true; panel.visible = true
 	_show_choices("[b]Pauza[/b]\nWybierz slot zapisu lub wróć do menu głównego.", [["Zapisz: slot 1", "save_slot_1"], ["Zapisz: slot 2", "save_slot_2"], ["Zapisz: slot 3", "save_slot_3"], ["Wczytaj: slot 1", "load_slot_1"], ["Wczytaj: slot 2", "load_slot_2"], ["Wczytaj: slot 3", "load_slot_3"], ["Menu główne", "main_menu"], ["Wznów", "close"]])
 
+func _update_map_marker() -> void:
+	if map_player_marker == null: return
+	map_player_marker.position = Vector2(130.0 + player.x / WORLD.size.x * 890.0, 70.0 + player.y / WORLD.size.y * 500.0)
+
+func _toggle_map() -> void:
+	if dialogue_open or lock_open or journal_open or inventory_open: return
+	map_open = not map_open
+	map_overlay.visible = map_open
+
 func _show_character() -> void:
 	inventory_open = not inventory_open; panel.visible = inventory_open
 	if not inventory_open: return
@@ -864,7 +890,7 @@ func _show_journal() -> void:
 		var candidates := ""
 		if bool(GameState.flags.get("old_candidate_started", false)): candidates += "\n• Próba Zakonu: Golem Tamy " + ("pokonany" if bool(GameState.flags.get("old_candidate_ready", false)) else "— trwa")
 		if bool(GameState.flags.get("new_candidate_started", false)): candidates += "\n• Próba Żaru: kradzież " + ("udana" if bool(GameState.flags.get("new_candidate_ready", false)) else "— trwa")
-		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + candidates + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · C postać · R kradzież · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
+		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + candidates + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · C postać · M mapa · R kradzież · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
 
 func _objective() -> String:
 	match GameState.quest_stage:

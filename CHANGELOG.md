@@ -106,3 +106,6 @@
 
 ## 2026-07-20 — porażka i autosave
 - Dodano slot autosave, bezpieczne pozycje oraz obsługę HP 0.
+
+## 2026-07-20 — ekran mapy
+- Dodano pełnoekranową mapę regionu z dynamicznym markerem gracza.

@@ -125,3 +125,6 @@
 ## Zrealizowane — porażka i autosave
 - [x] Ekran porażki przy HP 0, odrodzenie, autosave i powrót do menu.
 - [x] Bezpieczne pozycje oraz autosave po śnie i wyborze frakcji.
+
+## Zrealizowane — ekran mapy
+- [x] Mapa świata pod `M`, z czytelną ilustracją w poprawnej skali, markerami regionów i pozycją gracza.

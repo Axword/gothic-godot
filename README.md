@@ -39,3 +39,5 @@ Projekt startuje teraz w menu głównym. Dostępne są nowa gra, wczytanie trzec
 ### Opcje
 
 Menu Opcje oferuje trwałe ustawienia `user://settings.json`: master volume, trzy rozdzielczości, tryb pełnoekranowy/okienkowy oraz napisy. Ustawienia są odrębne od slotów gry.
+
+- **M** — pełna mapa Zgnilizny z regionami i pozycją gracza.

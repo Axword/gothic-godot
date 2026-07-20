@@ -24,3 +24,7 @@ Mapa ma teraz **26 000 × 14 000 jednostek świata**, a kamera śledzi gracza za
 ## Assety aktorów
 
 Do działania sceny podpięto prawdziwe, własne assety SVG: `player.svg`, `order_guard.svg`, `rebel.svg`, `neutral.svg` i `wolf.svg`. Są renderowane jako tekstury postaci w świecie zamiast wcześniejszych kropek. Arkusz rasterowy pozostaje materiałem referencyjnym do późniejszego atlasu animacji.
+
+## Korekta czytelności
+
+Rastrowa ilustracja `world_map_painted.png` nie jest już rozciągana przez 26 000 jednostek świata — to powodowało nieakceptowalne rozmycie. Mapa rozgrywki korzysta teraz z ostrych, kontrastowych warstw renderowanych w przestrzeni świata: palisady i domy Wału, kamienny trakt, osobne drzewa Lasu Trzcin, woda/trzciny Bagna, tarasy kamieniołomu, fale wybrzeża i kamienny krąg Szczeliny. Ilustracja pozostaje zasobem dla przyszłego ekranu mapy, gdzie jej rozdzielczość jest właściwa.

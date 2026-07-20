@@ -28,3 +28,7 @@
 - [x] Zastąpić punktowe placeholdery aktywnymi sprite’ami postaci.
 - [x] Zmienić ekranową makietę w kamerowaną, wielką mapę świata.
 - [ ] Dodać fizyczne przeszkody i skróty, aby długa podróż dawała decyzje eksploracyjne, a nie była prostym marszem.
+
+## P1 — jakość mapy
+- [x] Usunąć rozmyte tło rozciągnięte przez pełny świat.
+- [ ] Zastąpić proceduralne landmarki atlasem tile’ów w natywnej rozdzielczości, bez skalowania bitmap.

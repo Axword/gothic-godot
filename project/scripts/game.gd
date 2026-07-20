@@ -301,9 +301,9 @@ func _draw() -> void:
 	var day: float = sin((GameState.world_minutes / 1440.0) * TAU - PI / 2.0) * 0.25 + 0.75
 	draw_rect(Rect2(Vector2.ZERO, Vector2(1152, 648)), Color("101412"))
 	draw_rect(WORLD, Color(0.12 * day, 0.19 * day, 0.14 * day))
-	# Własna, wygenerowana ilustracja stanowi podstawę mapy; kod dodaje interaktywne warstwy ponad nią.
-	draw_texture_rect(MAP_TEXTURE, WORLD, false, Color(1.0, 1.0, 1.0, day))
-	# Wielka mapa: ilustracja tła jest skalowana do świata, a regiony są renderowane jako czytelne warstwy nawigacyjne.
+	# Nie skalujemy rastrowego obrazu przez cały świat: przy mapie tej skali rozmywałby się i maskował interakcje.
+	# Każdy biom ma ostre, proceduralne warstwy, a ilustracja pozostaje materiałem do ekranu mapy.
+	# Wielka mapa: czytelne warstwy nawigacyjne renderowane w skali świata.
 	draw_line(Vector2(3800, 2600), Vector2(13000, 7000), Color("5a4932"), 420.0)
 	draw_line(Vector2(13000, 7000), Vector2(14500, 10300), Color("5a4932"), 420.0)
 	var regions: Array[Dictionary] = [
@@ -315,8 +315,43 @@ func _draw() -> void:
 	for region: Dictionary in regions:
 		var pos: Vector2 = region["p"]
 		var region_color: Color = region["c"]
-		draw_circle(pos, 2200.0, Color(region_color.r, region_color.g, region_color.b, 0.72))
-		draw_string(ThemeDB.fallback_font, pos + Vector2(-650, -2300), str(region["n"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 260, Color("ddd2bd"))
+		draw_circle(pos, 2200.0, region_color)
+		draw_arc(pos, 2230.0, 0.0, TAU, 24, Color("171b19"), 42.0)
+		draw_string(ThemeDB.fallback_font, pos + Vector2(-650, -2300), str(region["n"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 260, Color("f1ead8"))
+	# Wał Miary — ostre deski, budynki i stalowe bramy.
+	draw_rect(Rect2(1500, 700, 5000, 3800), Color("303b40"))
+	for x: float in range(1600, 6400, 180):
+		draw_rect(Rect2(x, 850, 80, 3000), Color("55656a")); draw_line(Vector2(x, 850), Vector2(x, 3850), Color("1a2427"), 20.0)
+	for house: Vector2 in [Vector2(2400,1600),Vector2(3800,1700),Vector2(5000,1500),Vector2(3300,3000)]:
+		draw_rect(Rect2(house, Vector2(720, 520)), Color("6c6254")); draw_colored_polygon(PackedVector2Array([house + Vector2(-80,0),house + Vector2(360,-380),house + Vector2(800,0)]), Color("282e30"))
+	# Trakt Mułu — szeroka droga o wyraźnej krawędzi i kamieniach.
+	draw_line(Vector2(5400, 4200), Vector2(15500, 9200), Color("2d261d"), 650.0)
+	draw_line(Vector2(5400, 4200), Vector2(15500, 9200), Color("786343"), 480.0)
+	for stone_index: int in range(22):
+		var stone_pos: Vector2 = Vector2(5700 + stone_index * 430, 4350 + stone_index * 214)
+		draw_circle(stone_pos, 38.0, Color("a08c69"))
+	# Las Trzcin — pojedyncze czytelne drzewa, cień i ścieżki.
+	for tree_index: int in range(55):
+		var tree_pos: Vector2 = Vector2(16800 + float((tree_index * 487) % 4400), 4100 + float((tree_index * 941) % 3900))
+		draw_circle(tree_pos + Vector2(35,55), 180.0, Color("162a20")); draw_circle(tree_pos, 160.0, Color("31533a")); draw_rect(Rect2(tree_pos + Vector2(-28, 100), Vector2(56, 170)), Color("4c3b2b"))
+	# Bagno Bezdechu — czarna woda, trzcinowiska i zielona poświata.
+	draw_rect(Rect2(19000, 9000, 6000, 4300), Color("233d37"))
+	for pool_index: int in range(26):
+		var pool: Vector2 = Vector2(19400 + float((pool_index * 719) % 5100), 9400 + float((pool_index * 359) % 3000))
+		draw_circle(pool, 180.0, Color("112725"))
+		for reed_x: float in range(-140, 160, 70): draw_line(pool + Vector2(reed_x,80), pool + Vector2(reed_x+20,-120), Color("719152"), 18.0)
+	# Kamieniołom — tarasy skalne i głęboki szyb.
+	draw_rect(Rect2(900, 4200, 5200, 3800), Color("46433e"))
+	for terrace: int in range(6):
+		draw_line(Vector2(1300, 4600 + terrace * 500), Vector2(5600, 4600 + terrace * 500), Color("82765f"), 180.0)
+	draw_circle(Vector2(3500, 6100), 720.0, Color("1f2424"))
+	# Wydmy — brzeg, popiół i fale, wszystko ostre w skali kamery.
+	draw_rect(Rect2(500, 10400, 5200, 3300), Color("9a815b")); draw_rect(Rect2(300, 12200, 5500, 1700), Color("315866"))
+	for wave: int in range(12): draw_line(Vector2(500, 12300 + wave * 125), Vector2(5700, 12300 + wave * 125), Color("9fc1bd"), 20.0)
+	# Szczelina Głosu — kamienny krąg i kontrastowe światło.
+	draw_rect(Rect2(19800, 650, 4900, 4000), Color("30273c"))
+	for ring: int in range(4): draw_arc(Vector2(22500,2500), 350.0 + ring * 210.0, 0.0, TAU, 32, Color("9b6cb3"), 55.0)
+	draw_circle(Vector2(22500,2500), 270.0, Color("e2a1ed"))
 	# Obóz jest fizycznie rozległy: palisady i ogniska są punktami orientacyjnymi na wielkiej przestrzeni.
 	for camp_x: float in range(7000, 22000, 1200):
 		draw_line(Vector2(camp_x, 8800), Vector2(camp_x + 300, 9100), Color("573728"), 90.0)

@@ -32,3 +32,7 @@
 ## 2026-07-19 — duża mapa i prawdziwe sprite’y
 - Rozszerzono świat do 26 000×14 000 jednostek i dodano kamerę śledzącą gracza.
 - Podpięto własne sprite’y SVG dla gracza, frakcji, postaci neutralnych i wilka zamiast punktowych placeholderów.
+
+## 2026-07-19 — korekta czytelności mapy
+- Usunięto rozciąganie rastrowego tła przez cały świat.
+- Dodano ostre, kontrastowe warstwy środowiskowe i charakterystyczne landmarki wszystkich regionów.

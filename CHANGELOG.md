@@ -54,3 +54,7 @@
 ## 2026-07-19 — kradzież i skórowanie
 - Dodano TheftSystem i SkinningSystem jako autoloady.
 - Podłączono kradzież, świadków, reakcję ochrony i trofeum z wilka do sceny.
+
+## 2026-07-19 — fauna i trofea na mapie
+- Dodano aktywne spawny ropuchy, kraba, golema, upiora i komara wraz z własnymi sprite’ami SVG.
+- Podłączono ich obrażenia, śmierć, XP i pozyskanie trofeum.

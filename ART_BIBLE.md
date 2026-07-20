@@ -25,3 +25,7 @@ Są to grafiki własne projektu, nie import cudzych plików ani elementów z ist
 ## Pancerze
 
 Dodano cztery aktywa pancerzy SVG: `plaszcz_miernika.svg`, `kolczuga_walu.svg`, `skora_zaru.svg`, `pancerz_popiolu.svg`. Każdy ma odrębną sylwetkę i kolory frakcyjne, a dane pancerzy wskazują na prawdziwe ścieżki tych assetów.
+
+## Aktywne assety stworów
+
+Do sceny podpięto własne sprite’y SVG: ropucha mułowa, krab wydmowy, golem tamy, upiór Bezdechu oraz komar krwawy. Razem z wilkiem stanowią sześć rozpoznawalnych sylwetek gatunków.

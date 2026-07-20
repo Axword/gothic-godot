@@ -16,6 +16,11 @@ const ARMOR_ORDER_TEXTURE: Texture2D = preload("res://assets/sprites/armor/plasz
 const ARMOR_WALL_TEXTURE: Texture2D = preload("res://assets/sprites/armor/kolczuga_walu.svg")
 const ARMOR_REBEL_TEXTURE: Texture2D = preload("res://assets/sprites/armor/skora_zaru.svg")
 const ARMOR_ASH_TEXTURE: Texture2D = preload("res://assets/sprites/armor/pancerz_popiolu.svg")
+const TOAD_TEXTURE: Texture2D = preload("res://assets/sprites/monsters/toad.svg")
+const CRAB_TEXTURE: Texture2D = preload("res://assets/sprites/monsters/crab.svg")
+const GOLEM_TEXTURE: Texture2D = preload("res://assets/sprites/monsters/golem.svg")
+const WRAITH_TEXTURE: Texture2D = preload("res://assets/sprites/monsters/wraith.svg")
+const MOSQUITO_TEXTURE: Texture2D = preload("res://assets/sprites/monsters/mosquito.svg")
 var player: Vector2
 var message := "Przybyłeś z listem, którego nie pisałeś."
 var message_timer := 7.0
@@ -38,6 +43,7 @@ var npc_names: Dictionary = {}
 var npc_data: Dictionary = {}
 var location_positions: Dictionary = {}
 var npc_home: Dictionary = {}
+var creatures: Dictionary = {}
 var dialogue: Dictionary = {}
 var dialogue_open := false
 var lock_open := false
@@ -56,6 +62,7 @@ func _ready() -> void:
 	_ensure_input_map()
 	player = GameState.player_position
 	_load_world_population()
+	_load_creatures()
 	_create_camera()
 	_build_ui()
 	_show_intro()
@@ -107,6 +114,14 @@ func _load_world_population() -> void:
 		npc_data[id] = npc
 		if str(npc.get("role", "")) == "bandit": npc_combat_hp[id] = 45
 		index += 1
+
+func _load_creatures() -> void:
+	# Stałe spawny reprezentują wszystkie gatunki danych, bez skalowania poziomu.
+	var positions := {"ropucha_mulowa": Vector2(21100, 10800), "krab_wydmowy": Vector2(3100, 11900), "golem_tamy": Vector2(3600, 6200), "upior_bezdechu": Vector2(22400, 3000), "komar_krwawy": Vector2(20200, 10100)}
+	for monster: Dictionary in DataLoader.load_array("res://data/json/monsters.json"):
+		var monster_id := str(monster.get("id", ""))
+		if positions.has(monster_id):
+			creatures[monster_id] = {"data": monster, "position": positions[monster_id], "hp": int(monster.get("hp", 30)), "dead": false, "harvested": false}
 
 func _build_ui() -> void:
 	ui = CanvasLayer.new(); add_child(ui)
@@ -217,12 +232,32 @@ func interact() -> void:
 	if wolf_hp <= 0 and wolf_death_timer <= 0.0 and player.distance_to(wolf_position) < 180.0:
 		_harvest_wolf()
 		return
+	var corpse_id := _near_creature_corpse()
+	if not corpse_id.is_empty():
+		_harvest_creature(corpse_id)
+		return
 	match selected:
 		"chest": _open_lock()
 		"wolf": _notice(true, "Wilk nie prowadzi rozmów. Zwykle.")
 		_:
 			if npc_data.has(selected): _start_dialogue(selected)
 			else: _notice(true, "Tu nic nie odpowiada.")
+
+func _near_creature_corpse() -> String:
+	for creature_id: String in creatures:
+		var creature: Dictionary = creatures[creature_id]
+		var creature_pos: Vector2 = creature.get("position", Vector2.ZERO)
+		if bool(creature.get("dead", false)) and player.distance_to(creature_pos) < 180.0: return creature_id
+	return ""
+
+func _harvest_creature(creature_id: String) -> void:
+	var creature: Dictionary = creatures[creature_id]
+	var trophy := SkinningSystem.harvest(creature_id, int(TrainerSystem.ranks.get("skinning", 0)))
+	if trophy.is_empty():
+		_notice(false, "Potrzebujesz nauki skórowania albo ciało jest już opróżnione.")
+	else:
+		creature["harvested"] = true; creatures[creature_id] = creature
+		_notice(true, "Pozyskujesz: " + trophy.replace("_", " ") + ".")
 
 func _harvest_wolf() -> void:
 	var rank := int(TrainerSystem.ranks.get("skinning", 0))
@@ -257,10 +292,23 @@ func _nearest_hostile() -> String:
 		if candidate_distance < distance: nearest = id; distance = candidate_distance
 	return nearest
 
+func _damage_creature(creature_id: String, damage: int) -> void:
+	var creature: Dictionary = creatures[creature_id]
+	creature["hp"] = int(creature.get("hp", 1)) - damage
+	if int(creature["hp"]) <= 0:
+		creature["dead"] = true; GameState.gain_xp(25)
+		_notice(true, str(creature.get("data", {}).get("name", "Stworzenie")) + " pada. Możesz pozyskać trofeum.")
+	else:
+		_notice(true, "Trafiasz bestię.")
+	creatures[creature_id] = creature
+
 func attack() -> void:
 	attack_timer = 0.30
+	var creature_target := _nearest_combat_target(150.0)
 	var hostile_id := _nearest_hostile()
-	if not hostile_id.is_empty() and player.distance_to(npc_positions.get(hostile_id, Vector2.ZERO)) < 130.0:
+	if not creature_target.is_empty() and creature_target != "wolf" and creatures.has(creature_target):
+		_damage_creature(creature_target, CombatSystem.sword_damage(GameState.strength, 10, 0, int(TrainerSystem.ranks.get("sword", 0))))
+	elif not hostile_id.is_empty() and player.distance_to(npc_positions.get(hostile_id, Vector2.ZERO)) < 130.0:
 		npc_combat_hp[hostile_id] = int(npc_combat_hp.get(hostile_id, 45)) - CombatSystem.sword_damage(GameState.strength, 10, 0, int(TrainerSystem.ranks.get("sword", 0)))
 		if int(npc_combat_hp[hostile_id]) <= 0:
 			GameState.defeated.append(hostile_id); hostile_npcs.erase(hostile_id); GameState.gain_xp(30); _notice(true, "Bandyta pada ogłuszony. Żyje, ale ma gorszy dzień.")
@@ -283,7 +331,9 @@ func fire_bow() -> void:
 		_notice(false, "Nie masz strzał."); return
 	var target := _nearest_combat_target(900.0)
 	projectile_flash_position = player + player_facing * 240.0; projectile_flash_timer = 0.20
-	if target == "wolf":
+	if not target.is_empty() and target != "wolf" and creatures.has(target):
+		_damage_creature(target, CombatSystem.bow_damage(GameState.dexterity, 7, 0))
+	elif target == "wolf":
 		wolf_hp -= CombatSystem.bow_damage(GameState.dexterity, 7, 0)
 		wolf_hit_timer = 0.18
 		if wolf_hp <= 0: attack()
@@ -298,11 +348,16 @@ func cast_ice() -> void:
 	GameState.mana -= 7; cast_timer = 0.42
 	var target := _nearest_combat_target(650.0)
 	projectile_flash_position = player + player_facing * 180.0; projectile_flash_timer = 0.26
-	if target == "wolf": wolf_hp -= CombatSystem.spell_damage(11, 0); wolf_hit_timer = 0.25
+	if not target.is_empty() and target != "wolf" and creatures.has(target): _damage_creature(target, CombatSystem.spell_damage(11, 0))
+	elif target == "wolf": wolf_hp -= CombatSystem.spell_damage(11, 0); wolf_hit_timer = 0.25
 	elif not target.is_empty(): npc_combat_hp[target] = int(npc_combat_hp.get(target, 45)) - CombatSystem.spell_damage(11, 0)
 	_notice(true, "Lodowy Kolec pęka na wilgotnym powietrzu.")
 
 func _nearest_combat_target(maximum_distance: float) -> String:
+	for creature_id: String in creatures:
+		var creature: Dictionary = creatures[creature_id]
+		var creature_pos: Vector2 = creature.get("position", Vector2.ZERO)
+		if not bool(creature.get("dead", false)) and player.distance_to(creature_pos) <= maximum_distance: return creature_id
 	if wolf_hp > 0 and player.distance_to(wolf_position) <= maximum_distance: return "wolf"
 	var id := _nearest_hostile()
 	if not id.is_empty() and player.distance_to(npc_positions.get(id, Vector2.ZERO)) <= maximum_distance: return id
@@ -547,6 +602,20 @@ func _draw() -> void:
 		if hostile_npcs.has(id): draw_line(visual_npc + Vector2(-55, -10), visual_npc + Vector2(65, -10), Color("e7c486"), 14.0)
 		if player.distance_to(visual_npc) < 260.0:
 			draw_string(ThemeDB.fallback_font, visual_npc + Vector2(-100, -82), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 36, Color.WHITE)
+	# Pozostałe gatunki są realnie rozmieszczone w swoich biomach i zostawiają ciała/trofea.
+	for creature_id: String in creatures:
+		var creature: Dictionary = creatures[creature_id]
+		var creature_pos: Vector2 = creature.get("position", Vector2.ZERO)
+		var texture: Texture2D = TOAD_TEXTURE
+		match creature_id:
+			"krab_wydmowy": texture = CRAB_TEXTURE
+			"golem_tamy": texture = GOLEM_TEXTURE
+			"upior_bezdechu": texture = WRAITH_TEXTURE
+			"komar_krwawy": texture = MOSQUITO_TEXTURE
+		var alpha := 0.42 if bool(creature.get("dead", false)) else 1.0
+		draw_texture_rect(texture, Rect2(creature_pos - Vector2(90, 75), Vector2(180, 150)), false, Color(1.0, 1.0, 1.0, alpha))
+		if player.distance_to(creature_pos) < 330.0:
+			draw_string(ThemeDB.fallback_font, creature_pos + Vector2(-120, -100), str(creature.get("data", {}).get("name", "Bestia")), HORIZONTAL_ALIGNMENT_LEFT, -1, 32, Color.WHITE)
 	# Wilk ma czytelne stany: idle, trafienie z błyskiem i śmierć z zanikiem.
 	if wolf_hp > 0 or wolf_death_timer > 0.0:
 		var wolf_alpha := 1.0 if wolf_hp > 0 else wolf_death_timer / 0.9

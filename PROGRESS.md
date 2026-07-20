@@ -52,3 +52,8 @@
 - [x] Świadkowie-ochroniarze przechodzą do agresji.
 - [x] Skórowanie zwłok wilka po nauce u trenera Jelenia.
 - [x] Trofeum nie jest już automatycznym łupem z zabicia.
+
+## Zrealizowane — fauna świata
+- [x] Wszystkie sześć gatunków stworów ma aktywną instancję na mapie w przypisanym biomie.
+- [x] Miecz, łuk i oba czary mogą trafić dodatkowe gatunki.
+- [x] Ciała dodatkowych stworów zostają w świecie i obsługują pozyskiwanie trofeów.

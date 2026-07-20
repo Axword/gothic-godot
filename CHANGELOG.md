@@ -65,3 +65,7 @@
 ## 2026-07-19 — menu i sloty
 - Dodano scenę menu głównego i trzy dostępne sloty zapisu/wczytania.
 - Dodano menu pauzy oraz podstawową regulację master volume.
+
+## 2026-07-19 — AI stworów i pancerz
+- Dodano stanowe AI pościgu/ataku/powrotu dla stworów na mapie.
+- Podłączono wartości czterech pancerzy do redukcji obrażeń.

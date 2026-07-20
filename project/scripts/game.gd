@@ -44,6 +44,7 @@ var npc_data: Dictionary = {}
 var location_positions: Dictionary = {}
 var npc_home: Dictionary = {}
 var creatures: Dictionary = {}
+var creature_attack_cooldown: float = 0.0
 var dialogue: Dictionary = {}
 var dialogue_open := false
 var lock_open := false
@@ -121,7 +122,8 @@ func _load_creatures() -> void:
 	for monster: Dictionary in DataLoader.load_array("res://data/json/monsters.json"):
 		var monster_id := str(monster.get("id", ""))
 		if positions.has(monster_id):
-			creatures[monster_id] = {"data": monster, "position": positions[monster_id], "hp": int(monster.get("hp", 30)), "dead": false, "harvested": false}
+			var spawn_position: Vector2 = positions[monster_id]
+			creatures[monster_id] = {"data": monster, "position": spawn_position, "home": spawn_position, "hp": int(monster.get("hp", 30)), "dead": false, "harvested": false, "state": "idle"}
 
 func _build_ui() -> void:
 	ui = CanvasLayer.new(); add_child(ui)
@@ -144,6 +146,7 @@ func _process(delta: float) -> void:
 	wolf_death_timer = maxf(0.0, wolf_death_timer - delta)
 	message_timer = maxf(0.0, message_timer - delta)
 	_update_npc_routines()
+	_update_creature_ai(delta)
 	_update_bandit_aggression(delta)
 	_update_ui()
 	queue_redraw()
@@ -197,6 +200,44 @@ func _update_npc_routines() -> void:
 			npc_positions[id] = home + Vector2(sin(GameState.world_minutes * 0.035 + home.x) * 24.0, cos(GameState.world_minutes * 0.035 + home.y) * 16.0)
 		else:
 			npc_positions[id] = home + Vector2(sin(GameState.world_minutes * 0.07 + home.y) * 6.0, 0.0)
+
+func _update_creature_ai(delta: float) -> void:
+	creature_attack_cooldown = maxf(0.0, creature_attack_cooldown - delta)
+	for creature_id: String in creatures:
+		var creature: Dictionary = creatures[creature_id]
+		if bool(creature.get("dead", false)): continue
+		var creature_pos: Vector2 = creature.get("position", Vector2.ZERO)
+		var home: Vector2 = creature.get("home", creature_pos)
+		var data: Dictionary = creature.get("data", {})
+		var distance: float = player.distance_to(creature_pos)
+		var detection := 600.0 if str(data.get("behavior", "")) != "night_ranged" else 850.0
+		# Nocny upiór budzi się dopiero po zmroku; inne bestie pilnują swoich biomów.
+		var active := str(data.get("behavior", "")) != "night_ranged" or WorldTime.is_night()
+		if active and distance < detection:
+			creature["state"] = "chase"
+			var speed := 62.0
+			if creature_id == "golem_tamy": speed = 35.0
+			elif creature_id == "upior_bezdechu": speed = 105.0
+			elif creature_id == "komar_krwawy": speed = 125.0
+			if distance > 130.0: creature_pos += creature_pos.direction_to(player) * speed * delta
+			elif creature_attack_cooldown <= 0.0:
+				var armor := _player_armor_value()
+				GameState.hp = maxi(0, GameState.hp - maxi(1, int(data.get("damage", 5)) - armor))
+				creature_attack_cooldown = 1.2
+				_notice(false, str(data.get("name", "Bestia")) + " dosięga cię.")
+		else:
+			creature["state"] = "return"
+			if creature_pos.distance_to(home) > 8.0: creature_pos += creature_pos.direction_to(home) * 45.0 * delta
+		creature["position"] = creature_pos
+		creatures[creature_id] = creature
+
+func _player_armor_value() -> int:
+	match str(GameState.equipped.get("armor", "")):
+		"plaszcz_miernika": return 2
+		"kolczuga_walu": return 5
+		"skora_zaru": return 3
+		"pancerz_popiolu": return 6
+	return 0
 
 func _update_bandit_aggression(delta: float) -> void:
 	bandit_attack_timer = maxf(0.0, bandit_attack_timer - delta)
@@ -666,6 +707,7 @@ func _draw() -> void:
 			"komar_krwawy": texture = MOSQUITO_TEXTURE
 		var alpha := 0.42 if bool(creature.get("dead", false)) else 1.0
 		draw_texture_rect(texture, Rect2(creature_pos - Vector2(90, 75), Vector2(180, 150)), false, Color(1.0, 1.0, 1.0, alpha))
+		if str(creature.get("state", "idle")) == "chase": draw_arc(creature_pos, 120.0, 0.0, TAU, 12, Color("d95445"), 10.0)
 		if player.distance_to(creature_pos) < 330.0:
 			draw_string(ThemeDB.fallback_font, creature_pos + Vector2(-120, -100), str(creature.get("data", {}).get("name", "Bestia")), HORIZONTAL_ALIGNMENT_LEFT, -1, 32, Color.WHITE)
 	# Wilk ma czytelne stany: idle, trafienie z błyskiem i śmierć z zanikiem.

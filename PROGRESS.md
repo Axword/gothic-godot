@@ -67,3 +67,9 @@
 ## Zrealizowane — menu i zapis
 - [x] Menu główne: nowa gra, trzy sloty wczytania, opcje głośności i wyjście.
 - [x] Pauza z trzema slotami zapisu/wczytania oraz powrotem do menu.
+
+## Zrealizowane — AI stworów
+- [x] Wykrycie, pościg, atak i powrót do biomu dla aktywnych stworów.
+- [x] Odmienne prędkości golema, upiora i komara.
+- [x] Nocna aktywacja Upiora Bezdechu.
+- [x] Pancerz gracza redukuje obrażenia stworów.

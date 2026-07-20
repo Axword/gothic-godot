@@ -33,3 +33,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ## Menu i save slots
 
 `main_menu.tscn` jest sceną startową; przyciski wywołują `GameState.reset()` lub wersjonowane `SaveSystem.load_slot(slot)`. Pauza w `game.gd` używa tych samych trzech slotów, więc logika serializacji pozostaje w jednym autoloadzie.
+
+### AI stworów
+
+`game.gd` ma aktywną pętlę AI dla instancji stworów: stan `idle/return`, wykrycie, pościg, atak oraz powrót do markera domowego. Prędkości i zasięg wykrycia zależą od gatunku; Upiór Bezdechu jest aktywny wyłącznie nocą. Obrażenia odejmują pancerz aktualnie założony przez gracza.

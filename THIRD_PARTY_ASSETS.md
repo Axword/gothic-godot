@@ -9,3 +9,7 @@ Nie użyto zasobów zewnętrznych. Grafika vertical slice jest rysowana procedur
 - `project/assets/generated/combat_props.png`
 
 Źródło: generator grafiki Arena użyty w tej sesji na podstawie oryginalnych promptów produkcyjnych. Zastosowanie: wyłącznie ten projekt. Nie są to assety osób trzecich ani zasoby z istniejących gier.
+
+## Własne sprite’y SVG
+
+`player.svg`, `order_guard.svg`, `rebel.svg`, `neutral.svg` i `wolf.svg` zostały narysowane od podstaw w repozytorium jako wektorowe, pixel-artowe sylwetki. Nie zawierają zasobów stron trzecich.

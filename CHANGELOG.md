@@ -28,3 +28,7 @@
 ## 2026-07-19 — naprawa Godot 4.7.1
 - Naprawiono błąd parsera `visual_npc`: wynik słownika jest teraz jawnie konwertowany do `Vector2`.
 - Ustawiono feature flag projektu na 4.7 / GL Compatibility.
+
+## 2026-07-19 — duża mapa i prawdziwe sprite’y
+- Rozszerzono świat do 26 000×14 000 jednostek i dodano kamerę śledzącą gracza.
+- Podpięto własne sprite’y SVG dla gracza, frakcji, postaci neutralnych i wilka zamiast punktowych placeholderów.

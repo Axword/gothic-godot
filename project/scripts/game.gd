@@ -1,11 +1,17 @@
 extends Node2D
 ## Self-contained, original vertical slice. Art is deliberately procedural while production sprites are pending.
 
-const WORLD: Rect2 = Rect2(40, 70, 1070, 530)
+const WORLD: Rect2 = Rect2(0, 0, 26000, 14000)
+const WALK_SPEED: float = 180.0
 const INTERACT_DISTANCE: float = 58.0
 const MAP_TEXTURE: Texture2D = preload("res://assets/generated/world_map_painted.png")
 const ACTORS_TEXTURE: Texture2D = preload("res://assets/generated/actors_sheet.png")
 const PROPS_TEXTURE: Texture2D = preload("res://assets/generated/combat_props.png")
+const PLAYER_TEXTURE: Texture2D = preload("res://assets/sprites/player.svg")
+const ORDER_TEXTURE: Texture2D = preload("res://assets/sprites/order_guard.svg")
+const REBEL_TEXTURE: Texture2D = preload("res://assets/sprites/rebel.svg")
+const NEUTRAL_TEXTURE: Texture2D = preload("res://assets/sprites/neutral.svg")
+const WOLF_TEXTURE: Texture2D = preload("res://assets/sprites/wolf.svg")
 var player: Vector2
 var message := "Przybyłeś z listem, którego nie pisałeś."
 var message_timer := 7.0
@@ -17,7 +23,7 @@ var player_is_walking := false
 var wolf_death_timer := 0.0
 var wolf_hit_timer := 0.0
 var wolf_hp := 32
-var wolf_position := Vector2(725, 315)
+var wolf_position := Vector2(17200, 7200)
 var npc_positions: Dictionary = {}
 var npc_names: Dictionary = {}
 var npc_data: Dictionary = {}
@@ -38,11 +44,21 @@ func _ready() -> void:
 	_ensure_input_map()
 	player = GameState.player_position
 	_load_world_population()
+	_create_camera()
 	_build_ui()
 	SaveSystem.saved.connect(_notice)
 	GameState.changed.connect(queue_redraw)
 	queue_redraw()
 
+
+func _create_camera() -> void:
+	var camera := Camera2D.new()
+	camera.name = "WorldCamera"
+	camera.position = player
+	camera.position_smoothing_enabled = true
+	camera.position_smoothing_speed = 6.0
+	camera.make_current()
+	add_child(camera)
 
 func _ensure_input_map() -> void:
 	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
@@ -72,7 +88,7 @@ func _load_world_population() -> void:
 			var neutral_regions := ["trakt_mulu", "las_trzcin", "bagno_bezdechu", "kamieniolom_tamy", "wydmy_popiolu", "szczelina_glosu"]
 			home_id = neutral_regions[index % neutral_regions.size()]
 		var home: Vector2 = location_positions.get(home_id, Vector2(500, 330))
-		var offset := Vector2(float((index * 31) % 92 - 46), float((index * 47) % 64 - 32))
+		var offset := Vector2(float((index * 1731) % 15000 - 7500), float((index * 947) % 8000 - 4000))
 		npc_positions[id] = home + offset; npc_home[id] = home + offset
 		npc_names[id] = "%s, %s" % [str(npc.get("name", "Nieznany")), str(npc.get("role", "mieszkaniec"))]
 		npc_data[id] = npc; index += 1
@@ -105,9 +121,11 @@ func _move_player(delta: float) -> void:
 	player_is_walking = direction.length_squared() > 0.01
 	if player_is_walking:
 		player_facing = direction.normalized()
-	player += direction * 180.0 * delta
-	player.x = clampf(player.x, WORLD.position.x + 12, WORLD.end.x - 12)
-	player.y = clampf(player.y, WORLD.position.y + 12, WORLD.end.y - 12)
+	player += direction * WALK_SPEED * delta
+	player.x = clampf(player.x, WORLD.position.x + 48, WORLD.end.x - 48)
+	player.y = clampf(player.y, WORLD.position.y + 48, WORLD.end.y - 48)
+	var camera := get_node_or_null("WorldCamera") as Camera2D
+	if camera != null: camera.position = player
 	GameState.player_position = player
 
 func _handle_world_input() -> void:
@@ -143,7 +161,7 @@ func nearest_target() -> String:
 	for id: String in npc_positions:
 		var d := player.distance_to(npc_positions[id])
 		if d < distance: best = id; distance = d
-	if player.distance_to(Vector2(640, 455)) < distance and not GameState.opened_chests.has("skrzynia_popiolu"):
+	if player.distance_to(Vector2(15100, 9600)) < distance and not GameState.opened_chests.has("skrzynia_popiolu"):
 		best = "chest"
 	if player.distance_to(wolf_position) < distance and wolf_hp > 0:
 		best = "wolf"
@@ -285,44 +303,51 @@ func _draw() -> void:
 	draw_rect(WORLD, Color(0.12 * day, 0.19 * day, 0.14 * day))
 	# Własna, wygenerowana ilustracja stanowi podstawę mapy; kod dodaje interaktywne warstwy ponad nią.
 	draw_texture_rect(MAP_TEXTURE, WORLD, false, Color(1.0, 1.0, 1.0, day))
-	# road, marsh, old palisade and rebel fire: procedural original placeholders.
-	draw_rect(Rect2(50, 340, 1050, 75), Color("4b4030")); draw_circle(Vector2(870, 210), 84, Color("273a33")); draw_rect(Rect2(190, 120, 225, 145), Color("34383a")); draw_rect(Rect2(430, 420, 205, 120), Color("3a2922"))
-	for x: float in range(55, 1100, 38): draw_line(Vector2(x, 120), Vector2(x + 14, 145), Color("745841"), 3.0)
-	draw_circle(Vector2(520, 475), 16, Color("d06b35")); draw_circle(Vector2(520, 475), 7, Color("f6c56d"))
-	draw_rect(Rect2(625, 440, 30, 24), Color("754a28")); draw_rect(Rect2(628, 435, 24, 8), Color("bf9655"))
-	# Czytelna mapa całej krainy: osady, trakt, las, bagno, kamieniołom, plaża i Szczelina.
-	var regions := [{"p":Vector2(195,155),"n":"Wał Miary","c":Color("4f5961")},{"p":Vector2(440,480),"n":"Obóz Żaru","c":Color("6b382c")},{"p":Vector2(500,340),"n":"Trakt Mułu","c":Color("5a4b35")},{"p":Vector2(765,305),"n":"Las Trzcin","c":Color("29452f")},{"p":Vector2(865,445),"n":"Bagno Bezdechu","c":Color("335548")},{"p":Vector2(190,270),"n":"Kamieniołom","c":Color("56504b")},{"p":Vector2(155,515),"n":"Wydmy Popiołu","c":Color("756347")},{"p":Vector2(925,170),"n":"Szczelina Głosu","c":Color("4b3155")}]
+	# Wielka mapa: ilustracja tła jest skalowana do świata, a regiony są renderowane jako czytelne warstwy nawigacyjne.
+	draw_line(Vector2(3800, 2600), Vector2(13000, 7000), Color("5a4932"), 420.0)
+	draw_line(Vector2(13000, 7000), Vector2(14500, 10300), Color("5a4932"), 420.0)
+	var regions: Array[Dictionary] = [
+		{"p":Vector2(3800,2600),"n":"Wał Miary","c":Color("4f5961")}, {"p":Vector2(14500,10300),"n":"Obóz Żaru","c":Color("6b382c")},
+		{"p":Vector2(13000,7000),"n":"Trakt Mułu","c":Color("5a4b35")}, {"p":Vector2(19000,6000),"n":"Las Trzcin","c":Color("29452f")},
+		{"p":Vector2(21800,11000),"n":"Bagno Bezdechu","c":Color("335548")}, {"p":Vector2(3500,6000),"n":"Kamieniołom Tamy","c":Color("56504b")},
+		{"p":Vector2(2500,12500),"n":"Wydmy Popiołu","c":Color("756347")}, {"p":Vector2(22500,2500),"n":"Szczelina Głosu","c":Color("4b3155")}
+	]
 	for region: Dictionary in regions:
-		var pos: Vector2 = region["p"]; draw_circle(pos, 60, region["c"]); draw_string(ThemeDB.fallback_font, pos + Vector2(-48, -67), str(region["n"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("ddd2bd"))
-	for tree_pos: Vector2 in [Vector2(700,250),Vector2(740,360),Vector2(800,330),Vector2(775,240)]: draw_circle(tree_pos, 18, Color("1e3527"))
+		var pos: Vector2 = region["p"]
+		var region_color: Color = region["c"]
+		draw_circle(pos, 2200.0, Color(region_color.r, region_color.g, region_color.b, 0.72))
+		draw_string(ThemeDB.fallback_font, pos + Vector2(-650, -2300), str(region["n"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 260, Color("ddd2bd"))
+	# Obóz jest fizycznie rozległy: palisady i ogniska są punktami orientacyjnymi na wielkiej przestrzeni.
+	for camp_x: float in range(7000, 22000, 1200):
+		draw_line(Vector2(camp_x, 8800), Vector2(camp_x + 300, 9100), Color("573728"), 90.0)
+	draw_circle(Vector2(14500, 10300), 260.0, Color("d06b35")); draw_circle(Vector2(14500, 10300), 110.0, Color("f6c56d"))
 	# actors
 	for id: String in npc_positions:
 		var faction := str(npc_data.get(id, {}).get("faction", "neutralna"))
 		var color := Color("7890a0") if faction == "Zakon Żelaznej Miary" else (Color("c06d4f") if faction == "Wolny Żar" else Color("ad9a62"))
-		var radius := 9.0 if id.begins_with("npc_") else 13.0
 		var npc_position: Vector2 = npc_positions.get(id, Vector2.ZERO)
-		var npc_bob: float = sin(Time.get_ticks_msec() * 0.005 + npc_position.x) * 1.5
+		var npc_bob: float = sin(Time.get_ticks_msec() * 0.005 + npc_position.x) * 8.0
 		var visual_npc: Vector2 = npc_position + Vector2(0.0, npc_bob)
-		draw_circle(visual_npc, radius, color)
-		if player.distance_to(visual_npc) < 95.0:
-			draw_string(ThemeDB.fallback_font, visual_npc + Vector2(-30, -18), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
+		var actor_texture: Texture2D = ORDER_TEXTURE if faction == "Zakon Żelaznej Miary" else (REBEL_TEXTURE if faction == "Wolny Żar" else NEUTRAL_TEXTURE)
+		draw_texture_rect(actor_texture, Rect2(visual_npc - Vector2(46, 62), Vector2(92, 124)), false, color)
+		if player.distance_to(visual_npc) < 260.0:
+			draw_string(ThemeDB.fallback_font, visual_npc + Vector2(-100, -82), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 36, Color.WHITE)
 	# Wilk ma czytelne stany: idle, trafienie z błyskiem i śmierć z zanikiem.
 	if wolf_hp > 0 or wolf_death_timer > 0.0:
 		var wolf_alpha := 1.0 if wolf_hp > 0 else wolf_death_timer / 0.9
 		var recoil := Vector2(-wolf_hit_timer * 70.0, 0.0)
-		draw_circle(wolf_position + recoil, 16, Color(0.42, 0.40, 0.33, wolf_alpha))
-		draw_circle(wolf_position + recoil + Vector2(10, -3), 3, Color(0.85, 0.27, 0.21, wolf_alpha))
-		if wolf_hit_timer > 0.0: draw_arc(wolf_position + recoil, 22, 0.0, TAU, 16, Color("f2d27d"), 2.0)
-		draw_string(ThemeDB.fallback_font, wolf_position + Vector2(-38, -24), "Wilk z mielizny", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("e6d8c2"))
+		draw_texture_rect(WOLF_TEXTURE, Rect2(wolf_position + recoil - Vector2(92, 62), Vector2(184, 124)), false, Color(1.0, 1.0, 1.0, wolf_alpha))
+		if wolf_hit_timer > 0.0: draw_arc(wolf_position + recoil, 128, 0.0, TAU, 16, Color("f2d27d"), 12.0)
+		draw_string(ThemeDB.fallback_font, wolf_position + Vector2(-180, -105), "Wilk z mielizny", HORIZONTAL_ALIGNMENT_LEFT, -1, 36, Color("e6d8c2"))
 	# Gracz: idle (oddech), chód (bujanie), atak (łuk miecza), rzucanie (krąg Iskry).
 	var bob: float = sin(Time.get_ticks_msec() * 0.006) * (2.0 if player_is_walking else 0.8)
 	var visual_player: Vector2 = player + Vector2(0.0, bob)
-	draw_circle(visual_player, 13, Color("e6d3a4"))
+	draw_texture_rect(PLAYER_TEXTURE, Rect2(visual_player - Vector2(46, 62), Vector2(92, 124)), false)
 	var sword_direction: Vector2 = player_facing
 	if attack_timer > 0.0:
 		sword_direction = player_facing.rotated((0.30 - attack_timer) * 8.0)
-		draw_arc(visual_player + sword_direction * 14.0, 16, sword_direction.angle() - 1.0, sword_direction.angle() + 1.0, 10, Color("e8bb68"), 3.0)
+		draw_arc(visual_player + sword_direction * 70.0, 80, sword_direction.angle() - 1.0, sword_direction.angle() + 1.0, 10, Color("e8bb68"), 12.0)
 	if cast_timer > 0.0:
-		var pulse := 12.0 + sin(cast_timer * 28.0) * 4.0
-		draw_circle(visual_player + player_facing * 20.0, pulse, Color(0.92, 0.38, 0.12, cast_timer * 1.4))
-		draw_arc(visual_player, 23, 0.0, TAU, 18, Color("f5b85d"), 1.5)
+		var pulse := 60.0 + sin(cast_timer * 28.0) * 4.0
+		draw_circle(visual_player + player_facing * 100.0, pulse, Color(0.92, 0.38, 0.12, cast_timer * 1.4))
+		draw_arc(visual_player, 115, 0.0, TAU, 18, Color("f5b85d"), 8.0)

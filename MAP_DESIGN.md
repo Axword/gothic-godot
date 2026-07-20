@@ -16,3 +16,11 @@ Aktualna scena renderuje proceduralną, przechodnią mapę o rozmiarze 1070×530
 Wszyscy 65 NPC są pozycjonowani deterministycznie na podstawie frakcji i markerów. Neutralni są rozłożeni między sześć terenów zewnętrznych, a członkowie obozów skupieni przy swoich osadach. Ruch zależy od pory: w nocy NPC wraca do fallbacku, za dnia patrolujący wykonują obchód, a inni pracują w promieniu markera.
 
 Renderer mapy jest celowo własnym proceduralnym rozwiązaniem bez cudzych assetów. Następny etap artystyczny zastępuje poszczególne warstwy `TileMapLayer` ręcznie rysowanym atlasem, bez zmiany danych o markerach.
+
+## Skala po korekcie przestrzeni
+
+Mapa ma teraz **26 000 × 14 000 jednostek świata**, a kamera śledzi gracza zamiast pokazywać całą planszę naraz. Przy bazowej prędkości 180 jednostek/s przejście od jednego skraju do drugiego trwa około 144 s; skupiska mieszkańców obozów mają rozrzut do 15 000 jednostek, więc przejście przez pełny obóz może zająć około 80–120 s. To jest celowy rytm eksploracji, a nie ekranowa makieta.
+
+## Assety aktorów
+
+Do działania sceny podpięto prawdziwe, własne assety SVG: `player.svg`, `order_guard.svg`, `rebel.svg`, `neutral.svg` i `wolf.svg`. Są renderowane jako tekstury postaci w świecie zamiast wcześniejszych kropek. Arkusz rasterowy pozostaje materiałem referencyjnym do późniejszego atlasu animacji.

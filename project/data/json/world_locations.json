@@ -4,8 +4,8 @@
     "name": "Wał Miary",
     "type": "settlement",
     "marker": {
-      "x": 195,
-      "y": 155
+      "x": 3800,
+      "y": 2600
     }
   },
   {
@@ -13,8 +13,8 @@
     "name": "Obóz Wolnego Żaru",
     "type": "settlement",
     "marker": {
-      "x": 440,
-      "y": 480
+      "x": 14500,
+      "y": 10300
     }
   },
   {
@@ -22,8 +22,8 @@
     "name": "Trakt Mułu",
     "type": "road",
     "marker": {
-      "x": 500,
-      "y": 340
+      "x": 13000,
+      "y": 7000
     }
   },
   {
@@ -31,8 +31,8 @@
     "name": "Las Trzcin",
     "type": "forest",
     "marker": {
-      "x": 765,
-      "y": 305
+      "x": 19000,
+      "y": 6000
     }
   },
   {
@@ -40,8 +40,8 @@
     "name": "Bagno Bezdechu",
     "type": "swamp",
     "marker": {
-      "x": 865,
-      "y": 445
+      "x": 21800,
+      "y": 11000
     }
   },
   {
@@ -49,8 +49,8 @@
     "name": "Kamieniołom Tamy",
     "type": "quarry",
     "marker": {
-      "x": 190,
-      "y": 270
+      "x": 3500,
+      "y": 6000
     }
   },
   {
@@ -58,8 +58,8 @@
     "name": "Wydmy Popiołu",
     "type": "beach",
     "marker": {
-      "x": 155,
-      "y": 515
+      "x": 2500,
+      "y": 12500
     }
   },
   {
@@ -67,8 +67,8 @@
     "name": "Szczelina Głosu",
     "type": "shrine",
     "marker": {
-      "x": 925,
-      "y": 170
+      "x": 22500,
+      "y": 2500
     }
   }
 ]

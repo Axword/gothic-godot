@@ -31,7 +31,7 @@ func load_slot(slot: int = 1) -> bool:
 		saved.emit(false, "Zapis pochodzi z nowszej wersji.")
 		return false
 	var pos: Dictionary = data.get("player_position", {})
-	GameState.player_position = Vector2(float(pos.get("x", 170)), float(pos.get("y", 380)))
+	GameState.player_position = Vector2(float(pos.get("x", 13000)), float(pos.get("y", 7000)))
 	GameState.hp = int(data.get("hp", 60)); GameState.mana = int(data.get("mana", 20))
 	GameState.level = int(data.get("level", 1)); GameState.xp = int(data.get("xp", 0))
 	GameState.learning_points = int(data.get("learning_points", 1)); GameState.world_minutes = float(data.get("world_minutes", 420))

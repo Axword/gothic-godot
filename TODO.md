@@ -23,3 +23,8 @@
 ## P1 — animacje
 - [ ] Pociąć `actors_sheet.png` na finalny atlas i podmienić proceduralne sylwetki na SpriteFrames 4-kierunkowe.
 - [ ] Dodać AnimationTree dla kombosów miecza, łuku i reakcji AI.
+
+## P0 — skala eksploracji
+- [x] Zastąpić punktowe placeholdery aktywnymi sprite’ami postaci.
+- [x] Zmienić ekranową makietę w kamerowaną, wielką mapę świata.
+- [ ] Dodać fizyczne przeszkody i skróty, aby długa podróż dawała decyzje eksploracyjne, a nie była prostym marszem.

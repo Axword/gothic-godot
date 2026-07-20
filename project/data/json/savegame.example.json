@@ -1,1 +1,24 @@
-{"version":1,"player_position":{"x":170,"y":380},"hp":60,"mana":20,"level":1,"xp":0,"learning_points":1,"world_minutes":420,"inventory":{"miecz_iskrowy":1,"wytrych":2},"quest":{"id":"quest_iskra","stage":"start"},"flags":{},"opened_chests":[],"defeated":[]}
+{
+  "version": 1,
+  "player_position": {
+    "x": 13000,
+    "y": 7000
+  },
+  "hp": 60,
+  "mana": 20,
+  "level": 1,
+  "xp": 0,
+  "learning_points": 1,
+  "world_minutes": 420,
+  "inventory": {
+    "miecz_iskrowy": 1,
+    "wytrych": 2
+  },
+  "quest": {
+    "id": "quest_iskra",
+    "stage": "start"
+  },
+  "flags": {},
+  "opened_chests": [],
+  "defeated": []
+}

@@ -17,3 +17,7 @@ Są to grafiki własne projektu, nie import cudzych plików ani elementów z ist
 ## Animacja prototypowa
 
 `ProceduralActor` ma sześć stanów animacji renderowanych przez Godot: `IDLE`, `WALK`, `ATTACK`, `CAST`, `HIT`, `DEATH`. Pozwala to zachować czytelność prototypu nawet przed pocięciem arkusza aktorów na finalne SpriteFrames. W działającej scenie mapa stosuje te same zasady wizualne: oddech/idle, kołysanie chodu, łuk miecza, puls Iskry, błysk trafienia i zanik śmierci wilka.
+
+## Aktywne sprite’y świata
+
+`project/assets/sprites/` zawiera własne grafiki SVG gracza, strażnika Zakonu, członka Wolnego Żaru, postaci neutralnej i wilka. Są one obecnie faktycznie renderowane na mapie jako `Texture2D`, w skali 92×124 jednostek (wilk 184×124), a nie zastępowane kropkami.

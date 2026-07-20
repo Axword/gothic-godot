@@ -15,3 +15,7 @@ Rozmowa z Borutą → zabicie wilka → otwarcie skrzyni przez uczciwą minigrę
 - HP po awansie: `45 + poziom × 15`
 - XP do kolejnego poziomu: `poziom × 100`
 - Zamek: sekwencja `L-R-L`; każdy błędny prefiks zużywa 1 wytrych.
+
+## Konsumpcja
+
+Mikstury życia/many leczą zasoby, wywary zwiększają siłę lub zręczność, a olej ognia i nalewka lodu wzmacniają odpowiedni czar. Pancerze z ekwipunku zmieniają redukcję obrażeń; frakcyjny pancerz jest nagrodą za ostateczny wybór.

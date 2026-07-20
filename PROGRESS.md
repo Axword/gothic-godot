@@ -90,3 +90,9 @@
 - [x] Wszystkie 10 roślin i 6 mikstur są fizycznymi punktami podnoszenia na mapie.
 - [x] Zebrane przedmioty pozostają zebrane po zapisie/wczytaniu.
 - [x] Mikstura Życia i Mikstura Many mają działające użycie w ekwipunku.
+
+## Zrealizowane — komplet używalnych konsumpcji i pancerzy
+- [x] Wszystkie sześć mikstur/wywarów ma użycie i efekt runtime.
+- [x] Zbieralne rośliny lecznicze/manowe mają użycie; pozostałe reagenty zachowują się jako materiały.
+- [x] Wszystkie cztery pancerze są zakładalne z ekwipunku.
+- [x] Dołączenie do frakcji daje odpowiedni frakcyjny pancerz.

@@ -81,3 +81,7 @@
 
 ## 2026-07-19 — pickupy roślin i mikstur
 - Dodano punkty zbioru wszystkich roślin/mikstur, trwałe zapamiętywanie ich stanu i użycie podstawowych mikstur.
+
+## 2026-07-19 — używanie przedmiotów i nagrody frakcyjne
+- Rozszerzono ekwipunek o konsumpcję wszystkich mikstur/wywarów oraz podstawowych ziół.
+- Dodano pancerze jako nagrody za dołączenie do obu frakcji.

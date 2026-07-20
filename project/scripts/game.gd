@@ -467,9 +467,9 @@ func cast_ice() -> void:
 	GameState.mana -= 7; cast_timer = 0.42
 	var target := _nearest_combat_target(650.0)
 	projectile_flash_position = player + player_facing * 180.0; projectile_flash_timer = 0.26
-	if not target.is_empty() and target != "wolf" and creatures.has(target): _damage_creature(target, CombatSystem.spell_damage(11, 0))
-	elif target == "wolf": wolf_hp -= CombatSystem.spell_damage(11, 0); wolf_hit_timer = 0.25
-	elif not target.is_empty(): npc_combat_hp[target] = int(npc_combat_hp.get(target, 45)) - CombatSystem.spell_damage(11, 0)
+	if not target.is_empty() and target != "wolf" and creatures.has(target): _damage_creature(target, CombatSystem.spell_damage(11 + (4 if bool(GameState.flags.get("ice_bonus", false)) else 0), 0))
+	elif target == "wolf": wolf_hp -= CombatSystem.spell_damage(11 + (4 if bool(GameState.flags.get("ice_bonus", false)) else 0), 0); wolf_hit_timer = 0.25
+	elif not target.is_empty(): npc_combat_hp[target] = int(npc_combat_hp.get(target, 45)) - CombatSystem.spell_damage(11 + (4 if bool(GameState.flags.get("ice_bonus", false)) else 0), 0)
 	_notice(true, "Lodowy Kolec pęka na wilgotnym powietrzu.")
 
 func _nearest_combat_target(maximum_distance: float) -> String:
@@ -487,7 +487,7 @@ func cast_fire() -> void:
 	if GameState.mana < 5: _notice(false, "Za mało many."); return
 	GameState.mana -= 5
 	if player.distance_to(wolf_position) < 240 and wolf_hp > 0:
-		wolf_hp -= 14
+		wolf_hp -= 14 + (5 if bool(GameState.flags.get("fire_bonus", false)) else 0)
 		if wolf_hp <= 0: attack()
 	_notice(true, "Iskra przecina wilgotne powietrze.")
 
@@ -562,6 +562,14 @@ func _choose(choice: String) -> void:
 	if choice == "lock_r":
 		_lock_input("R")
 		return
+	if choice.begins_with("consume_"):
+		_consume_item(choice.trim_prefix("consume_"))
+		return
+	if choice.begins_with("equip_"):
+		var item_id := choice.trim_prefix("equip_")
+		GameState.equip(item_id, "armor" if item_id in ["plaszcz_miernika", "kolczuga_walu", "skora_zaru", "pancerz_popiolu"] else "weapon")
+		_show_inventory()
+		return
 	match choice:
 		"save_slot_1", "save_slot_2", "save_slot_3":
 			var save_slot := int(choice.right(1))
@@ -620,10 +628,10 @@ func _choose(choice: String) -> void:
 			GameState.add_quest("q_iskra_buntu")
 			_show_choices("[b]Mira:[/b] Ukradnij cokolwiek przy świadkach albo bez. Wolny Żar oceni wynik, nie metodę.", [["Przyjęłam.", "close"]])
 		"join_old":
-			GameState.faction_choice = "Zakon Żelaznej Miary"; GameState.flags["new_path_locked"] = true
+			GameState.faction_choice = "Zakon Żelaznej Miary"; GameState.flags["new_path_locked"] = true; GameState.add_item("kolczuga_walu")
 			_show_choices("[b]Epilog — Zakon Żelaznej Miary[/b]\nZałożyłeś stalowy płaszcz i nauczyłeś się, że bezpieczeństwo zawsze ma cenę. Wał trwał dłużej, ale ludzie pod nim milczeli głębiej.", [["Koniec gry.", "close"]])
 		"join_new":
-			GameState.faction_choice = "Wolny Żar"; GameState.flags["old_path_locked"] = true
+			GameState.faction_choice = "Wolny Żar"; GameState.flags["old_path_locked"] = true; GameState.add_item("skora_zaru")
 			_show_choices("[b]Epilog — Wolny Żar[/b]\nWybrałeś ogień zamiast wału. Obóz żył głośno i krótko, lecz przez jedną zimę nikt nie pytał o pozwolenie na oddech.", [["Koniec gry.", "close"]])
 		"rumor":
 			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])
@@ -683,11 +691,27 @@ func _show_inventory() -> void:
 	var inventory_lines: Array[String] = []
 	for item_id: String in GameState.inventory:
 		inventory_lines.append("• %s × %d" % [item_id.replace("_", " ").capitalize(), int(GameState.inventory[item_id])])
-	var options: Array = [["Załóż Miecz Iskrowy", "equip_sword"], ["Załóż Łuk Wiklinowy", "equip_bow"], ["Załóż Płaszcz Miernika", "equip_armor"]]
-	if GameState.inventory.has("mikstura_zycia"): options.append(["Wypij Miksturę Życia", "use_life_potion"])
-	if GameState.inventory.has("mikstura_many"): options.append(["Wypij Miksturę Many", "use_mana_potion"])
+	var options: Array = [["Załóż Miecz Iskrowy", "equip_miecz_iskrowy"], ["Załóż Łuk Wiklinowy", "equip_luk_1"]]
+	for armor_id: String in ["plaszcz_miernika", "kolczuga_walu", "skora_zaru", "pancerz_popiolu"]:
+		if GameState.inventory.has(armor_id): options.append(["Załóż: " + armor_id.replace("_", " ").capitalize(), "equip_" + armor_id])
+	for item_id: String in ["mikstura_zycia", "mikstura_many", "wywar_sily", "wywar_zrecznosci", "olej_ognia", "nalewka_lodu", "trzcina_mana", "korzen_walu", "mieta_bagienna", "jagoda_mulu"]:
+		if GameState.inventory.has(item_id): options.append(["Użyj: " + item_id.replace("_", " ").capitalize(), "consume_" + item_id])
 	options.append(["Zamknij", "close"])
 	_show_choices("[b]Ekwipunek[/b]\nBroń: %s | Pancerz: %s\n\n%s" % [str(GameState.equipped.get("weapon", "brak")), str(GameState.equipped.get("armor", "brak")), "\n".join(inventory_lines)], options)
+
+func _consume_item(item_id: String) -> void:
+	if not GameState.remove_item(item_id, 1): return
+	match item_id:
+		"mikstura_zycia": GameState.hp = mini(GameState.max_hp, GameState.hp + 30); _notice(true, "Ciepło wraca do kości.")
+		"mikstura_many", "trzcina_mana": GameState.mana = mini(GameState.max_mana, GameState.mana + (25 if item_id == "mikstura_many" else 5)); _notice(true, "Iskry budzą się w głowie.")
+		"wywar_sily": GameState.strength += 2; _notice(true, "Ramiona pamiętają ciężar stali.")
+		"wywar_zrecznosci": GameState.dexterity += 2; _notice(true, "Palce stają się lżejsze od myśli.")
+		"olej_ognia": GameState.flags["fire_bonus"] = true; _notice(true, "Ogień przestaje być tylko światłem.")
+		"nalewka_lodu": GameState.flags["ice_bonus"] = true; _notice(true, "Zimno osiada pod językiem.")
+		"korzen_walu": GameState.hp = mini(GameState.max_hp, GameState.hp + 8); _notice(true, "Gorzki korzeń zamyka drobne rany.")
+		"mieta_bagienna": GameState.flags["calm"] = true; _notice(true, "Oddech zwalnia.")
+		"jagoda_mulu": GameState.flags["poison_resist"] = true; _notice(true, "Muł już nie drażni gardła.")
+	_show_inventory()
 
 func _show_journal() -> void:
 	journal_open = not journal_open; panel.visible = journal_open

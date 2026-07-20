@@ -18,6 +18,7 @@ var world_minutes: float = 7.0 * 60.0
 var inventory: Dictionary = {"miecz_iskrowy": 1, "luk_1": 1, "strzala_trzcinowa": 20, "wytrych": 2, "zlote_znaki": 80, "plaszcz_miernika": 1}
 var equipped: Dictionary = {"weapon": "miecz_iskrowy", "armor": "plaszcz_miernika"}
 var learned_spells: Array[String] = ["iskra", "lodowy_kolec"]
+var faction_choice: String = ""
 var active_quest: String = "quest_iskra"
 var quest_stage: String = "start"
 var flags: Dictionary = {}
@@ -35,11 +36,16 @@ func reset() -> void:
 	inventory = {"miecz_iskrowy": 1, "luk_1": 1, "strzala_trzcinowa": 20, "wytrych": 2, "zlote_znaki": 80, "plaszcz_miernika": 1}
 	equipped = {"weapon": "miecz_iskrowy", "armor": "plaszcz_miernika"}
 	learned_spells = ["iskra", "lodowy_kolec"]
+	faction_choice = ""
 	active_quest = "quest_iskra"
 	quest_stage = "start"
 	flags = {}
 	opened_chests = []
 	defeated = []
+	changed.emit()
+
+func add_quest(quest_id: String) -> void:
+	flags["quest_" + quest_id] = "active"
 	changed.emit()
 
 func advance_quest(stage: String) -> void:

@@ -276,6 +276,7 @@ func _attempt_theft() -> void:
 		if id != owner_id and player.distance_to(npc_positions.get(id, Vector2.ZERO)) < 350.0: witnesses.append(id)
 	var outcome := TheftSystem.attempt(owner_id, "zlote_znaki", witnesses)
 	if outcome == "success":
+		if bool(GameState.flags.get("new_candidate_started", false)): GameState.flags["new_candidate_ready"] = true
 		_notice(true, "Znak znika z cudzej kieszeni. Nikt nie krzyczy.")
 	else:
 		_notice(false, "Ktoś widział twoją rękę. Reakcja: " + outcome + ".")
@@ -297,6 +298,8 @@ func _damage_creature(creature_id: String, damage: int) -> void:
 	creature["hp"] = int(creature.get("hp", 1)) - damage
 	if int(creature["hp"]) <= 0:
 		creature["dead"] = true; GameState.gain_xp(25)
+		if creature_id == "golem_tamy" and bool(GameState.flags.get("old_candidate_started", false)):
+			GameState.flags["old_candidate_ready"] = true
 		_notice(true, str(creature.get("data", {}).get("name", "Stworzenie")) + " pada. Możesz pozyskać trofeum.")
 	else:
 		_notice(true, "Trafiasz bestię.")
@@ -376,9 +379,25 @@ func _start_dialogue(id: String) -> void:
 	dialogue_open = true; panel.visible = true
 	match id:
 		"npc_boruta":
-			_show_choices("[b]Boruta:[/b] List pachnie mokrym prochem. Tak pachną rzeczy, które nie chcą żyć.\n\n„Jeżeli dotarłeś, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Pokaż list.", "boruta_list"], ["Odejdź.", "close"]])
+			if GameState.quest_stage == "complete" and GameState.faction_choice.is_empty():
+				if bool(GameState.flags.get("old_candidate_ready", false)):
+					_show_choices("[b]Boruta:[/b] Golem już nie pilnuje kamieniołomu. Wykonałeś rozkaz bez pieczęci. To rzadkie.", [["Dołączam do Zakonu Żelaznej Miary.", "join_old"], ["Jeszcze nie.", "close"]])
+				elif bool(GameState.flags.get("old_candidate_started", false)):
+					_show_choices("[b]Boruta:[/b] Golem Tamy wciąż stoi. Nie wracaj z pustymi rękami.", [["Odejdź.", "close"]])
+				else:
+					_show_choices("[b]Boruta:[/b] Chcesz porządku? Udowodnij, że potrafisz go wykuć. Golem Tamy blokuje kamieniołom.", [["Podejmuję próbę Zakonu.", "start_old_candidate"], ["Nie teraz.", "close"]])
+			else:
+				_show_choices("[b]Boruta:[/b] List pachnie mokrym prochem. Tak pachną rzeczy, które nie chcą żyć.\n\n„Jeżeli dotarłeś, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Pokaż list.", "boruta_list"], ["Odejdź.", "close"]])
 		"npc_mira":
-			_show_choices("[b]Mira:[/b] Wrona mierzy szczelinę, Boruta mierzy ludzi. Oboje wychodzą na oszustów, tylko jeden nosi hełm.", [["Zapytaj o Iskrę.", "mira_quest"], ["Odejdź.", "close"]])
+			if GameState.quest_stage == "complete" and GameState.faction_choice.is_empty():
+				if bool(GameState.flags.get("new_candidate_ready", false)):
+					_show_choices("[b]Mira:[/b] Ukradłeś pod nosem ludzi, którzy myślą, że pilnują świata. To wystarczy na początek.", [["Dołączam do Wolnego Żaru.", "join_new"], ["Jeszcze nie.", "close"]])
+				elif bool(GameState.flags.get("new_candidate_started", false)):
+					_show_choices("[b]Mira:[/b] Wróć, kiedy ukradniesz coś komuś, kto tego nie oddał dobrowolnie.", [["Odejdź.", "close"]])
+				else:
+					_show_choices("[b]Mira:[/b] Wolność nie jest hasłem. Jest ręką w cudzej kieszeni, kiedy trzeba przeżyć.", [["Podejmuję próbę Żaru.", "start_new_candidate"], ["Nie teraz.", "close"]])
+			else:
+				_show_choices("[b]Mira:[/b] Wrona mierzy szczelinę, Boruta mierzy ludzi. Oboje wychodzą na oszustów, tylko jeden nosi hełm.", [["Zapytaj o Iskrę.", "mira_quest"], ["Odejdź.", "close"]])
 		"npc_wrona":
 			_show_choices("[b]Wrona:[/b] Szczelina nie jest dziurą. Jest ustami. A coś pod bagnem uczy się mówić.", [["Oddaj pieczęć z kufra.", "wrona_end"], ["Odejdź.", "close"]])
 		_:
@@ -456,6 +475,20 @@ func _choose(choice: String) -> void:
 				_notice(true, "Nauka zostaje w rękach, nie w słowach."); _show_trainer()
 			else:
 				_notice(false, "Brakuje ci punktów nauki, Znaków albo osiągnąłeś limit."); _show_trainer()
+		"start_old_candidate":
+			GameState.flags["old_candidate_started"] = true
+			GameState.add_quest("q_miara_rozkazu")
+			_show_choices("[b]Boruta:[/b] Golem jest na zachodzie, w Kamieniołomie Tamy. Wróć, jeśli przeżyjesz.", [["Przyjąłem.", "close"]])
+		"start_new_candidate":
+			GameState.flags["new_candidate_started"] = true
+			GameState.add_quest("q_iskra_buntu")
+			_show_choices("[b]Mira:[/b] Ukradnij cokolwiek przy świadkach albo bez. Wolny Żar oceni wynik, nie metodę.", [["Przyjęłam.", "close"]])
+		"join_old":
+			GameState.faction_choice = "Zakon Żelaznej Miary"; GameState.flags["new_path_locked"] = true
+			_show_choices("[b]Epilog — Zakon Żelaznej Miary[/b]\nZałożyłeś stalowy płaszcz i nauczyłeś się, że bezpieczeństwo zawsze ma cenę. Wał trwał dłużej, ale ludzie pod nim milczeli głębiej.", [["Koniec gry.", "close"]])
+		"join_new":
+			GameState.faction_choice = "Wolny Żar"; GameState.flags["old_path_locked"] = true
+			_show_choices("[b]Epilog — Wolny Żar[/b]\nWybrałeś ogień zamiast wału. Obóz żył głośno i krótko, lecz przez jedną zimę nikt nie pytał o pozwolenie na oddech.", [["Koniec gry.", "close"]])
 		"rumor":
 			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])
 		"boruta_list":

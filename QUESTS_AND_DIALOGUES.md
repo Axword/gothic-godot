@@ -11,3 +11,12 @@ Dialogi są oszczędne i rozgałęziają się warunkiem stanu: Mira daje dalszą
 ## Intro i rozmowy świata
 
 Intro „Iskra pod Mułem” uruchamia się przed przekazaniem kontroli: wyjaśnia pochodzenie listu, konflikt Wału Miary z Wolnym Żarem oraz zagrożenie Bezdechu. Każdy NPC ma w `npcs.json` pole `lore`; zwykła rozmowa istnieje wyłącznie dlatego, że postać może przekazać konkretną informację o regionie, frakcji lub zagrożeniu. Bandyci mają `aggression: robbery`: w promieniu wykrywania uruchamiają rozmowę wymuszającą haracz albo walkę. Po odmowie atakują, a ich pokonanie to ogłuszenie, nie trwałe usunięcie postaci questowej.
+
+## Grywalna kandydatura i finał
+
+Po zakończeniu `Iskra pod Mułem` Wrona odsyła gracza do obu stron. Można wykonać obie próby kandydackie przed wyborem:
+
+- **Zakon Żelaznej Miary:** Boruta zleca pokonanie Golema Tamy w Kamieniołomie.
+- **Wolny Żar:** Mira zleca udaną kradzież.
+
+Po zakończeniu próby Boruta lub Mira oferuje definitywne dołączenie. Wybór zapisuje `faction_choice`, blokuje przeciwną ścieżkę flagą i uruchamia różny epilog. To jest grywalny kręgosłup finału; pozostałe dane kandydackie są nadal kolejnymi zadaniami do podłączenia.

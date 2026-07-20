@@ -58,3 +58,6 @@
 ## 2026-07-19 — fauna i trofea na mapie
 - Dodano aktywne spawny ropuchy, kraba, golema, upiora i komara wraz z własnymi sprite’ami SVG.
 - Podłączono ich obrażenia, śmierć, XP i pozyskanie trofeum.
+
+## 2026-07-19 — kandydatura i epilog
+- Dodano grywalne próby Boruty i Miry, zapis decyzji frakcyjnej oraz dwa epilogi.

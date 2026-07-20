@@ -57,3 +57,9 @@
 - [x] Wszystkie sześć gatunków stworów ma aktywną instancję na mapie w przypisanym biomie.
 - [x] Miecz, łuk i oba czary mogą trafić dodatkowe gatunki.
 - [x] Ciała dodatkowych stworów zostają w świecie i obsługują pozyskiwanie trofeów.
+
+## Zrealizowane — wybór frakcji
+- [x] Dwie grywalne próby kandydackie po głównym wycinku.
+- [x] Możliwość wykonania obu prób przed ostatecznym wyborem.
+- [x] Ostateczne dołączenie do Zakonu albo Wolnego Żaru, blokada drugiej strony i odrębny epilog.
+- [x] Wybór frakcji jest zapisany w savegame.

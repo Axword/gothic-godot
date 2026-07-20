@@ -63,3 +63,7 @@
 - [x] Możliwość wykonania obu prób przed ostatecznym wyborem.
 - [x] Ostateczne dołączenie do Zakonu albo Wolnego Żaru, blokada drugiej strony i odrębny epilog.
 - [x] Wybór frakcji jest zapisany w savegame.
+
+## Zrealizowane — menu i zapis
+- [x] Menu główne: nowa gra, trzy sloty wczytania, opcje głośności i wyjście.
+- [x] Pauza z trzema slotami zapisu/wczytania oraz powrotem do menu.

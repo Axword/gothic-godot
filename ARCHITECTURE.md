@@ -29,3 +29,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ### Kradzież i trofea
 
 `TheftSystem` otrzymuje listę świadków policzoną przez scenę w promieniu czynu i deleguje eskalację do `CrimeSystem`; strażnicy oraz wojownicy-świadkowie przechodzą do agresji. `SkinningSystem` blokuje pobranie trofeum z ciała bez rangi `skinning`, zapamiętuje zebrane zwłoki i wydaje stałe ID przedmiotu.
+
+## Menu i save slots
+
+`main_menu.tscn` jest sceną startową; przyciski wywołują `GameState.reset()` lub wersjonowane `SaveSystem.load_slot(slot)`. Pauza w `game.gd` używa tych samych trzech slotów, więc logika serializacji pozostaje w jednym autoloadzie.

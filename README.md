@@ -29,3 +29,7 @@ Pełne minima z pierwotnego briefu (65 NPC, wszystkie frakcje i zawartość) **n
 ## Rozszerzona baza danych
 
 Druga iteracja zawiera również pełną projektową bazę danych wymaganej skali (65 NPC, 260 wpisów rutyn, 20 mieczy, 10 łuków, 4 pancerze, 10 roślin, 6 mikstur, 6 stworów, 2 czary i 21 questów). Aktualnie grywalna scena nadal jest pionowym wycinkiem z trzema NPC; pozostałe rekordy są przygotowanym kanonicznym contentem do podpięcia pod kolejne sceny.
+
+## Menu i sloty
+
+Projekt startuje teraz w menu głównym. Dostępne są nowa gra, wczytanie trzech slotów, wyjście oraz prosta regulacja głośności master. W grze klawisz `Esc` otwiera pauzę z zapisem/wczytaniem slotów 1–3 i powrotem do menu.

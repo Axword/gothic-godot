@@ -81,7 +81,7 @@ func _create_camera() -> void:
 	add_child(camera)
 
 func _ensure_input_map() -> void:
-	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
+	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "pause_menu": KEY_ESCAPE, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
 	for action: String in bindings:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -165,6 +165,8 @@ func _handle_world_input() -> void:
 		SaveSystem.save_slot()
 	if Input.is_action_just_pressed("load_game") and SaveSystem.load_slot():
 		player = GameState.player_position
+	if Input.is_action_just_pressed("pause_menu"):
+		_show_pause_menu()
 	if Input.is_action_just_pressed("open_inventory"):
 		_show_inventory()
 	if Input.is_action_just_pressed("steal"):
@@ -447,6 +449,16 @@ func _choose(choice: String) -> void:
 		_lock_input("R")
 		return
 	match choice:
+		"save_slot_1", "save_slot_2", "save_slot_3":
+			var save_slot := int(choice.right(1))
+			SaveSystem.save_slot(save_slot); _close_panel()
+		"load_slot_1", "load_slot_2", "load_slot_3":
+			var load_slot := int(choice.right(1))
+			if SaveSystem.load_slot(load_slot):
+				player = GameState.player_position
+			_close_panel()
+		"main_menu":
+			_close_panel(); get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		"intro_start":
 			GameState.flags["intro_seen"] = true
 			_show_choices("[b]List:[/b] „Jeżeli to czytasz, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Zaczynajmy.", "close"]])
@@ -524,6 +536,13 @@ func _input(event: InputEvent) -> void:
 	if lock_open and event is InputEventKey and event.pressed:
 		if event.keycode == KEY_LEFT: _lock_input("L")
 		elif event.keycode == KEY_RIGHT: _lock_input("R")
+
+func _show_pause_menu() -> void:
+	if dialogue_open:
+		_close_panel()
+		return
+	dialogue_open = true; panel.visible = true
+	_show_choices("[b]Pauza[/b]\nWybierz slot zapisu lub wróć do menu głównego.", [["Zapisz: slot 1", "save_slot_1"], ["Zapisz: slot 2", "save_slot_2"], ["Zapisz: slot 3", "save_slot_3"], ["Wczytaj: slot 1", "load_slot_1"], ["Wczytaj: slot 2", "load_slot_2"], ["Wczytaj: slot 3", "load_slot_3"], ["Menu główne", "main_menu"], ["Wznów", "close"]])
 
 func _show_inventory() -> void:
 	inventory_open = not inventory_open; panel.visible = inventory_open

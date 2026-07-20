@@ -61,3 +61,7 @@
 
 ## 2026-07-19 — kandydatura i epilog
 - Dodano grywalne próby Boruty i Miry, zapis decyzji frakcyjnej oraz dwa epilogi.
+
+## 2026-07-19 — menu i sloty
+- Dodano scenę menu głównego i trzy dostępne sloty zapisu/wczytania.
+- Dodano menu pauzy oraz podstawową regulację master volume.

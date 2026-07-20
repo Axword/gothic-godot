@@ -21,3 +21,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ## Gameplay batch: wyposażenie i style walki
 
 `GameState.equipped` oraz `GameState.learned_spells` są zapisywane przez `SaveSystem`. Scena gry ma dostępny przez `I` panel ekwipunku, który rzeczywiście zmienia aktywną broń/pancerz. Klawisz `2` odpala łuk po założeniu go i zużywa amunicję, a `3` rzuca Lodowy Kolec; oba style korzystają z czystych formuł `CombatSystem`.
+
+### Trening w scenie
+
+`TrainerSystem` jest teraz wywoływany z realnego dialogu NPC. Prowadzący szkolenie pokazuje rangę, limit, punkty nauki i koszt, a zakup bezpośrednio zmienia rankę; ranga miecza wpływa na formułę obrażeń w scenie.

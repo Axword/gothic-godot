@@ -46,3 +46,7 @@
 ## 2026-07-19 — wyposażenie oraz łuk/lód
 - Dodano panel ekwipunku i zapis aktywnego wyposażenia.
 - Podłączono łuk, strzały oraz Lodowy Kolec do grywalnej sceny.
+
+## 2026-07-19 — trenerzy w gameplayu
+- Podłączono nauczycieli do rozmów oraz realnego zakupu treningu.
+- Podłączono rangę miecza do obrażeń.

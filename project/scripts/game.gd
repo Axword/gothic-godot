@@ -30,6 +30,7 @@ var hostile_npcs: Dictionary = {}
 var npc_combat_hp: Dictionary = {}
 var robbery_cooldowns: Dictionary = {}
 var bandit_attack_timer := 0.0
+var current_trainer_id: String = ""
 var wolf_hp := 32
 var wolf_position := Vector2(17200, 7200)
 var npc_positions: Dictionary = {}
@@ -231,12 +232,12 @@ func attack() -> void:
 	attack_timer = 0.30
 	var hostile_id := _nearest_hostile()
 	if not hostile_id.is_empty() and player.distance_to(npc_positions.get(hostile_id, Vector2.ZERO)) < 130.0:
-		npc_combat_hp[hostile_id] = int(npc_combat_hp.get(hostile_id, 45)) - (10 + GameState.strength)
+		npc_combat_hp[hostile_id] = int(npc_combat_hp.get(hostile_id, 45)) - CombatSystem.sword_damage(GameState.strength, 10, 0, int(TrainerSystem.ranks.get("sword", 0)))
 		if int(npc_combat_hp[hostile_id]) <= 0:
 			GameState.defeated.append(hostile_id); hostile_npcs.erase(hostile_id); GameState.gain_xp(30); _notice(true, "Bandyta pada ogłuszony. Żyje, ale ma gorszy dzień.")
 		else: _notice(true, "Trafiasz bandytę.")
 	elif player.distance_to(wolf_position) < 130 and wolf_hp > 0:
-		wolf_hp -= 10 + GameState.strength
+		wolf_hp -= CombatSystem.sword_damage(GameState.strength, 10, 0, int(TrainerSystem.ranks.get("sword", 0)))
 		wolf_hit_timer = 0.18
 		if wolf_hp <= 0:
 			wolf_death_timer = 0.9
@@ -303,7 +304,26 @@ func _start_dialogue(id: String) -> void:
 			var trainer := ""
 			if npc.has("trainer_skills"):
 				trainer = " Potrafię uczyć: " + ", ".join(npc.get("trainer_skills", [])) + "."
-			_show_choices("[b]%s:[/b] Na tym trakcie nawet błoto ma stronę. Ja należę do: %s.%s" % [name, faction, trainer], [["Zapytaj o pogłoski.", "rumor"], ["Odejdź.", "close"]])
+			var options: Array = [["Zapytaj o pogłoski.", "rumor"]]
+			var trainer_id := _trainer_for_npc(id)
+			if not trainer_id.is_empty(): options.append(["Pokaż, czego uczysz.", "open_trainer"])
+			options.append(["Odejdź.", "close"])
+			_show_choices("[b]%s:[/b] Na tym trakcie nawet błoto ma stronę. Ja należę do: %s.%s" % [name, faction, trainer], options)
+
+func _trainer_for_npc(npc_id: String) -> String:
+	for trainer_id: String in TrainerSystem.trainers:
+		var definition: Dictionary = TrainerSystem.trainers[trainer_id]
+		if str(definition.get("npc_id", "")) == npc_id:
+			current_trainer_id = trainer_id
+			return trainer_id
+	return ""
+
+func _show_trainer() -> void:
+	if current_trainer_id.is_empty(): return
+	var definition: Dictionary = TrainerSystem.trainers.get(current_trainer_id, {})
+	var skill := str(definition.get("skill", ""))
+	var rank := int(TrainerSystem.ranks.get(skill, 0))
+	_show_choices("[b]Trening: %s[/b]\nRanga: %d / %d\nKoszt: %d punkt nauki i %d Znaków.\n\nWiedza boli mniej niż rana, ale kupuje się ją tak samo." % [skill, rank, int(definition.get("rank_limit", 0)), int(definition.get("learning_cost", 1)), int(definition.get("currency_cost", 0))], [["Zapłać za trening.", "buy_training"], ["Wróć.", "close"]])
 
 func _show_intro() -> void:
 	if bool(GameState.flags.get("intro_seen", false)): return
@@ -345,6 +365,13 @@ func _choose(choice: String) -> void:
 			GameState.equip("luk_1", "weapon"); _show_inventory()
 		"equip_armor":
 			GameState.equip("plaszcz_miernika", "armor"); _show_inventory()
+		"open_trainer":
+			_show_trainer()
+		"buy_training":
+			if TrainerSystem.train(current_trainer_id):
+				_notice(true, "Nauka zostaje w rękach, nie w słowach."); _show_trainer()
+			else:
+				_notice(false, "Brakuje ci punktów nauki, Znaków albo osiągnąłeś limit."); _show_trainer()
 		"rumor":
 			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])
 		"boruta_list":

@@ -41,3 +41,8 @@
 - [x] Łuk z wymaganym wyposażeniem, amunicją i trafieniem celu.
 - [x] Lodowy Kolec z kosztem many i efektem pocisku.
 - [x] Zapis wyposażenia i poznanych czarów.
+
+## Zrealizowane — nauczyciele
+- [x] Dialogowy ekran treningu oparty o `trainers.json`.
+- [x] Wydawanie punktów nauki i Znaków przez `TrainerSystem`.
+- [x] Ranga miecza wpływa na rzeczywiste obrażenia.

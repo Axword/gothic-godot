@@ -60,6 +60,7 @@ var journal_open := false
 var inventory_open := false
 var projectile_flash_timer := 0.0
 var projectile_flash_position := Vector2.ZERO
+var game_over_open := false
 var ui: CanvasLayer
 var hud: Label
 var prompt: Label
@@ -262,8 +263,14 @@ func _process(delta: float) -> void:
 	_update_creature_ai(delta)
 	_update_bandit_aggression(delta)
 	_update_hostile_npc_ai(delta)
+	_check_player_defeat()
 	_update_ui()
 	queue_redraw()
+
+func _check_player_defeat() -> void:
+	if GameState.hp > 0 or game_over_open: return
+	game_over_open = true; dialogue_open = true; panel.visible = true
+	_show_choices("[b]Upadasz w błoto.[/b]\nNie jesteś martwy. Jeszcze nie. Świat po prostu przestał cię na chwilę potrzebować.", [["Obudź się przy ostatnim bezpiecznym miejscu.", "respawn"], ["Wczytaj autosave.", "load_autosave"], ["Wróć do menu.", "main_menu"]])
 
 func _move_player(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -702,9 +709,15 @@ func _choose(choice: String) -> void:
 		"main_menu":
 			_close_panel(); get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		"sleep_dawn":
-			GameState.world_minutes = 6.0 * 60.0; _close_panel(); _notice(true, "Budzisz się przed świtem.")
+			GameState.world_minutes = 6.0 * 60.0; GameState.last_safe_position = player; SaveSystem.autosave(); _close_panel(); _notice(true, "Budzisz się przed świtem.")
 		"sleep_dusk":
-			GameState.world_minutes = 18.0 * 60.0; _close_panel(); _notice(true, "Budzisz się, gdy cienie są najdłuższe.")
+			GameState.world_minutes = 18.0 * 60.0; GameState.last_safe_position = player; SaveSystem.autosave(); _close_panel(); _notice(true, "Budzisz się, gdy cienie są najdłuższe.")
+		"respawn":
+			GameState.hp = GameState.max_hp; GameState.mana = GameState.max_mana; player = GameState.last_safe_position; GameState.player_position = player
+			game_over_open = false; _close_panel(); _notice(true, "Wracasz do świata z błotem w płucach.")
+		"load_autosave":
+			if SaveSystem.load_slot(0): player = GameState.player_position
+			game_over_open = false; _close_panel()
 		"intro_start":
 			GameState.flags["intro_seen"] = true
 			_show_choices("[b]List:[/b] „Jeżeli to czytasz, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Zaczynajmy.", "close"]])
@@ -750,10 +763,10 @@ func _choose(choice: String) -> void:
 			GameState.add_quest("q_iskra_buntu")
 			_show_choices("[b]Mira:[/b] Ukradnij cokolwiek przy świadkach albo bez. Wolny Żar oceni wynik, nie metodę.", [["Przyjęłam.", "close"]])
 		"join_old":
-			GameState.faction_choice = "Zakon Żelaznej Miary"; GameState.flags["new_path_locked"] = true; GameState.add_item("kolczuga_walu")
+			GameState.faction_choice = "Zakon Żelaznej Miary"; GameState.flags["new_path_locked"] = true; GameState.add_item("kolczuga_walu"); SaveSystem.autosave()
 			_show_choices("[b]Epilog — Zakon Żelaznej Miary[/b]\nZałożyłeś stalowy płaszcz i nauczyłeś się, że bezpieczeństwo zawsze ma cenę. Wał trwał dłużej, ale ludzie pod nim milczeli głębiej.", [["Koniec gry.", "close"]])
 		"join_new":
-			GameState.faction_choice = "Wolny Żar"; GameState.flags["old_path_locked"] = true; GameState.add_item("skora_zaru")
+			GameState.faction_choice = "Wolny Żar"; GameState.flags["old_path_locked"] = true; GameState.add_item("skora_zaru"); SaveSystem.autosave()
 			_show_choices("[b]Epilog — Wolny Żar[/b]\nWybrałeś ogień zamiast wału. Obóz żył głośno i krótko, lecz przez jedną zimę nikt nie pytał o pozwolenie na oddech.", [["Koniec gry.", "close"]])
 		"rumor":
 			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])

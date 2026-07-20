@@ -103,3 +103,6 @@
 
 ## 2026-07-20 — proceduralne SFX
 - Dodano AudioSystem i własne proceduralne WAV-y dla kluczowych akcji.
+
+## 2026-07-20 — porażka i autosave
+- Dodano slot autosave, bezpieczne pozycje oraz obsługę HP 0.

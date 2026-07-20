@@ -34,5 +34,9 @@
     "lodowy_kolec"
   ],
   "faction_choice": "",
-  "taken_pickups": []
+  "taken_pickups": [],
+  "last_safe_position": {
+    "x": 13000,
+    "y": 7000
+  }
 }

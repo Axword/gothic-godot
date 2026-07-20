@@ -121,3 +121,7 @@
 ## Zrealizowane — audio i VFX
 - [x] Własne proceduralne SFX miecza, obu czarów, skrzyni i alarmu.
 - [x] AudioSystem na magistrali Master oraz podpięcie dźwięków do interakcji.
+
+## Zrealizowane — porażka i autosave
+- [x] Ekran porażki przy HP 0, odrodzenie, autosave i powrót do menu.
+- [x] Bezpieczne pozycje oraz autosave po śnie i wyborze frakcji.

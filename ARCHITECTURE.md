@@ -45,3 +45,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ### AI ludzi
 
 Wrogi ludzie mają aktywny limitowany pościg, atak w zasięgu, lokalny alarm dla sojuszników i powrót do markera rutyny po utracie celu. Iteracja odbywa się po kopii kluczy wrogów, dlatego alarm może bezpiecznie dołączać kolejne NPC bez mutacji kolekcji podczas iteracji.
+
+### Bezpieczne momenty i porażka
+
+`last_safe_position` jest stanem serializowanym. Sen oraz ostateczny wybór frakcji wywołują `SaveSystem.autosave()` do slotu 0. Po HP ≤ 0 scena oferuje odrodzenie w bezpiecznym miejscu, wczytanie autosave albo powrót do menu.

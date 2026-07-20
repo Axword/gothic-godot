@@ -5,6 +5,7 @@ signal quest_changed(quest_id: String, stage: String)
 
 const SAVE_VERSION: int = 1
 var player_position: Vector2 = Vector2(13000, 7000)
+var last_safe_position: Vector2 = Vector2(13000, 7000)
 var hp: int = 60
 var max_hp: int = 60
 var mana: int = 20
@@ -28,6 +29,7 @@ var taken_pickups: Array[String] = []
 
 func reset() -> void:
 	player_position = Vector2(13000, 7000)
+	last_safe_position = player_position
 	hp = 60
 	mana = 20
 	level = 1

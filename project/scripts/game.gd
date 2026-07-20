@@ -78,6 +78,7 @@ func _ready() -> void:
 	_load_creatures()
 	_load_shops()
 	_setup_world_collisions()
+	NavigationSystem.configure(world_obstacles)
 	_setup_world_pickups()
 	_setup_world_chests()
 	_create_camera()
@@ -363,7 +364,9 @@ func _update_creature_ai(delta: float) -> void:
 			if creature_id == "golem_tamy": speed = 35.0
 			elif creature_id == "upior_bezdechu": speed = 105.0
 			elif creature_id == "komar_krwawy": speed = 125.0
-			if distance > 130.0: creature_pos += creature_pos.direction_to(player) * speed * delta
+			if distance > 130.0:
+				var waypoint := NavigationSystem.next_point(creature_pos, player)
+				creature_pos += creature_pos.direction_to(waypoint) * speed * delta
 			elif creature_attack_cooldown <= 0.0:
 				var armor := _player_armor_value()
 				GameState.hp = maxi(0, GameState.hp - maxi(1, int(data.get("damage", 5)) - armor))
@@ -371,7 +374,9 @@ func _update_creature_ai(delta: float) -> void:
 				_notice(false, str(data.get("name", "Bestia")) + " dosięga cię.")
 		else:
 			creature["state"] = "return"
-			if creature_pos.distance_to(home) > 8.0: creature_pos += creature_pos.direction_to(home) * 45.0 * delta
+			if creature_pos.distance_to(home) > 8.0:
+				var return_waypoint := NavigationSystem.next_point(creature_pos, home)
+				creature_pos += creature_pos.direction_to(return_waypoint) * 45.0 * delta
 		creature["position"] = creature_pos
 		creatures[creature_id] = creature
 
@@ -403,14 +408,17 @@ func _update_hostile_npc_ai(delta: float) -> void:
 					if str(ally.get("faction", "")) == faction and str(ally.get("role", "")) in ["guard", "captain", "fighter"] and ally_pos.distance_to(position) < 700.0:
 						hostile_npcs[ally_id] = true
 			if distance > 130.0:
-				position += position.direction_to(player) * 105.0 * delta
+				var waypoint := NavigationSystem.next_point(position, player)
+				position += position.direction_to(waypoint) * 105.0 * delta
 			elif cooldown <= 0.0:
 				GameState.hp = maxi(0, GameState.hp - maxi(1, 8 - _player_armor_value()))
 				npc_attack_cooldowns[id] = 1.25
 				_notice(false, str(npc.get("name", "Napastnik")) + " trafia cię.")
 		else:
 			# Po utracie celu człowiek wraca do rutyny zamiast bez końca gonić po mapie.
-			if position.distance_to(home) > 20.0: position += position.direction_to(home) * 90.0 * delta
+			if position.distance_to(home) > 20.0:
+				var return_waypoint := NavigationSystem.next_point(position, home)
+				position += position.direction_to(return_waypoint) * 90.0 * delta
 			else: hostile_npcs.erase(id)
 		npc_positions[id] = position
 

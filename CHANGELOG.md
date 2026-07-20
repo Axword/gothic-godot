@@ -109,3 +109,6 @@
 
 ## 2026-07-20 — ekran mapy
 - Dodano pełnoekranową mapę regionu z dynamicznym markerem gracza.
+
+## 2026-07-20 — A* dla AI
+- Dodano NavigationSystem oparty o AStarGrid2D i podłączono go do ruchu AI.

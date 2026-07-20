@@ -38,6 +38,7 @@ SkinningSystem="*res://autoload/skinning_system.gd"
 TheftSystem="*res://autoload/theft_system.gd"
 SettingsSystem="*res://autoload/settings_system.gd"
 AudioSystem="*res://autoload/audio_system.gd"
+NavigationSystem="*res://autoload/navigation_system.gd"
 
 [display]
 

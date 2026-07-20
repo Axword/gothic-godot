@@ -128,3 +128,7 @@
 
 ## Zrealizowane — ekran mapy
 - [x] Mapa świata pod `M`, z czytelną ilustracją w poprawnej skali, markerami regionów i pozycją gracza.
+
+## Zrealizowane — nawigacja AI
+- [x] AStarGrid2D z komórkami solidnymi wygenerowanymi z kolizji świata.
+- [x] Stworzenia i agresywni NPC używają waypointów A* w pościgu oraz powrocie.

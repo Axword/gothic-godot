@@ -49,3 +49,7 @@ Wrogi ludzie mają aktywny limitowany pościg, atak w zasięgu, lokalny alarm dl
 ### Bezpieczne momenty i porażka
 
 `last_safe_position` jest stanem serializowanym. Sen oraz ostateczny wybór frakcji wywołują `SaveSystem.autosave()` do slotu 0. Po HP ≤ 0 scena oferuje odrodzenie w bezpiecznym miejscu, wczytanie autosave albo powrót do menu.
+
+### Nawigacja A*
+
+`NavigationSystem` tworzy gruboziarnisty `AStarGrid2D` 130×70, o komórkach 200 jednostek. Kolizje landmarków oznaczają komórki solidne. Ludzie i stworzenia pobierają kolejny waypoint A* zarówno dla pościgu, jak i powrotu do rutyny, zamiast przechodzić przez domy, szyb lub Szczelinę.

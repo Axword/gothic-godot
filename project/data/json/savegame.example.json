@@ -12,6 +12,8 @@
   "world_minutes": 420,
   "inventory": {
     "miecz_iskrowy": 1,
+    "luk_1": 1,
+    "strzala_trzcinowa": 20,
     "wytrych": 2,
     "zlote_znaki": 10,
     "plaszcz_miernika": 1
@@ -22,5 +24,13 @@
   },
   "flags": {},
   "opened_chests": [],
-  "defeated": []
+  "defeated": [],
+  "equipped": {
+    "weapon": "miecz_iskrowy",
+    "armor": "plaszcz_miernika"
+  },
+  "learned_spells": [
+    "iskra",
+    "lodowy_kolec"
+  ]
 }

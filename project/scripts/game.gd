@@ -12,6 +12,10 @@ const ORDER_TEXTURE: Texture2D = preload("res://assets/sprites/order_guard.svg")
 const REBEL_TEXTURE: Texture2D = preload("res://assets/sprites/rebel.svg")
 const NEUTRAL_TEXTURE: Texture2D = preload("res://assets/sprites/neutral.svg")
 const WOLF_TEXTURE: Texture2D = preload("res://assets/sprites/wolf.svg")
+const ARMOR_ORDER_TEXTURE: Texture2D = preload("res://assets/sprites/armor/plaszcz_miernika.svg")
+const ARMOR_WALL_TEXTURE: Texture2D = preload("res://assets/sprites/armor/kolczuga_walu.svg")
+const ARMOR_REBEL_TEXTURE: Texture2D = preload("res://assets/sprites/armor/skora_zaru.svg")
+const ARMOR_ASH_TEXTURE: Texture2D = preload("res://assets/sprites/armor/pancerz_popiolu.svg")
 var player: Vector2
 var message := "Przybyłeś z listem, którego nie pisałeś."
 var message_timer := 7.0
@@ -37,6 +41,9 @@ var dialogue: Dictionary = {}
 var dialogue_open := false
 var lock_open := false
 var journal_open := false
+var inventory_open := false
+var projectile_flash_timer := 0.0
+var projectile_flash_position := Vector2.ZERO
 var ui: CanvasLayer
 var hud: Label
 var prompt: Label
@@ -66,7 +73,7 @@ func _create_camera() -> void:
 	add_child(camera)
 
 func _ensure_input_map() -> void:
-	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
+	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
 	for action: String in bindings:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -111,11 +118,12 @@ func _build_ui() -> void:
 	choices = VBoxContainer.new(); column.add_child(choices)
 
 func _process(delta: float) -> void:
-	if not dialogue_open and not lock_open and not journal_open:
+	if not dialogue_open and not lock_open and not journal_open and not inventory_open:
 		_move_player(delta)
 		_handle_world_input()
 	attack_timer = maxf(0.0, attack_timer - delta)
 	cast_timer = maxf(0.0, cast_timer - delta)
+	projectile_flash_timer = maxf(0.0, projectile_flash_timer - delta)
 	wolf_hit_timer = maxf(0.0, wolf_hit_timer - delta)
 	wolf_death_timer = maxf(0.0, wolf_death_timer - delta)
 	message_timer = maxf(0.0, message_timer - delta)
@@ -141,8 +149,14 @@ func _handle_world_input() -> void:
 		SaveSystem.save_slot()
 	if Input.is_action_just_pressed("load_game") and SaveSystem.load_slot():
 		player = GameState.player_position
+	if Input.is_action_just_pressed("open_inventory"):
+		_show_inventory()
 	if Input.is_action_just_pressed("open_journal"):
 		_show_journal()
+	if Input.is_action_just_pressed("use_bow"):
+		fire_bow()
+	if Input.is_action_just_pressed("cast_ice"):
+		cast_ice()
 	if Input.is_action_just_pressed("interact"):
 		interact()
 	if Input.is_action_just_pressed("attack"):
@@ -232,6 +246,38 @@ func attack() -> void:
 			_notice(true, "Wilk pada. Zostawia skórę i ciszę.")
 		else: _notice(true, "Stal trafia: wilk warczy.")
 
+func fire_bow() -> void:
+	if str(GameState.equipped.get("weapon", "")) != "luk_1":
+		_notice(false, "Najpierw załóż Łuk Wiklinowy w ekwipunku [I]."); return
+	if not GameState.remove_item("strzala_trzcinowa", 1):
+		_notice(false, "Nie masz strzał."); return
+	var target := _nearest_combat_target(900.0)
+	projectile_flash_position = player + player_facing * 240.0; projectile_flash_timer = 0.20
+	if target == "wolf":
+		wolf_hp -= CombatSystem.bow_damage(GameState.dexterity, 7, 0)
+		wolf_hit_timer = 0.18
+		if wolf_hp <= 0: attack()
+	elif not target.is_empty():
+		npc_combat_hp[target] = int(npc_combat_hp.get(target, 45)) - CombatSystem.bow_damage(GameState.dexterity, 7, 0)
+		if int(npc_combat_hp[target]) <= 0: GameState.defeated.append(target); hostile_npcs.erase(target)
+	_notice(true, "Strzała trzcinowa świszczy w ciemności.")
+
+func cast_ice() -> void:
+	if not GameState.learned_spells.has("lodowy_kolec") or GameState.mana < 7:
+		_notice(false, "Nie znasz Lodowego Kolca albo brakuje many."); return
+	GameState.mana -= 7; cast_timer = 0.42
+	var target := _nearest_combat_target(650.0)
+	projectile_flash_position = player + player_facing * 180.0; projectile_flash_timer = 0.26
+	if target == "wolf": wolf_hp -= CombatSystem.spell_damage(11, 0); wolf_hit_timer = 0.25
+	elif not target.is_empty(): npc_combat_hp[target] = int(npc_combat_hp.get(target, 45)) - CombatSystem.spell_damage(11, 0)
+	_notice(true, "Lodowy Kolec pęka na wilgotnym powietrzu.")
+
+func _nearest_combat_target(maximum_distance: float) -> String:
+	if wolf_hp > 0 and player.distance_to(wolf_position) <= maximum_distance: return "wolf"
+	var id := _nearest_hostile()
+	if not id.is_empty() and player.distance_to(npc_positions.get(id, Vector2.ZERO)) <= maximum_distance: return id
+	return ""
+
 func cast_fire() -> void:
 	cast_timer = 0.42
 	if GameState.mana < 5: _notice(false, "Za mało many."); return
@@ -262,11 +308,7 @@ func _start_dialogue(id: String) -> void:
 func _show_intro() -> void:
 	if bool(GameState.flags.get("intro_seen", false)): return
 	dialogue_open = true; panel.visible = true
-	_show_choices("[b]ZGNILIZNA: ISKRA POD MUŁEM[/b]
-
-Przyszedłeś z wojny, niosąc list bez podpisu. Kanały za tobą płoną, a przed tobą Wał Miary i Obóz Żaru wyrywają sobie ostatni suchy grunt. Pod bagnem budzi się Bezdech.
-
-Nie jesteś wybrańcem. Jesteś człowiekiem z listem i pustymi kieszeniami.", [["Przeczytaj list i ruszaj.", "intro_start"], ["Kim jest Bezdech?", "intro_lore"]])
+	_show_choices("[b]ZGNILIZNA: ISKRA POD MUŁEM[/b]\n\nPrzyszedłeś z wojny, niosąc list bez podpisu. Kanały za tobą płoną, a przed tobą Wał Miary i Obóz Żaru wyrywają sobie ostatni suchy grunt. Pod bagnem budzi się Bezdech.\n\nNie jesteś wybrańcem. Jesteś człowiekiem z listem i pustymi kieszeniami.", [["Przeczytaj list i ruszaj.", "intro_start"], ["Kim jest Bezdech?", "intro_lore"]])
 
 func _show_choices(text: String, entries: Array) -> void:
 	panel_text.text = text
@@ -297,6 +339,12 @@ func _choose(choice: String) -> void:
 		"fight_bandit":
 			var fight_id := str(GameState.flags.get("robbery_id", "")); hostile_npcs[fight_id] = true
 			_close_panel(); _notice(false, "Bandyta rusza do ataku!")
+		"equip_sword":
+			GameState.equip("miecz_iskrowy", "weapon"); _show_inventory()
+		"equip_bow":
+			GameState.equip("luk_1", "weapon"); _show_inventory()
+		"equip_armor":
+			GameState.equip("plaszcz_miernika", "armor"); _show_inventory()
 		"rumor":
 			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])
 		"boruta_list":
@@ -333,10 +381,18 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_LEFT: _lock_input("L")
 		elif event.keycode == KEY_RIGHT: _lock_input("R")
 
+func _show_inventory() -> void:
+	inventory_open = not inventory_open; panel.visible = inventory_open
+	if not inventory_open: return
+	var inventory_lines: Array[String] = []
+	for item_id: String in GameState.inventory:
+		inventory_lines.append("• %s × %d" % [item_id.replace("_", " ").capitalize(), int(GameState.inventory[item_id])])
+	_show_choices("[b]Ekwipunek[/b]\nBroń: %s | Pancerz: %s\n\n%s" % [str(GameState.equipped.get("weapon", "brak")), str(GameState.equipped.get("armor", "brak")), "\n".join(inventory_lines)], [["Załóż Miecz Iskrowy", "equip_sword"], ["Załóż Łuk Wiklinowy", "equip_bow"], ["Załóż Płaszcz Miernika", "equip_armor"], ["Zamknij", "close"]])
+
 func _show_journal() -> void:
 	journal_open = not journal_open; panel.visible = journal_open
 	if journal_open:
-		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
+		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
 
 func _objective() -> String:
 	match GameState.quest_stage:
@@ -348,7 +404,7 @@ func _objective() -> String:
 	return "Cel nieznany. To też rodzaj prawdy."
 
 func _close_panel() -> void:
-	dialogue_open = false; lock_open = false; journal_open = false; panel.visible = false
+	dialogue_open = false; lock_open = false; journal_open = false; inventory_open = false; panel.visible = false
 
 func _notice(ok: bool, text: String) -> void:
 	message = text; message_timer = 4.0
@@ -446,10 +502,18 @@ func _draw() -> void:
 	var bob: float = sin(Time.get_ticks_msec() * 0.006) * (2.0 if player_is_walking else 0.8)
 	var visual_player: Vector2 = player + Vector2(0.0, bob)
 	draw_texture_rect(PLAYER_TEXTURE, Rect2(visual_player - Vector2(46, 62), Vector2(92, 124)), false)
+	var armor_id := str(GameState.equipped.get("armor", ""))
+	var armor_texture: Texture2D = ARMOR_ORDER_TEXTURE
+	if armor_id == "kolczuga_walu": armor_texture = ARMOR_WALL_TEXTURE
+	elif armor_id == "skora_zaru": armor_texture = ARMOR_REBEL_TEXTURE
+	elif armor_id == "pancerz_popiolu": armor_texture = ARMOR_ASH_TEXTURE
+	draw_texture_rect(armor_texture, Rect2(visual_player - Vector2(38, 42), Vector2(76, 76)), false)
 	var sword_direction: Vector2 = player_facing
 	if attack_timer > 0.0:
 		sword_direction = player_facing.rotated((0.30 - attack_timer) * 8.0)
 		draw_arc(visual_player + sword_direction * 70.0, 80, sword_direction.angle() - 1.0, sword_direction.angle() + 1.0, 10, Color("e8bb68"), 12.0)
+	if projectile_flash_timer > 0.0:
+		draw_circle(projectile_flash_position, 34.0, Color(0.55, 0.82, 1.0, projectile_flash_timer * 4.0))
 	if cast_timer > 0.0:
 		var pulse := 60.0 + sin(cast_timer * 28.0) * 4.0
 		draw_circle(visual_player + player_facing * 100.0, pulse, Color(0.92, 0.38, 0.12, cast_timer * 1.4))

@@ -17,3 +17,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 - `CrimeSystem` przyjmuje już wykrytych przez scenę świadków, więc nie tworzy wszechwiedzącego przestępstwa.
 - `TrainerSystem` egzekwuje punkty nauki, walutę i limit rangi.
 - `WorldTime` jest jedynym źródłem upływu czasu; `GameState` przechowuje go na potrzeby zapisu.
+
+## Gameplay batch: wyposażenie i style walki
+
+`GameState.equipped` oraz `GameState.learned_spells` są zapisywane przez `SaveSystem`. Scena gry ma dostępny przez `I` panel ekwipunku, który rzeczywiście zmienia aktywną broń/pancerz. Klawisz `2` odpala łuk po założeniu go i zużywa amunicję, a `3` rzuca Lodowy Kolec; oba style korzystają z czystych formuł `CombatSystem`.

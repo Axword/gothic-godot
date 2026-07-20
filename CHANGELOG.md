@@ -42,3 +42,7 @@
 - Dodano informacje lore dla wszystkich NPC oraz rozmowy kontekstowe.
 - Dodano automatyczne wymuszenie haraczu przez bandytów, wybór zapłaty/walki oraz walkę i ogłuszenie bandyty.
 - Dodano cztery własne assety pancerzy SVG i poprawiono ich referencje danych.
+
+## 2026-07-19 — wyposażenie oraz łuk/lód
+- Dodano panel ekwipunku i zapis aktywnego wyposażenia.
+- Podłączono łuk, strzały oraz Lodowy Kolec do grywalnej sceny.

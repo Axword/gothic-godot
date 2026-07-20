@@ -15,7 +15,9 @@ var learning_points: int = 1
 var strength: int = 5
 var dexterity: int = 5
 var world_minutes: float = 7.0 * 60.0
-var inventory: Dictionary = {"miecz_iskrowy": 1, "wytrych": 2, "zlote_znaki": 10, "plaszcz_miernika": 1}
+var inventory: Dictionary = {"miecz_iskrowy": 1, "luk_1": 1, "strzala_trzcinowa": 20, "wytrych": 2, "zlote_znaki": 10, "plaszcz_miernika": 1}
+var equipped: Dictionary = {"weapon": "miecz_iskrowy", "armor": "plaszcz_miernika"}
+var learned_spells: Array[String] = ["iskra", "lodowy_kolec"]
 var active_quest: String = "quest_iskra"
 var quest_stage: String = "start"
 var flags: Dictionary = {}
@@ -30,7 +32,9 @@ func reset() -> void:
 	xp = 0
 	learning_points = 1
 	world_minutes = 7.0 * 60.0
-	inventory = {"miecz_iskrowy": 1, "wytrych": 2, "zlote_znaki": 10, "plaszcz_miernika": 1}
+	inventory = {"miecz_iskrowy": 1, "luk_1": 1, "strzala_trzcinowa": 20, "wytrych": 2, "zlote_znaki": 10, "plaszcz_miernika": 1}
+	equipped = {"weapon": "miecz_iskrowy", "armor": "plaszcz_miernika"}
+	learned_spells = ["iskra", "lodowy_kolec"]
 	active_quest = "quest_iskra"
 	quest_stage = "start"
 	flags = {}
@@ -55,6 +59,12 @@ func remove_item(item_id: String, amount: int = 1) -> bool:
 		inventory.erase(item_id)
 	else:
 		inventory[item_id] = current - amount
+	changed.emit()
+	return true
+
+func equip(item_id: String, slot: String) -> bool:
+	if not inventory.has(item_id): return false
+	equipped[slot] = item_id
 	changed.emit()
 	return true
 

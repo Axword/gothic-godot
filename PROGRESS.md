@@ -35,3 +35,9 @@
 - [x] Kontekstowe rozmowy lore dla pełnej populacji NPC.
 - [x] Bandyci inicjują wymuszenie, przechodzą w agresję po odmowie i mogą zostać ogłuszeni.
 - [x] Cztery assety pancerzy z prawidłowymi referencjami JSON.
+
+## Zrealizowane — wyposażenie i style walki
+- [x] Ekwipunek pod `I` z aktywnym założeniem miecza, łuku i pancerza.
+- [x] Łuk z wymaganym wyposażeniem, amunicją i trafieniem celu.
+- [x] Lodowy Kolec z kosztem many i efektem pocisku.
+- [x] Zapis wyposażenia i poznanych czarów.

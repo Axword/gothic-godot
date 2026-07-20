@@ -1,0 +1,38 @@
+[
+  {
+    "id": "skora_wilka",
+    "name": "Skóra wilka",
+    "category": "trophy",
+    "value": 8
+  },
+  {
+    "id": "kieł_wilka",
+    "name": "Kieł wilka",
+    "category": "trophy",
+    "value": 14
+  },
+  {
+    "id": "gruczol_ropuchy",
+    "name": "Gruczoł ropuchy",
+    "category": "trophy",
+    "value": 20
+  },
+  {
+    "id": "oko_upiora",
+    "name": "Oko upiora",
+    "category": "trophy",
+    "value": 26
+  },
+  {
+    "id": "odlamek_golema",
+    "name": "Odłamek golema",
+    "category": "trophy",
+    "value": 32
+  },
+  {
+    "id": "skorupa_kraba",
+    "name": "Skorupa kraba",
+    "category": "trophy",
+    "value": 38
+  }
+]

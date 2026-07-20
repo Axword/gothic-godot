@@ -1,0 +1,5 @@
+[
+  {"id":"shop_huta","npc_id":"npc_huta","name":"Stal Huty","stock":[{"item_id":"tasak_rzeczny","price":35},{"item_id":"sztych_poborcy","price":55},{"item_id":"wytrych","price":8}]},
+  {"id":"shop_zgar","npc_id":"npc_zgar","name":"Skrytka Zgara","stock":[{"item_id":"strzala_trzcinowa","price":2},{"item_id":"mikstura_zycia","price":18},{"item_id":"mikstura_many","price":20},{"item_id":"luk_3","price":70}]},
+  {"id":"shop_rzesa","npc_id":"npc_rzesa","name":"Wóz Rzęsy","stock":[{"item_id":"wywar_sily","price":45},{"item_id":"wywar_zrecznosci","price":45},{"item_id":"olej_ognia","price":55},{"item_id":"nalewka_lodu","price":55}]}
+]

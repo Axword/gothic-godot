@@ -1,0 +1,31 @@
+{
+  "id": "dialogues_neutral",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "speaker": "Wrona",
+      "text_pl": "Mapa nie kłamie. Ludzie rysują ją krzywo.",
+      "responses": [
+        {
+          "id": "ask",
+          "text_pl": "Mów dalej.",
+          "next_node": "end",
+          "conditions": [],
+          "actions": []
+        },
+        {
+          "id": "leave",
+          "text_pl": "Dość.",
+          "next_node": "end",
+          "conditions": [],
+          "actions": []
+        }
+      ]
+    },
+    "end": {
+      "speaker": "Wrona",
+      "text_pl": "Idź, zanim ziemia przypomni sobie twoje imię.",
+      "responses": []
+    }
+  }
+}

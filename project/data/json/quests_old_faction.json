@@ -1,0 +1,157 @@
+[
+  {
+    "id": "q_miara_rozkazu",
+    "title": "Miara rozkazu",
+    "type": "old_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Dostarcz rozkaz albo sfałszuj pieczęć."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_wilcza_danina",
+    "title": "Wilcza danina",
+    "type": "old_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Przynieś skóry; możesz kupić je od kłusownika."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_zaginiony_poborca",
+    "title": "Zaginiony poborca",
+    "type": "old_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Znajdź poborcę w bagnie albo jego dowód."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_czysty_wal",
+    "title": "Czysty wał",
+    "type": "old_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Oczyść wał lub zapłać za milczenie."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_ostatni_rejestr",
+    "title": "Ostatni rejestr",
+    "type": "old_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Oddaj rejestr, spal go lub sprzedaj."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  }
+]

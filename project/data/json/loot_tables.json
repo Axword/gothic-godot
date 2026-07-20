@@ -1,0 +1,62 @@
+[
+  {
+    "id": "loot_wilk_z_mielizny",
+    "entries": [
+      {
+        "item_id": "skora_wilka",
+        "chance": 0.7,
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "loot_ropucha_mulowa",
+    "entries": [
+      {
+        "item_id": "zlote_znaki",
+        "chance": 0.7,
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "loot_krab_wydmowy",
+    "entries": [
+      {
+        "item_id": "zlote_znaki",
+        "chance": 0.7,
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "loot_golem_tamy",
+    "entries": [
+      {
+        "item_id": "zlote_znaki",
+        "chance": 0.7,
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "loot_upior_bezdechu",
+    "entries": [
+      {
+        "item_id": "zlote_znaki",
+        "chance": 0.7,
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "loot_komar_krwawy",
+    "entries": [
+      {
+        "item_id": "zlote_znaki",
+        "chance": 0.7,
+        "amount": 1
+      }
+    ]
+  }
+]

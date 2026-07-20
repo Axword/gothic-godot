@@ -1,0 +1,31 @@
+{
+  "id": "dialogues_old",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "speaker": "Boruta",
+      "text_pl": "Prawo jest jak wał. Pęka od środka.",
+      "responses": [
+        {
+          "id": "ask",
+          "text_pl": "Mów dalej.",
+          "next_node": "end",
+          "conditions": [],
+          "actions": []
+        },
+        {
+          "id": "leave",
+          "text_pl": "Dość.",
+          "next_node": "end",
+          "conditions": [],
+          "actions": []
+        }
+      ]
+    },
+    "end": {
+      "speaker": "Boruta",
+      "text_pl": "Idź, zanim ziemia przypomni sobie twoje imię.",
+      "responses": []
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "player_position": {
+    "x": 13000,
+    "y": 7000
+  },
+  "hp": 60,
+  "mana": 20,
+  "level": 1,
+  "xp": 0,
+  "learning_points": 1,
+  "world_minutes": 420,
+  "inventory": {
+    "miecz_iskrowy": 1,
+    "luk_1": 1,
+    "strzala_trzcinowa": 20,
+    "wytrych": 2,
+    "zlote_znaki": 80,
+    "plaszcz_miernika": 1
+  },
+  "quest": {
+    "id": "quest_iskra",
+    "stage": "start"
+  },
+  "flags": {},
+  "opened_chests": [],
+  "defeated": [],
+  "equipped": {
+    "weapon": "miecz_iskrowy",
+    "armor": "plaszcz_miernika"
+  },
+  "learned_spells": [
+    "iskra",
+    "lodowy_kolec"
+  ],
+  "faction_choice": "",
+  "taken_pickups": [],
+  "last_safe_position": {
+    "x": 13000,
+    "y": 7000
+  }
+}

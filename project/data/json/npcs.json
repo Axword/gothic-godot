@@ -1,0 +1,1584 @@
+[
+  {
+    "id": "npc_boruta",
+    "name": "Boruta",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_boruta",
+    "trainer_skills": [
+      "sword"
+    ],
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_dargan",
+    "name": "Dargan",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_dargan",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_huta",
+    "name": "Huta",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_huta",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_krzem",
+    "name": "Krzem",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_krzem",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_lenda",
+    "name": "Lenda",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_lenda",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_msciwoj",
+    "name": "Mściwój",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "rdzawy_kolec"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_msciwoj",
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_narda",
+    "name": "Narda",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "sierp_popiolu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_narda",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_oset",
+    "name": "Oset",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "miecz_starej_tamy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_oset",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_przemet",
+    "name": "Przemęt",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "ostrze_kanałowe"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_przemet",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_ruda",
+    "name": "Ruda",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zab_wydmy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_ruda",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_sek",
+    "name": "Sęk",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_przewoznika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_sek",
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_twarda",
+    "name": "Twarda",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "krawedz_zaru"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_twarda",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_udar",
+    "name": "Udar",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "szabla_wrony"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_udar",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_wrzos",
+    "name": "Wrzos",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "młotny_miecz"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wrzos",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_zadra",
+    "name": "Zadra",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "pazur_bezdechu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zadra",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_zmij",
+    "name": "Żmij",
+    "role": "guard",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_wartownika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zmij",
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_barwa",
+    "name": "Barwa",
+    "role": "scribe",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "hak_smolny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_barwa",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_cios",
+    "name": "Cios",
+    "role": "smith",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "kosa_czernicy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_cios",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_debik",
+    "name": "Dębik",
+    "role": "hunter",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "stal_zapory"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_debik",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_iglica",
+    "name": "Iglica",
+    "role": "captain",
+    "faction": "Zakon Żelaznej Miary",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "ostrze_podmulne"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_old.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_iglica",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_mira",
+    "name": "Mira",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_mira",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_pomyk",
+    "name": "Płomyk",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_pomyk",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_rzesa",
+    "name": "Rzęsa",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_rzesa",
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_saba",
+    "name": "Saba",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_saba",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_tepa",
+    "name": "Tępa",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_tepa",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_ula",
+    "name": "Ula",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "rdzawy_kolec"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_ula",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_wicher",
+    "name": "Wicher",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "sierp_popiolu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wicher",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_zgar",
+    "name": "Zgar",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "miecz_starej_tamy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zgar",
+    "trainer_skills": [
+      "lockpicking",
+      "theft"
+    ],
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_aga",
+    "name": "Aga",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "ostrze_kanałowe"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_aga",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_bruzda",
+    "name": "Bruzda",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zab_wydmy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_bruzda",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_czajka",
+    "name": "Czajka",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_przewoznika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_czajka",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_dym",
+    "name": "Dym",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "krawedz_zaru"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_dym",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_futra",
+    "name": "Futra",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "szabla_wrony"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_futra",
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_gnat",
+    "name": "Gnat",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "młotny_miecz"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_gnat",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_huk",
+    "name": "Huk",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "pazur_bezdechu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_huk",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_igieka",
+    "name": "Igiełka",
+    "role": "scavenger",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_wartownika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_igieka",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_jasiek",
+    "name": "Jasiek",
+    "role": "fighter",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "hak_smolny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_jasiek",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_kora",
+    "name": "Kora",
+    "role": "smuggler",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "kosa_czernicy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_kora",
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_ata",
+    "name": "Łata",
+    "role": "thief",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "stal_zapory"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_ata",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_miedz",
+    "name": "Miedź",
+    "role": "cook",
+    "faction": "Wolny Żar",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "ostrze_podmulne"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_new.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_miedz",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_wrona",
+    "name": "Wrona",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wrona",
+    "trainer_skills": [
+      "fire_spell",
+      "ice_spell"
+    ],
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_biel",
+    "name": "Biel",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_biel",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_czernica",
+    "name": "Czernica",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_czernica",
+    "trainer_skills": [
+      "bow"
+    ],
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_dudek",
+    "name": "Dudek",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_dudek",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
+  },
+  {
+    "id": "npc_echa",
+    "name": "Echa",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_echa",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_fala",
+    "name": "Fala",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "rdzawy_kolec"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_fala",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_gawron",
+    "name": "Gawron",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "sierp_popiolu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_gawron",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_hala",
+    "name": "Hala",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "miecz_starej_tamy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_hala",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_iskra",
+    "name": "Iskra",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "ostrze_kanałowe"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_iskra",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
+  },
+  {
+    "id": "npc_jelen",
+    "name": "Jeleń",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zab_wydmy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_jelen",
+    "trainer_skills": [
+      "skinning"
+    ],
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_kes",
+    "name": "Kęs",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_przewoznika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_kes",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_lipa",
+    "name": "Lipa",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "krawedz_zaru"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_lipa",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_mewa",
+    "name": "Mewa",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "szabla_wrony"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_mewa",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_nurek",
+    "name": "Nurek",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "młotny_miecz"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_nurek",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
+  },
+  {
+    "id": "npc_oko",
+    "name": "Oko",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "pazur_bezdechu"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_oko",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_pioun",
+    "name": "Piołun",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 9,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_wartownika"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_pioun",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_rybak",
+    "name": "Rybak",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 10,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "hak_smolny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_rybak",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_szum",
+    "name": "Szum",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 11,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "kosa_czernicy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_szum",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_trzcina",
+    "name": "Trzcina",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 12,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "stal_zapory"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_trzcina",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
+  },
+  {
+    "id": "npc_uskok",
+    "name": "Uskok",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 13,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "ostrze_podmulne"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_uskok",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_wydra",
+    "name": "Wydra",
+    "role": "fisher",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 4,
+      "dexterity": 5,
+      "mana": 0
+    },
+    "equipment": [
+      "miecz_iskrowy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_wydra",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_zimorodek",
+    "name": "Zimorodek",
+    "role": "herbalist",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 5,
+      "dexterity": 7,
+      "mana": 1
+    },
+    "equipment": [
+      "tasak_rzeczny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zimorodek",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_zuraw",
+    "name": "Żuraw",
+    "role": "traveler",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 6,
+      "dexterity": 9,
+      "mana": 2
+    },
+    "equipment": [
+      "sztych_poborcy"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_zuraw",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
+  },
+  {
+    "id": "npc_aster",
+    "name": "Aster",
+    "role": "bandit",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 7,
+      "dexterity": 11,
+      "mana": 3
+    },
+    "equipment": [
+      "klinga_mielizny"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_aster",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
+  },
+  {
+    "id": "npc_bysk",
+    "name": "Błysk",
+    "role": "miner",
+    "faction": "neutralna",
+    "stats": {
+      "strength": 8,
+      "dexterity": 13,
+      "mana": 4
+    },
+    "equipment": [
+      "zelazo_boruty"
+    ],
+    "inventory": [
+      "zlote_znaki"
+    ],
+    "attitude": 0,
+    "dialogue": "dialogues_neutral.json",
+    "quest_ids": [],
+    "crime_reaction": "warn_fine_alarm",
+    "schedule_id": "schedule_npc_bysk",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
+  }
+]

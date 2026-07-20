@@ -1,0 +1,134 @@
+# Progress
+
+## Zrealizowane — 2026-07-19
+- [x] Godot 4.3 project, Input Map i autoloady.
+- [x] Uruchamialny vertical slice z UI budowanym z `Control`/`Container`.
+- [x] Ruch, dzień/noc, trzy odmienne rutyny NPC.
+- [x] Miecz, czar, wróg, XP, przedmioty i quest.
+- [x] Zamek z deterministyczną sekwencją i kosztem błędu.
+- [x] Wersjonowany zapis/wczytanie JSON oraz walidacja danych.
+
+## Następny P0
+- [ ] Przenieść świat do scen TileMapLayer i aktorów `CharacterBody2D`.
+- [ ] Dodać dwa obozy, pełną bazę danych i system questów zamiast wycinka.
+- [ ] Zautomatyzować smoke test na binarce Godot w CI.
+
+## Zrealizowane — iteracja danych i systemów
+- [x] Pełne minima katalogu danych: 65 NPC i harmonogramy, 20 mieczy, 10 łuków, 4 pancerze, 10 roślin, 6 mikstur, 6 stworów, dwa czary.
+- [x] 5 questów Zakonu, 5 Wolnego Żaru i 10 pobocznych jako dane JSON.
+- [x] Modułowe systemy questów, treningu, przestępstw, czasu i formuł walki.
+- [x] Test reguł walki do uruchomienia headless.
+
+## Zrealizowane — mapa świata
+- [x] Proceduralna mapa całego regionu z ośmioma wymaganymi biomami/regionami.
+- [x] Rozmieszczenie 65 NPC ładowane z JSON oraz zachowania dobowe dla populacji.
+- [x] Interakcja i widoczne etykiety dla każdego NPC w zasięgu gracza; specjalne dialogi Boruty, Miry i Wrony pozostają osią wycinka.
+
+## Zrealizowane — animacje prototypowe
+- [x] Widoczne stany gracza: idle, chód, atak i rzucanie czaru.
+- [x] Widoczne stany wilka: idle, trafienie i śmierć.
+- [x] Kołysanie idle/chodu populacji NPC.
+- [x] Reużywalna scena `ProceduralActor` z sześcioma stanami animacji.
+
+## Zrealizowane — intro i zachowania świata
+- [x] Intro tłumaczące konflikt, list oraz Bezdech.
+- [x] Kontekstowe rozmowy lore dla pełnej populacji NPC.
+- [x] Bandyci inicjują wymuszenie, przechodzą w agresję po odmowie i mogą zostać ogłuszeni.
+- [x] Cztery assety pancerzy z prawidłowymi referencjami JSON.
+
+## Zrealizowane — wyposażenie i style walki
+- [x] Ekwipunek pod `I` z aktywnym założeniem miecza, łuku i pancerza.
+- [x] Łuk z wymaganym wyposażeniem, amunicją i trafieniem celu.
+- [x] Lodowy Kolec z kosztem many i efektem pocisku.
+- [x] Zapis wyposażenia i poznanych czarów.
+
+## Zrealizowane — nauczyciele
+- [x] Dialogowy ekran treningu oparty o `trainers.json`.
+- [x] Wydawanie punktów nauki i Znaków przez `TrainerSystem`.
+- [x] Ranga miecza wpływa na rzeczywiste obrażenia.
+
+## Zrealizowane — kradzież i skórowanie
+- [x] Kradzież pod `R` z lokalnymi świadkami i eskalacją CrimeSystem.
+- [x] Świadkowie-ochroniarze przechodzą do agresji.
+- [x] Skórowanie zwłok wilka po nauce u trenera Jelenia.
+- [x] Trofeum nie jest już automatycznym łupem z zabicia.
+
+## Zrealizowane — fauna świata
+- [x] Wszystkie sześć gatunków stworów ma aktywną instancję na mapie w przypisanym biomie.
+- [x] Miecz, łuk i oba czary mogą trafić dodatkowe gatunki.
+- [x] Ciała dodatkowych stworów zostają w świecie i obsługują pozyskiwanie trofeów.
+
+## Zrealizowane — wybór frakcji
+- [x] Dwie grywalne próby kandydackie po głównym wycinku.
+- [x] Możliwość wykonania obu prób przed ostatecznym wyborem.
+- [x] Ostateczne dołączenie do Zakonu albo Wolnego Żaru, blokada drugiej strony i odrębny epilog.
+- [x] Wybór frakcji jest zapisany w savegame.
+
+## Zrealizowane — menu i zapis
+- [x] Menu główne: nowa gra, trzy sloty wczytania, opcje głośności i wyjście.
+- [x] Pauza z trzema slotami zapisu/wczytania oraz powrotem do menu.
+
+## Zrealizowane — AI stworów
+- [x] Wykrycie, pościg, atak i powrót do biomu dla aktywnych stworów.
+- [x] Odmienne prędkości golema, upiora i komara.
+- [x] Nocna aktywacja Upiora Bezdechu.
+- [x] Pancerz gracza redukuje obrażenia stworów.
+
+## Zrealizowane — karta postaci i dziennik
+- [x] Karta postaci pod `C` z pełnymi statystykami runtime, pancerzem, rangami i frakcją.
+- [x] Dziennik pokazuje również status aktywnych prób kandydackich.
+
+## Zrealizowane — pełniejsze opcje
+- [x] Trwałe opcje master volume, rozdzielczości, fullscreenu i napisów.
+- [x] Rozdzielenie ustawień silnika od stanu slotu zapisu.
+
+## Zrealizowane — kolizje i sen
+- [x] Kolizje ręcznie projektowanych landmarków i ruch ze ślizganiem po osi.
+- [x] Dwa interaktywne posłania i przyspieszanie czasu do świtu/zmroku.
+
+## Zrealizowane — przedmioty świata i używanie
+- [x] Wszystkie 10 roślin i 6 mikstur są fizycznymi punktami podnoszenia na mapie.
+- [x] Zebrane przedmioty pozostają zebrane po zapisie/wczytaniu.
+- [x] Mikstura Życia i Mikstura Many mają działające użycie w ekwipunku.
+
+## Zrealizowane — komplet używalnych konsumpcji i pancerzy
+- [x] Wszystkie sześć mikstur/wywarów ma użycie i efekt runtime.
+- [x] Zbieralne rośliny lecznicze/manowe mają użycie; pozostałe reagenty zachowują się jako materiały.
+- [x] Wszystkie cztery pancerze są zakładalne z ekwipunku.
+- [x] Dołączenie do frakcji daje odpowiedni frakcyjny pancerz.
+
+## Zrealizowane — zamki poziomów
+- [x] Trzy skrzynie świata o poziomach zamka 1–3 i innych sekwencjach.
+- [x] Wyższe poziomy respektują rangę otwierania zamków.
+- [x] Skrzynie dają realne łuki/pancerz/przedmiot questowy i nie odradzają się po wczytaniu.
+
+## Zrealizowane — gęstość eksploracji
+- [x] 40 skrzyń rozmieszczonych w ośmiu regionach świata.
+- [x] Skrzynie są ładowane z kanonicznego `world_chests.json`, a nie definiowane w kodzie.
+
+## Zrealizowane — handel
+- [x] Trzy działające sklepy powiązane z konkretnymi NPC.
+- [x] Kupowanie broni, łuków, amunicji, mikstur i wywarów za Znaki.
+
+## Zrealizowane — ekonomia frakcyjna
+- [x] Sklepy stosują zniżkę dla gracza należącego do frakcji sprzedawcy.
+- [x] Trofea bestii można sprzedać zbiorczo u każdego sprzedawcy.
+
+## Zrealizowane — AI ludzi
+- [x] Wrogi bandyci/strażnicy ścigają gracza, atakują i wracają do rutyny po utracie celu.
+- [x] Lokalny alarm wciąga pobliskich strażników i wojowników tej samej frakcji.
+
+## Zrealizowane — audio i VFX
+- [x] Własne proceduralne SFX miecza, obu czarów, skrzyni i alarmu.
+- [x] AudioSystem na magistrali Master oraz podpięcie dźwięków do interakcji.
+
+## Zrealizowane — porażka i autosave
+- [x] Ekran porażki przy HP 0, odrodzenie, autosave i powrót do menu.
+- [x] Bezpieczne pozycje oraz autosave po śnie i wyborze frakcji.
+
+## Zrealizowane — ekran mapy
+- [x] Mapa świata pod `M`, z czytelną ilustracją w poprawnej skali, markerami regionów i pozycją gracza.
+
+## Zrealizowane — nawigacja AI
+- [x] AStarGrid2D z komórkami solidnymi wygenerowanymi z kolizji świata.
+- [x] Stworzenia i agresywni NPC używają waypointów A* w pościgu oraz powrocie.

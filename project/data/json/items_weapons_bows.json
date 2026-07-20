@@ -1,0 +1,112 @@
+[
+  {
+    "id": "luk_1",
+    "name": "Łuk Wiklinowy",
+    "category": "bow",
+    "damage": 7,
+    "required_dexterity": 2,
+    "draw_time": 1.1,
+    "value": 22,
+    "asset": "res://assets/generated/weapons/luk_1.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_2",
+    "name": "Łuk Łowcy Mułu",
+    "category": "bow",
+    "damage": 10,
+    "required_dexterity": 4,
+    "draw_time": 1.05,
+    "value": 50,
+    "asset": "res://assets/generated/weapons/luk_2.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_3",
+    "name": "Łuk Zatokowy",
+    "category": "bow",
+    "damage": 13,
+    "required_dexterity": 6,
+    "draw_time": 1.0,
+    "value": 78,
+    "asset": "res://assets/generated/weapons/luk_3.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_4",
+    "name": "Łuk Szeptnika",
+    "category": "bow",
+    "damage": 16,
+    "required_dexterity": 8,
+    "draw_time": 0.95,
+    "value": 106,
+    "asset": "res://assets/generated/weapons/luk_4.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_5",
+    "name": "Łuk Dymny",
+    "category": "bow",
+    "damage": 19,
+    "required_dexterity": 10,
+    "draw_time": 0.9,
+    "value": 134,
+    "asset": "res://assets/generated/weapons/luk_5.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_6",
+    "name": "Łuk Żaru",
+    "category": "bow",
+    "damage": 22,
+    "required_dexterity": 12,
+    "draw_time": 0.85,
+    "value": 162,
+    "asset": "res://assets/generated/weapons/luk_6.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_7",
+    "name": "Łuk Wałowy",
+    "category": "bow",
+    "damage": 25,
+    "required_dexterity": 14,
+    "draw_time": 0.8,
+    "value": 190,
+    "asset": "res://assets/generated/weapons/luk_7.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_8",
+    "name": "Łuk Czernicy",
+    "category": "bow",
+    "damage": 28,
+    "required_dexterity": 16,
+    "draw_time": 0.75,
+    "value": 218,
+    "asset": "res://assets/generated/weapons/luk_8.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_9",
+    "name": "Łuk Zimnej Trzciny",
+    "category": "bow",
+    "damage": 31,
+    "required_dexterity": 18,
+    "draw_time": 0.7,
+    "value": 246,
+    "asset": "res://assets/generated/weapons/luk_9.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  },
+  {
+    "id": "luk_10",
+    "name": "Łuk Szczeliny",
+    "category": "bow",
+    "damage": 34,
+    "required_dexterity": 20,
+    "draw_time": 0.65,
+    "value": 274,
+    "asset": "res://assets/generated/weapons/luk_10.png",
+    "description": "Łuk o rozpoznawalnej, wygiętej sylwetce."
+  }
+]

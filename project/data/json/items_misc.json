@@ -1,0 +1,55 @@
+[
+  {
+    "id": "wytrych",
+    "name": "Wytrych",
+    "category": "tool",
+    "value": 8
+  },
+  {
+    "id": "pieczec_iskry",
+    "name": "Pieczęć Iskry",
+    "category": "quest",
+    "quest_protected": true,
+    "value": 0
+  },
+  {
+    "id": "zlote_znaki",
+    "name": "Złote Znaki",
+    "category": "currency",
+    "value": 1
+  },
+  {
+    "id": "strzala_trzcinowa",
+    "name": "Strzała trzcinowa",
+    "category": "ammo",
+    "value": 1
+  },
+  {
+    "id": "list_bez_podpisu",
+    "name": "List bez podpisu",
+    "category": "quest",
+    "quest_protected": true,
+    "value": 0
+  },
+  {
+    "id": "klucz_walu",
+    "name": "Klucz Wału",
+    "category": "key",
+    "quest_protected": true,
+    "value": 0
+  },
+  {
+    "id": "dowod_przemytu",
+    "name": "Dowód przemytu",
+    "category": "quest",
+    "quest_protected": true,
+    "value": 0
+  },
+  {
+    "id": "kamien_wspomnien",
+    "name": "Kamień wspomnień",
+    "category": "quest",
+    "quest_protected": true,
+    "value": 0
+  }
+]

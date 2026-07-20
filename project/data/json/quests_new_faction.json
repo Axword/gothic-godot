@@ -1,0 +1,157 @@
+[
+  {
+    "id": "q_iskra_buntu",
+    "title": "Iskra buntu",
+    "type": "new_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Ukradnij znak Zakonu albo przekonaj straż."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_kradzione_drzewo",
+    "title": "Kradzione drzewo",
+    "type": "new_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Odbij transport lub kup go od przemytnika."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_mokra_zasadzka",
+    "title": "Mokra zasadzka",
+    "type": "new_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Zastaw pułapkę albo ostrzeż cel."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_zar_bez_ognia",
+    "title": "Żar bez ognia",
+    "type": "new_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Przynieś paliwo; wybierz, komu zmarznie noc."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  },
+  {
+    "id": "q_pusta_beczka",
+    "title": "Pusta beczka",
+    "type": "new_faction",
+    "stages": [
+      {
+        "id": "start",
+        "objective": "Odkryj truciznę i wskaż winnego."
+      },
+      {
+        "id": "choice",
+        "objective": "Dokonaj wyboru i ponieś konsekwencję."
+      },
+      {
+        "id": "complete",
+        "objective": "Zakończ sprawę."
+      }
+    ],
+    "alternative_methods": [
+      "fight",
+      "bribe",
+      "persuasion",
+      "theft"
+    ],
+    "rewards": {
+      "xp": 40,
+      "items": [
+        "zlote_znaki"
+      ]
+    }
+  }
+]

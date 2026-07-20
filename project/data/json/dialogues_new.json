@@ -1,0 +1,31 @@
+{
+  "id": "dialogues_new",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "speaker": "Mira",
+      "text_pl": "Wolność bez kolacji też gryzie.",
+      "responses": [
+        {
+          "id": "ask",
+          "text_pl": "Mów dalej.",
+          "next_node": "end",
+          "conditions": [],
+          "actions": []
+        },
+        {
+          "id": "leave",
+          "text_pl": "Dość.",
+          "next_node": "end",
+          "conditions": [],
+          "actions": []
+        }
+      ]
+    },
+    "end": {
+      "speaker": "Mira",
+      "text_pl": "Idź, zanim ziemia przypomni sobie twoje imię.",
+      "responses": []
+    }
+  }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "wal_miary",
+    "name": "Wał Miary",
+    "type": "settlement",
+    "marker": {
+      "x": 3800,
+      "y": 2600
+    }
+  },
+  {
+    "id": "oboz_zaru",
+    "name": "Obóz Wolnego Żaru",
+    "type": "settlement",
+    "marker": {
+      "x": 14500,
+      "y": 10300
+    }
+  },
+  {
+    "id": "trakt_mulu",
+    "name": "Trakt Mułu",
+    "type": "road",
+    "marker": {
+      "x": 13000,
+      "y": 7000
+    }
+  },
+  {
+    "id": "las_trzcin",
+    "name": "Las Trzcin",
+    "type": "forest",
+    "marker": {
+      "x": 19000,
+      "y": 6000
+    }
+  },
+  {
+    "id": "bagno_bezdechu",
+    "name": "Bagno Bezdechu",
+    "type": "swamp",
+    "marker": {
+      "x": 21800,
+      "y": 11000
+    }
+  },
+  {
+    "id": "kamieniolom_tamy",
+    "name": "Kamieniołom Tamy",
+    "type": "quarry",
+    "marker": {
+      "x": 3500,
+      "y": 6000
+    }
+  },
+  {
+    "id": "wydmy_popiolu",
+    "name": "Wydmy Popiołu",
+    "type": "beach",
+    "marker": {
+      "x": 2500,
+      "y": 12500
+    }
+  },
+  {
+    "id": "szczelina_glosu",
+    "name": "Szczelina Głosu",
+    "type": "shrine",
+    "marker": {
+      "x": 22500,
+      "y": 2500
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "trainer_boruta",
+    "npc_id": "npc_boruta",
+    "skill": "sword",
+    "rank_limit": 3,
+    "learning_cost": 1,
+    "currency_cost": 20,
+    "requirement": "old_reputation >= 1"
+  },
+  {
+    "id": "trainer_zgar",
+    "npc_id": "npc_zgar",
+    "skill": "lockpicking",
+    "rank_limit": 3,
+    "learning_cost": 1,
+    "currency_cost": 25,
+    "requirement": "new_reputation >= 1"
+  },
+  {
+    "id": "trainer_wrona",
+    "npc_id": "npc_wrona",
+    "skill": "fire_spell",
+    "rank_limit": 1,
+    "learning_cost": 2,
+    "currency_cost": 40,
+    "requirement": "q_sen_w_bagnie complete"
+  },
+  {
+    "id": "trainer_jelen",
+    "npc_id": "npc_jelen",
+    "skill": "skinning",
+    "rank_limit": 1,
+    "learning_cost": 1,
+    "currency_cost": 15,
+    "requirement": "none"
+  }
+]

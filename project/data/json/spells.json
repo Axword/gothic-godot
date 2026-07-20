@@ -1,0 +1,20 @@
+[
+  {
+    "id": "iskra",
+    "name": "Iskra",
+    "damage": 14,
+    "mana_cost": 5,
+    "cast_time": 0.0,
+    "element": "fire",
+    "quest_requirement": "quest_iskra"
+  },
+  {
+    "id": "lodowy_kolec",
+    "name": "Lodowy Kolec",
+    "damage": 11,
+    "mana_cost": 7,
+    "cast_time": 0.4,
+    "element": "ice",
+    "quest_requirement": "q_sen_w_bagnie"
+  }
+]

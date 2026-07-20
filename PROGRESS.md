@@ -46,3 +46,9 @@
 - [x] Dialogowy ekran treningu oparty o `trainers.json`.
 - [x] Wydawanie punktów nauki i Znaków przez `TrainerSystem`.
 - [x] Ranga miecza wpływa na rzeczywiste obrażenia.
+
+## Zrealizowane — kradzież i skórowanie
+- [x] Kradzież pod `R` z lokalnymi świadkami i eskalacją CrimeSystem.
+- [x] Świadkowie-ochroniarze przechodzą do agresji.
+- [x] Skórowanie zwłok wilka po nauce u trenera Jelenia.
+- [x] Trofeum nie jest już automatycznym łupem z zabicia.

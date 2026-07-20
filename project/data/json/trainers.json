@@ -25,5 +25,14 @@
     "learning_cost": 2,
     "currency_cost": 40,
     "requirement": "q_sen_w_bagnie complete"
+  },
+  {
+    "id": "trainer_jelen",
+    "npc_id": "npc_jelen",
+    "skill": "skinning",
+    "rank_limit": 1,
+    "learning_cost": 1,
+    "currency_cost": 15,
+    "requirement": "none"
   }
 ]

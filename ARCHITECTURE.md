@@ -25,3 +25,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ### Trening w scenie
 
 `TrainerSystem` jest teraz wywoływany z realnego dialogu NPC. Prowadzący szkolenie pokazuje rangę, limit, punkty nauki i koszt, a zakup bezpośrednio zmienia rankę; ranga miecza wpływa na formułę obrażeń w scenie.
+
+### Kradzież i trofea
+
+`TheftSystem` otrzymuje listę świadków policzoną przez scenę w promieniu czynu i deleguje eskalację do `CrimeSystem`; strażnicy oraz wojownicy-świadkowie przechodzą do agresji. `SkinningSystem` blokuje pobranie trofeum z ciała bez rangi `skinning`, zapamiętuje zebrane zwłoki i wydaje stałe ID przedmiotu.

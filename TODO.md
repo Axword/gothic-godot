@@ -32,3 +32,8 @@
 ## P1 — jakość mapy
 - [x] Usunąć rozmyte tło rozciągnięte przez pełny świat.
 - [ ] Zastąpić proceduralne landmarki atlasem tile’ów w natywnej rozdzielczości, bez skalowania bitmap.
+
+## Następne P0 po kradzieży/skórowaniu
+- [ ] Rozszerzyć skórowanie i loot na pozostałe pięć stworów obecnych jako dane.
+- [ ] Przenieść detekcję świadka z promienia na prawdziwy raycast/FOV i hałas.
+- [ ] Podłączyć wszystkie questy, frakcje i epilogi do scen świata.

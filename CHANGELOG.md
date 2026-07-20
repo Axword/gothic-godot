@@ -50,3 +50,7 @@
 ## 2026-07-19 — trenerzy w gameplayu
 - Podłączono nauczycieli do rozmów oraz realnego zakupu treningu.
 - Podłączono rangę miecza do obrażeń.
+
+## 2026-07-19 — kradzież i skórowanie
+- Dodano TheftSystem i SkinningSystem jako autoloady.
+- Podłączono kradzież, świadków, reakcję ochrony i trofeum z wilka do sceny.

@@ -74,7 +74,7 @@ func _create_camera() -> void:
 	add_child(camera)
 
 func _ensure_input_map() -> void:
-	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
+	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
 	for action: String in bindings:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -152,6 +152,8 @@ func _handle_world_input() -> void:
 		player = GameState.player_position
 	if Input.is_action_just_pressed("open_inventory"):
 		_show_inventory()
+	if Input.is_action_just_pressed("steal"):
+		_attempt_theft()
 	if Input.is_action_just_pressed("open_journal"):
 		_show_journal()
 	if Input.is_action_just_pressed("use_bow"):
@@ -212,12 +214,39 @@ func nearest_target() -> String:
 
 func interact() -> void:
 	selected = nearest_target()
+	if wolf_hp <= 0 and wolf_death_timer <= 0.0 and player.distance_to(wolf_position) < 180.0:
+		_harvest_wolf()
+		return
 	match selected:
 		"chest": _open_lock()
 		"wolf": _notice(true, "Wilk nie prowadzi rozmów. Zwykle.")
 		_:
 			if npc_data.has(selected): _start_dialogue(selected)
 			else: _notice(true, "Tu nic nie odpowiada.")
+
+func _harvest_wolf() -> void:
+	var rank := int(TrainerSystem.ranks.get("skinning", 0))
+	var trophy := SkinningSystem.harvest("wilk_z_mielizny", rank)
+	if trophy.is_empty():
+		_notice(false, "Bez nauki skórowania zostawisz z wilka tylko bałagan. Znajdź łowcę Jelenia.")
+	else:
+		_notice(true, "Pozyskujesz: " + trophy.replace("_", " ") + ".")
+
+func _attempt_theft() -> void:
+	var owner_id := nearest_target()
+	if owner_id.is_empty() or not npc_data.has(owner_id):
+		_notice(false, "Nie ma tu nikogo, kogo da się okraść."); return
+	var witnesses: Array[String] = []
+	for id: String in npc_positions:
+		if id != owner_id and player.distance_to(npc_positions.get(id, Vector2.ZERO)) < 350.0: witnesses.append(id)
+	var outcome := TheftSystem.attempt(owner_id, "zlote_znaki", witnesses)
+	if outcome == "success":
+		_notice(true, "Znak znika z cudzej kieszeni. Nikt nie krzyczy.")
+	else:
+		_notice(false, "Ktoś widział twoją rękę. Reakcja: " + outcome + ".")
+		for witness_id: String in witnesses:
+			var npc: Dictionary = npc_data.get(witness_id, {})
+			if str(npc.get("role", "")) in ["guard", "captain", "fighter"]: hostile_npcs[witness_id] = true
 
 func _nearest_hostile() -> String:
 	var nearest := ""; var distance := INF
@@ -242,7 +271,7 @@ func attack() -> void:
 		if wolf_hp <= 0:
 			wolf_death_timer = 0.9
 			GameState.defeated.append("wilk_z_mielizny")
-			GameState.add_item("skora_wilka", 1); GameState.gain_xp(35)
+			GameState.gain_xp(35)
 			if GameState.quest_stage == "speak": GameState.advance_quest("wolf")
 			_notice(true, "Wilk pada. Zostawia skórę i ciszę.")
 		else: _notice(true, "Stal trafia: wilk warczy.")
@@ -419,7 +448,7 @@ func _show_inventory() -> void:
 func _show_journal() -> void:
 	journal_open = not journal_open; panel.visible = journal_open
 	if journal_open:
-		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
+		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · R kradzież · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
 
 func _objective() -> String:
 	match GameState.quest_stage:
@@ -442,7 +471,7 @@ func _update_ui() -> void:
 	if not dialogue_open and not lock_open and not journal_open:
 		if target == "chest": context = "[E] Otwórz skrzynię z popiołu"
 		elif target == "wolf": context = "[LPM] Atakuj wilka"
-		elif not target.is_empty(): context = "[E] Rozmawiaj: " + str(npc_names[target])
+		elif not target.is_empty(): context = "[E] Rozmawiaj: " + str(npc_names[target]) + "  |  [R] Spróbuj okraść"
 	prompt.text = context + ("\n" + message if message_timer > 0.0 else "")
 	hud.text = "ZGNILIZNA  |  HP %d/%d  Mana %d/%d  |  Poz. %d  XP %d  |  %s\n%s" % [GameState.hp, GameState.max_hp, GameState.mana, GameState.max_mana, GameState.level, GameState.xp, GameState.time_text(), _objective()]
 

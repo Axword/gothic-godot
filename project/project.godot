@@ -34,6 +34,8 @@ CombatSystem="*res://autoload/combat_system.gd"
 CrimeSystem="*res://autoload/crime_system.gd"
 TrainerSystem="*res://autoload/trainer_system.gd"
 WorldTime="*res://autoload/world_time.gd"
+SkinningSystem="*res://autoload/skinning_system.gd"
+TheftSystem="*res://autoload/theft_system.gd"
 
 [display]
 

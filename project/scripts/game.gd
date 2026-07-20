@@ -82,7 +82,7 @@ func _create_camera() -> void:
 	add_child(camera)
 
 func _ensure_input_map() -> void:
-	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "pause_menu": KEY_ESCAPE, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
+	var bindings := {"move_left": KEY_A, "move_right": KEY_D, "move_up": KEY_W, "move_down": KEY_S, "interact": KEY_E, "cast_fire": KEY_1, "cast_ice": KEY_3, "use_bow": KEY_2, "open_inventory": KEY_I, "steal": KEY_R, "pause_menu": KEY_ESCAPE, "open_character": KEY_C, "open_journal": KEY_J, "save_game": KEY_F5, "load_game": KEY_F9}
 	for action: String in bindings:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -170,6 +170,8 @@ func _handle_world_input() -> void:
 		player = GameState.player_position
 	if Input.is_action_just_pressed("pause_menu"):
 		_show_pause_menu()
+	if Input.is_action_just_pressed("open_character"):
+		_show_character()
 	if Input.is_action_just_pressed("open_inventory"):
 		_show_inventory()
 	if Input.is_action_just_pressed("steal"):
@@ -585,6 +587,15 @@ func _show_pause_menu() -> void:
 	dialogue_open = true; panel.visible = true
 	_show_choices("[b]Pauza[/b]\nWybierz slot zapisu lub wróć do menu głównego.", [["Zapisz: slot 1", "save_slot_1"], ["Zapisz: slot 2", "save_slot_2"], ["Zapisz: slot 3", "save_slot_3"], ["Wczytaj: slot 1", "load_slot_1"], ["Wczytaj: slot 2", "load_slot_2"], ["Wczytaj: slot 3", "load_slot_3"], ["Menu główne", "main_menu"], ["Wznów", "close"]])
 
+func _show_character() -> void:
+	inventory_open = not inventory_open; panel.visible = inventory_open
+	if not inventory_open: return
+	var sword_rank := int(TrainerSystem.ranks.get("sword", 0))
+	var lock_rank := int(TrainerSystem.ranks.get("lockpicking", 0))
+	var skin_rank := int(TrainerSystem.ranks.get("skinning", 0))
+	var faction := GameState.faction_choice if not GameState.faction_choice.is_empty() else "bez frakcji"
+	_show_choices("[b]Karta postaci[/b]\nPoziom %d | XP %d | Punkty nauki %d\nHP %d/%d | Mana %d/%d\nSiła %d | Zręczność %d | Pancerz %d\n\nMiecz: %d | Zamki: %d | Skórowanie: %d\nFrakcja: %s" % [GameState.level, GameState.xp, GameState.learning_points, GameState.hp, GameState.max_hp, GameState.mana, GameState.max_mana, GameState.strength, GameState.dexterity, _player_armor_value(), sword_rank, lock_rank, skin_rank, faction], [["Zamknij", "close"]])
+
 func _show_inventory() -> void:
 	inventory_open = not inventory_open; panel.visible = inventory_open
 	if not inventory_open: return
@@ -596,7 +607,10 @@ func _show_inventory() -> void:
 func _show_journal() -> void:
 	journal_open = not journal_open; panel.visible = journal_open
 	if journal_open:
-		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · R kradzież · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
+		var candidates := ""
+		if bool(GameState.flags.get("old_candidate_started", false)): candidates += "\n• Próba Zakonu: Golem Tamy " + ("pokonany" if bool(GameState.flags.get("old_candidate_ready", false)) else "— trwa")
+		if bool(GameState.flags.get("new_candidate_started", false)): candidates += "\n• Próba Żaru: kradzież " + ("udana" if bool(GameState.flags.get("new_candidate_ready", false)) else "— trwa")
+		_show_choices("[b]Dziennik — Iskra pod Mułem[/b]\n" + _objective() + candidates + "\n\nSterowanie: WASD ruch · E interakcja · LPM miecz · 1 Iskra · 2 łuk · 3 Lód · I ekwipunek · C postać · R kradzież · F5/F9 zapis/wczytanie · J dziennik.", [["Zamknij", "close"]])
 
 func _objective() -> String:
 	match GameState.quest_stage:

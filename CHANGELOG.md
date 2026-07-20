@@ -69,3 +69,6 @@
 ## 2026-07-19 — AI stworów i pancerz
 - Dodano stanowe AI pościgu/ataku/powrotu dla stworów na mapie.
 - Podłączono wartości czterech pancerzy do redukcji obrażeń.
+
+## 2026-07-19 — karta postaci
+- Dodano ekran statystyk pod klawiszem C i rozszerzono dziennik o kandydatury frakcyjne.

@@ -73,3 +73,7 @@
 - [x] Odmienne prędkości golema, upiora i komara.
 - [x] Nocna aktywacja Upiora Bezdechu.
 - [x] Pancerz gracza redukuje obrażenia stworów.
+
+## Zrealizowane — karta postaci i dziennik
+- [x] Karta postaci pod `C` z pełnymi statystykami runtime, pancerzem, rangami i frakcją.
+- [x] Dziennik pokazuje również status aktywnych prób kandydackich.

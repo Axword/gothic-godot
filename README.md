@@ -33,3 +33,5 @@ Druga iteracja zawiera również pełną projektową bazę danych wymaganej skal
 ## Menu i sloty
 
 Projekt startuje teraz w menu głównym. Dostępne są nowa gra, wczytanie trzech slotów, wyjście oraz prosta regulacja głośności master. W grze klawisz `Esc` otwiera pauzę z zapisem/wczytaniem slotów 1–3 i powrotem do menu.
+
+- **C** — karta postaci: HP, mana, statystyki, pancerz, punkty nauki, rangi umiejętności i wybrana frakcja.

@@ -72,3 +72,6 @@
 
 ## 2026-07-19 — karta postaci
 - Dodano ekran statystyk pod klawiszem C i rozszerzono dziennik o kandydatury frakcyjne.
+
+## 2026-07-19 — system opcji
+- Dodano SettingsSystem oraz ekran opcji w menu głównym.

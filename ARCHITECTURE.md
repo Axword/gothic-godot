@@ -37,3 +37,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ### AI stworów
 
 `game.gd` ma aktywną pętlę AI dla instancji stworów: stan `idle/return`, wykrycie, pościg, atak oraz powrót do markera domowego. Prędkości i zasięg wykrycia zależą od gatunku; Upiór Bezdechu jest aktywny wyłącznie nocą. Obrażenia odejmują pancerz aktualnie założony przez gracza.
+
+### SettingsSystem
+
+`SettingsSystem` zarządza ustawieniami silnika niezależnie od savegame: master volume, rozdzielczością, fullscreenem, czułością i napisami. Serializuje wyłącznie preferencje do `user://settings.json`, a menu główne aplikuje je przez `AudioServer` i `DisplayServer`.

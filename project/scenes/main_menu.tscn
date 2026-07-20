@@ -69,6 +69,31 @@ text = "Wczytaj slot 3"
 layout_mode = 2
 text = "Opcje"
 
+[node name="Master" type="Button" parent="Content"]
+layout_mode = 2
+text = "Master: 100%"
+visible = false
+
+[node name="Resolution" type="Button" parent="Content"]
+layout_mode = 2
+text = "Rozdzielczość"
+visible = false
+
+[node name="Fullscreen" type="Button" parent="Content"]
+layout_mode = 2
+text = "Pełny ekran"
+visible = false
+
+[node name="Subtitles" type="Button" parent="Content"]
+layout_mode = 2
+text = "Napisy"
+visible = false
+
+[node name="Back" type="Button" parent="Content"]
+layout_mode = 2
+text = "Wróć"
+visible = false
+
 [node name="Status" type="Label" parent="Content"]
 layout_mode = 2
 autowrap_mode = 2

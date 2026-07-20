@@ -77,3 +77,7 @@
 ## Zrealizowane — karta postaci i dziennik
 - [x] Karta postaci pod `C` z pełnymi statystykami runtime, pancerzem, rangami i frakcją.
 - [x] Dziennik pokazuje również status aktywnych prób kandydackich.
+
+## Zrealizowane — pełniejsze opcje
+- [x] Trwałe opcje master volume, rozdzielczości, fullscreenu i napisów.
+- [x] Rozdzielenie ustawień silnika od stanu slotu zapisu.

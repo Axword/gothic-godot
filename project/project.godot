@@ -36,6 +36,7 @@ TrainerSystem="*res://autoload/trainer_system.gd"
 WorldTime="*res://autoload/world_time.gd"
 SkinningSystem="*res://autoload/skinning_system.gd"
 TheftSystem="*res://autoload/theft_system.gd"
+SettingsSystem="*res://autoload/settings_system.gd"
 
 [display]
 

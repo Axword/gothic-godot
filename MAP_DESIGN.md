@@ -28,3 +28,7 @@ Do działania sceny podpięto prawdziwe, własne assety SVG: `player.svg`, `orde
 ## Korekta czytelności
 
 Rastrowa ilustracja `world_map_painted.png` nie jest już rozciągana przez 26 000 jednostek świata — to powodowało nieakceptowalne rozmycie. Mapa rozgrywki korzysta teraz z ostrych, kontrastowych warstw renderowanych w przestrzeni świata: palisady i domy Wału, kamienny trakt, osobne drzewa Lasu Trzcin, woda/trzciny Bagna, tarasy kamieniołomu, fale wybrzeża i kamienny krąg Szczeliny. Ilustracja pozostaje zasobem dla przyszłego ekranu mapy, gdzie jej rozdzielczość jest właściwa.
+
+## Kolizje i sen
+
+Mapa ma teraz ręcznie ustawione kolizje najważniejszych struktur: domów Wału, szybu kamieniołomu, oczek bagiennych, kamiennego kręgu Szczeliny i namiotu obozowego. Ruch rozwiązuje osie osobno, więc gracz ślizga się po przeszkodach zamiast zatrzymywać się całkowicie. Dwa posłania przy Wałach i Obozie pozwalają przespać czas do 06:00 albo 18:00, co zmienia nocne zachowania świata.

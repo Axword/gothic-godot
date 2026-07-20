@@ -81,3 +81,7 @@
 ## Zrealizowane — pełniejsze opcje
 - [x] Trwałe opcje master volume, rozdzielczości, fullscreenu i napisów.
 - [x] Rozdzielenie ustawień silnika od stanu slotu zapisu.
+
+## Zrealizowane — kolizje i sen
+- [x] Kolizje ręcznie projektowanych landmarków i ruch ze ślizganiem po osi.
+- [x] Dwa interaktywne posłania i przyspieszanie czasu do świtu/zmroku.

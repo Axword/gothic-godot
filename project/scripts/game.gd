@@ -44,6 +44,8 @@ var npc_data: Dictionary = {}
 var location_positions: Dictionary = {}
 var npc_home: Dictionary = {}
 var creatures: Dictionary = {}
+var world_obstacles: Array[Rect2] = []
+var beds: Array[Vector2] = [Vector2(2400, 2900), Vector2(15100, 10600)]
 var creature_attack_cooldown: float = 0.0
 var dialogue: Dictionary = {}
 var dialogue_open := false
@@ -64,6 +66,7 @@ func _ready() -> void:
 	player = GameState.player_position
 	_load_world_population()
 	_load_creatures()
+	_setup_world_collisions()
 	_create_camera()
 	_build_ui()
 	_show_intro()
@@ -116,6 +119,19 @@ func _load_world_population() -> void:
 		if str(npc.get("role", "")) == "bandit": npc_combat_hp[id] = 45
 		index += 1
 
+func _setup_world_collisions() -> void:
+	# Ręcznie dobrane przeszkody odpowiadają widocznym landmarkom; ruch ślizga się po ich osiach.
+	world_obstacles = [
+		Rect2(2400, 1600, 720, 520), Rect2(3800, 1700, 720, 520), Rect2(5000, 1500, 720, 520), Rect2(3300, 3000, 720, 520),
+		Rect2(2850, 5450, 1300, 1300), Rect2(19400, 9400, 700, 500), Rect2(20700, 10100, 650, 420),
+		Rect2(21800, 11000, 700, 500), Rect2(22200, 2200, 600, 600), Rect2(14200, 10000, 620, 520)
+	]
+
+func _blocked(position: Vector2) -> bool:
+	for obstacle: Rect2 in world_obstacles:
+		if obstacle.grow(52.0).has_point(position): return true
+	return false
+
 func _load_creatures() -> void:
 	# Stałe spawny reprezentują wszystkie gatunki danych, bez skalowania poziomu.
 	var positions := {"ropucha_mulowa": Vector2(21100, 10800), "krab_wydmowy": Vector2(3100, 11900), "golem_tamy": Vector2(3600, 6200), "upior_bezdechu": Vector2(22400, 3000), "komar_krwawy": Vector2(20200, 10100)}
@@ -156,7 +172,11 @@ func _move_player(delta: float) -> void:
 	player_is_walking = direction.length_squared() > 0.01
 	if player_is_walking:
 		player_facing = direction.normalized()
-	player += direction * WALK_SPEED * delta
+	var requested: Vector2 = direction * WALK_SPEED * delta
+	var move_x := player + Vector2(requested.x, 0.0)
+	if not _blocked(move_x): player.x = move_x.x
+	var move_y := player + Vector2(0.0, requested.y)
+	if not _blocked(move_y): player.y = move_y.y
 	player.x = clampf(player.x, WORLD.position.x + 48, WORLD.end.x - 48)
 	player.y = clampf(player.y, WORLD.position.y + 48, WORLD.end.y - 48)
 	var camera := get_node_or_null("WorldCamera") as Camera2D
@@ -281,6 +301,9 @@ func interact() -> void:
 	if not corpse_id.is_empty():
 		_harvest_creature(corpse_id)
 		return
+	if _near_bed():
+		_show_sleep_menu()
+		return
 	match selected:
 		"chest": _open_lock()
 		"wolf": _notice(true, "Wilk nie prowadzi rozmów. Zwykle.")
@@ -311,6 +334,15 @@ func _harvest_wolf() -> void:
 		_notice(false, "Bez nauki skórowania zostawisz z wilka tylko bałagan. Znajdź łowcę Jelenia.")
 	else:
 		_notice(true, "Pozyskujesz: " + trophy.replace("_", " ") + ".")
+
+func _near_bed() -> bool:
+	for bed: Vector2 in beds:
+		if player.distance_to(bed) < 180.0: return true
+	return false
+
+func _show_sleep_menu() -> void:
+	dialogue_open = true; panel.visible = true
+	_show_choices("[b]Posłanie[/b]\nSucha słoma nie pyta, po której stronie wału śpisz.", [["Śpij do świtu (06:00)", "sleep_dawn"], ["Śpij do zmroku (18:00)", "sleep_dusk"], ["Wstań.", "close"]])
 
 func _attempt_theft() -> void:
 	var owner_id := nearest_target()
@@ -502,6 +534,10 @@ func _choose(choice: String) -> void:
 			_close_panel()
 		"main_menu":
 			_close_panel(); get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		"sleep_dawn":
+			GameState.world_minutes = 6.0 * 60.0; _close_panel(); _notice(true, "Budzisz się przed świtem.")
+		"sleep_dusk":
+			GameState.world_minutes = 18.0 * 60.0; _close_panel(); _notice(true, "Budzisz się, gdy cienie są najdłuższe.")
 		"intro_start":
 			GameState.flags["intro_seen"] = true
 			_show_choices("[b]List:[/b] „Jeżeli to czytasz, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Zaczynajmy.", "close"]])
@@ -634,6 +670,7 @@ func _update_ui() -> void:
 		if target == "chest": context = "[E] Otwórz skrzynię z popiołu"
 		elif target == "wolf": context = "[LPM] Atakuj wilka"
 		elif not target.is_empty(): context = "[E] Rozmawiaj: " + str(npc_names[target]) + "  |  [R] Spróbuj okraść"
+		elif _near_bed(): context = "[E] Śpij"
 	prompt.text = context + ("\n" + message if message_timer > 0.0 else "")
 	hud.text = "ZGNILIZNA  |  HP %d/%d  Mana %d/%d  |  Poz. %d  XP %d  |  %s\n%s" % [GameState.hp, GameState.max_hp, GameState.mana, GameState.max_mana, GameState.level, GameState.xp, GameState.time_text(), _objective()]
 
@@ -696,6 +733,8 @@ func _draw() -> void:
 	for camp_x: float in range(7000, 22000, 1200):
 		draw_line(Vector2(camp_x, 8800), Vector2(camp_x + 300, 9100), Color("573728"), 90.0)
 	draw_circle(Vector2(14500, 10300), 260.0, Color("d06b35")); draw_circle(Vector2(14500, 10300), 110.0, Color("f6c56d"))
+	for bed: Vector2 in beds:
+		draw_rect(Rect2(bed - Vector2(100, 50), Vector2(200, 100)), Color("74543c")); draw_line(bed - Vector2(90, 20), bed + Vector2(90, 20), Color("d7c29a"), 16.0)
 	# actors
 	for id: String in npc_positions:
 		var faction := str(npc_data.get(id, {}).get("faction", "neutralna"))

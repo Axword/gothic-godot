@@ -75,3 +75,6 @@
 
 ## 2026-07-19 — system opcji
 - Dodano SettingsSystem oraz ekran opcji w menu głównym.
+
+## 2026-07-19 — przeszkody i sen
+- Dodano kolizje struktur świata oraz łóżka z przyspieszeniem czasu.

@@ -97,3 +97,6 @@
 
 ## 2026-07-19 — sprzedaż i zniżki
 - Dodano sprzedaż trofeów oraz 15% zniżkę frakcyjną w sklepach.
+
+## 2026-07-19 — pościg i alarm NPC
+- Dodano AI pościgu/ataku/powrotu dla agresywnych ludzi oraz lokalną reakcję grupy.

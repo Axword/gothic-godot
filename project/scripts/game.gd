@@ -35,6 +35,7 @@ var hostile_npcs: Dictionary = {}
 var npc_combat_hp: Dictionary = {}
 var robbery_cooldowns: Dictionary = {}
 var bandit_attack_timer := 0.0
+var npc_attack_cooldowns: Dictionary = {}
 var current_trainer_id: String = ""
 var wolf_hp := 32
 var wolf_position := Vector2(17200, 7200)
@@ -260,6 +261,7 @@ func _process(delta: float) -> void:
 	_update_npc_routines()
 	_update_creature_ai(delta)
 	_update_bandit_aggression(delta)
+	_update_hostile_npc_ai(delta)
 	_update_ui()
 	queue_redraw()
 
@@ -357,6 +359,37 @@ func _player_armor_value() -> int:
 		"pancerz_popiolu": return 6
 	return 0
 
+func _update_hostile_npc_ai(delta: float) -> void:
+	var hostile_ids: Array = hostile_npcs.keys()
+	for id: String in hostile_ids:
+		if GameState.defeated.has(id): continue
+		var npc: Dictionary = npc_data.get(id, {})
+		var position: Vector2 = npc_positions.get(id, Vector2.ZERO)
+		var home: Vector2 = npc_home.get(id, position)
+		var distance: float = player.distance_to(position)
+		var cooldown := maxf(0.0, float(npc_attack_cooldowns.get(id, 0.0)) - delta)
+		npc_attack_cooldowns[id] = cooldown
+		if distance < 1000.0:
+			# Alarm jest lokalny: pobliscy strażnicy/wojownicy tej samej frakcji przyłączają się do pościgu.
+			if distance < 500.0:
+				var faction := str(npc.get("faction", ""))
+				for ally_id: String in npc_data:
+					var ally: Dictionary = npc_data[ally_id]
+					var ally_pos: Vector2 = npc_positions.get(ally_id, Vector2.ZERO)
+					if str(ally.get("faction", "")) == faction and str(ally.get("role", "")) in ["guard", "captain", "fighter"] and ally_pos.distance_to(position) < 700.0:
+						hostile_npcs[ally_id] = true
+			if distance > 130.0:
+				position += position.direction_to(player) * 105.0 * delta
+			elif cooldown <= 0.0:
+				GameState.hp = maxi(0, GameState.hp - maxi(1, 8 - _player_armor_value()))
+				npc_attack_cooldowns[id] = 1.25
+				_notice(false, str(npc.get("name", "Napastnik")) + " trafia cię.")
+		else:
+			# Po utracie celu człowiek wraca do rutyny zamiast bez końca gonić po mapie.
+			if position.distance_to(home) > 20.0: position += position.direction_to(home) * 90.0 * delta
+			else: hostile_npcs.erase(id)
+		npc_positions[id] = position
+
 func _update_bandit_aggression(delta: float) -> void:
 	bandit_attack_timer = maxf(0.0, bandit_attack_timer - delta)
 	for id: String in npc_data:
@@ -364,9 +397,7 @@ func _update_bandit_aggression(delta: float) -> void:
 		if str(npc.get("aggression", "")) != "robbery" or GameState.defeated.has(id): continue
 		var pos: Vector2 = npc_positions.get(id, Vector2.ZERO)
 		if hostile_npcs.has(id):
-			if player.distance_to(pos) < 260.0 and bandit_attack_timer <= 0.0:
-				GameState.hp = maxi(0, GameState.hp - 4); bandit_attack_timer = 1.5
-				_notice(false, "%s tnie cię po kieszeni i przy okazji po żebrach." % str(npc.get("name", "Bandyta")))
+			continue
 		elif not dialogue_open and not lock_open and not journal_open and player.distance_to(pos) < 330.0 and not robbery_cooldowns.has(id):
 			robbery_cooldowns[id] = true
 			_start_robbery(id)

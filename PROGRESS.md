@@ -113,3 +113,7 @@
 ## Zrealizowane — ekonomia frakcyjna
 - [x] Sklepy stosują zniżkę dla gracza należącego do frakcji sprzedawcy.
 - [x] Trofea bestii można sprzedać zbiorczo u każdego sprzedawcy.
+
+## Zrealizowane — AI ludzi
+- [x] Wrogi bandyci/strażnicy ścigają gracza, atakują i wracają do rutyny po utracie celu.
+- [x] Lokalny alarm wciąga pobliskich strażników i wojowników tej samej frakcji.

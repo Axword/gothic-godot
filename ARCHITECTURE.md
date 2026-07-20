@@ -41,3 +41,7 @@ Sygnały `GameState.changed`, `GameState.quest_changed` i `SaveSystem.saved` odd
 ### SettingsSystem
 
 `SettingsSystem` zarządza ustawieniami silnika niezależnie od savegame: master volume, rozdzielczością, fullscreenem, czułością i napisami. Serializuje wyłącznie preferencje do `user://settings.json`, a menu główne aplikuje je przez `AudioServer` i `DisplayServer`.
+
+### AI ludzi
+
+Wrogi ludzie mają aktywny limitowany pościg, atak w zasięgu, lokalny alarm dla sojuszników i powrót do markera rutyny po utracie celu. Iteracja odbywa się po kopii kluczy wrogów, dlatego alarm może bezpiecznie dołączać kolejne NPC bez mutacji kolekcji podczas iteracji.

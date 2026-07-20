@@ -39,14 +39,3 @@ TheftSystem="*res://autoload/theft_system.gd"
 SettingsSystem="*res://autoload/settings_system.gd"
 AudioSystem="*res://autoload/audio_system.gd"
 NavigationSystem="*res://autoload/navigation_system.gd"
-
-[display]
-
-window/size/window_width_override=1152
-window/size/window_height_override=648
-window/stretch/mode="canvas_items"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

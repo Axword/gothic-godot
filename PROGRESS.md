@@ -96,3 +96,8 @@
 - [x] Zbieralne rośliny lecznicze/manowe mają użycie; pozostałe reagenty zachowują się jako materiały.
 - [x] Wszystkie cztery pancerze są zakładalne z ekwipunku.
 - [x] Dołączenie do frakcji daje odpowiedni frakcyjny pancerz.
+
+## Zrealizowane — zamki poziomów
+- [x] Trzy skrzynie świata o poziomach zamka 1–3 i innych sekwencjach.
+- [x] Wyższe poziomy respektują rangę otwierania zamków.
+- [x] Skrzynie dają realne łuki/pancerz/przedmiot questowy i nie odradzają się po wczytaniu.

@@ -17,3 +17,7 @@ W tej iteracji wszystkie wymagane katalogi danych są obecne: 20 mieczy, 10 łuk
 ### NPC: informacje świata i agresja
 
 `npcs.json` ma pola `lore` (konkretna kwestia o świecie), `can_talk` oraz opcjonalne `aggression: "robbery"`. Dzięki temu interakcja nie tworzy pustego dialogu: każdy rozmówca ma określony temat, a bandyta ma osobną inicjację konfliktu.
+
+### Runtime skrzyń
+
+Skrzynie świata wykorzystują stabilne ID, poziom `1–3`, sekwencję i ID nagrody. Stan otwarcia trafia do `GameState.opened_chests`, a następnie do slotu zapisu.

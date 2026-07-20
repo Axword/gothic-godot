@@ -47,6 +47,8 @@ var creatures: Dictionary = {}
 var world_obstacles: Array[Rect2] = []
 var beds: Array[Vector2] = [Vector2(2400, 2900), Vector2(15100, 10600)]
 var world_pickups: Dictionary = {}
+var world_chests: Dictionary = {}
+var current_chest_id: String = ""
 var creature_attack_cooldown: float = 0.0
 var dialogue: Dictionary = {}
 var dialogue_open := false
@@ -69,6 +71,7 @@ func _ready() -> void:
 	_load_creatures()
 	_setup_world_collisions()
 	_setup_world_pickups()
+	_setup_world_chests()
 	_create_camera()
 	_build_ui()
 	_show_intro()
@@ -133,6 +136,21 @@ func _blocked(position: Vector2) -> bool:
 	for obstacle: Rect2 in world_obstacles:
 		if obstacle.grow(52.0).has_point(position): return true
 	return false
+
+func _setup_world_chests() -> void:
+	world_chests = {
+		"skrzynia_popiolu": {"position": Vector2(15100, 9600), "level": 1, "sequence": "LRL", "reward": "pieczec_iskry", "name": "Skrzynia z popiołu"},
+		"skrzynia_kamieniolomu": {"position": Vector2(4700, 6800), "level": 2, "sequence": "RLLR", "reward": "luk_2", "name": "Skrzynia kamieniołomu"},
+		"skrzynia_szczeliny": {"position": Vector2(22900, 3500), "level": 3, "sequence": "LRRLL", "reward": "pancerz_popiolu", "name": "Skrzynia Szczeliny"}
+	}
+
+func _near_chest() -> String:
+	for chest_id: String in world_chests:
+		if GameState.opened_chests.has(chest_id): continue
+		var chest: Dictionary = world_chests[chest_id]
+		var chest_pos: Vector2 = chest.get("position", Vector2.ZERO)
+		if player.distance_to(chest_pos) < 160.0: return chest_id
+	return ""
 
 func _setup_world_pickups() -> void:
 	# Każda roślina i każda mikstura ma fizyczny punkt zbioru; ID jest kanoniczne z JSON.
@@ -314,7 +332,8 @@ func nearest_target() -> String:
 	for id: String in npc_positions:
 		var d := player.distance_to(npc_positions[id])
 		if d < distance: best = id; distance = d
-	if player.distance_to(Vector2(15100, 9600)) < distance and not GameState.opened_chests.has("skrzynia_popiolu"):
+	var chest_id := _near_chest()
+	if not chest_id.is_empty():
 		best = "chest"
 	if player.distance_to(wolf_position) < distance and wolf_hp > 0:
 		best = "wolf"
@@ -337,7 +356,9 @@ func interact() -> void:
 		_show_sleep_menu()
 		return
 	match selected:
-		"chest": _open_lock()
+		"chest":
+			current_chest_id = _near_chest()
+			_open_lock()
 		"wolf": _notice(true, "Wilk nie prowadzi rozmów. Zwykle.")
 		_:
 			if npc_data.has(selected): _start_dialogue(selected)
@@ -368,6 +389,12 @@ func _harvest_wolf() -> void:
 		_notice(true, "Pozyskujesz: " + trophy.replace("_", " ") + ".")
 
 func _near_bed() -> bool:
+	for chest_id: String in world_chests:
+		if GameState.opened_chests.has(chest_id): continue
+		var chest: Dictionary = world_chests[chest_id]
+		var chest_pos: Vector2 = chest.get("position", Vector2.ZERO)
+		draw_rect(Rect2(chest_pos - Vector2(60, 45), Vector2(120, 90)), Color("6f482c")); draw_rect(Rect2(chest_pos - Vector2(60, 45), Vector2(120, 18)), Color("c29353")); draw_circle(chest_pos + Vector2(0, 5), 9, Color("d7bb68"))
+		if player.distance_to(chest_pos) < 220.0: draw_string(ThemeDB.fallback_font, chest_pos + Vector2(-120, -75), str(chest.get("name", "Skrzynia")), HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Color.WHITE)
 	for item_id: String in world_pickups:
 		var pickup: Dictionary = world_pickups[item_id]
 		if bool(pickup.get("taken", false)): continue
@@ -649,20 +676,29 @@ func _choose(choice: String) -> void:
 		"close": _close_panel()
 
 func _open_lock() -> void:
+	if current_chest_id.is_empty() or not world_chests.has(current_chest_id): return
+	var chest: Dictionary = world_chests[current_chest_id]
+	var level := int(chest.get("level", 1))
+	var lock_rank := int(TrainerSystem.ranks.get("lockpicking", 0))
+	if level > lock_rank + 1:
+		_notice(false, "Ten zamek ma poziom %d. Potrzebujesz rangi %d otwierania zamków." % [level, level - 1]); return
 	lock_open = true; panel.visible = true
-	_show_choices("[b]Skrzynia z popiołu — zamek I[/b]\nSekwencja zapadek: [b]LEWO, PRAWO, LEWO[/b]. Błąd zużywa wytrych.\n\nUżyj przycisków w poprawnej kolejności.", [["←", "lock_l"], ["→", "lock_r"], ["Anuluj", "close"]])
+	_show_choices("[b]%s — zamek %d[/b]\nZapadki reagują na sekwencję lewo/prawo. Błąd zużywa wytrych.\n\nUżyj przycisków w poprawnej kolejności." % [str(chest.get("name", "Skrzynia")), level], [["←", "lock_l"], ["→", "lock_r"], ["Anuluj", "close"]])
 	GameState.flags["lock_input"] = ""
 
 func _lock_input(value: String) -> void:
+	if current_chest_id.is_empty(): return
+	var chest: Dictionary = world_chests.get(current_chest_id, {})
+	var expected := str(chest.get("sequence", "LRL"))
 	var sequence: String = str(GameState.flags.get("lock_input", "")) + value
 	GameState.flags["lock_input"] = sequence
-	if not "LRL".begins_with(sequence):
+	if not expected.begins_with(sequence):
 		GameState.remove_item("wytrych"); GameState.flags["lock_input"] = ""
 		_notice(false, "Zgrzyt. Wytrych pękł.")
-	elif sequence == "LRL":
-		GameState.opened_chests.append("skrzynia_popiolu"); GameState.add_item("pieczec_iskry"); GameState.gain_xp(25)
-		if GameState.quest_stage == "wolf": GameState.advance_quest("chest")
-		lock_open = false; _close_panel(); _notice(true, "Zamek puszcza. W środku: Pieczęć Iskry.")
+	elif sequence == expected:
+		GameState.opened_chests.append(current_chest_id); GameState.add_item(str(chest.get("reward", "zlote_znaki"))); GameState.gain_xp(25)
+		if current_chest_id == "skrzynia_popiolu" and GameState.quest_stage == "wolf": GameState.advance_quest("chest")
+		lock_open = false; _close_panel(); _notice(true, "Zamek puszcza. W środku: " + str(chest.get("reward", "łup")).replace("_", " ") + ".")
 
 func _input(event: InputEvent) -> void:
 	if lock_open and event is InputEventKey and event.pressed:
@@ -808,6 +844,12 @@ func _draw() -> void:
 	for camp_x: float in range(7000, 22000, 1200):
 		draw_line(Vector2(camp_x, 8800), Vector2(camp_x + 300, 9100), Color("573728"), 90.0)
 	draw_circle(Vector2(14500, 10300), 260.0, Color("d06b35")); draw_circle(Vector2(14500, 10300), 110.0, Color("f6c56d"))
+	for chest_id: String in world_chests:
+		if GameState.opened_chests.has(chest_id): continue
+		var chest: Dictionary = world_chests[chest_id]
+		var chest_pos: Vector2 = chest.get("position", Vector2.ZERO)
+		draw_rect(Rect2(chest_pos - Vector2(60, 45), Vector2(120, 90)), Color("6f482c")); draw_rect(Rect2(chest_pos - Vector2(60, 45), Vector2(120, 18)), Color("c29353")); draw_circle(chest_pos + Vector2(0, 5), 9, Color("d7bb68"))
+		if player.distance_to(chest_pos) < 220.0: draw_string(ThemeDB.fallback_font, chest_pos + Vector2(-120, -75), str(chest.get("name", "Skrzynia")), HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Color.WHITE)
 	for item_id: String in world_pickups:
 		var pickup: Dictionary = world_pickups[item_id]
 		if bool(pickup.get("taken", false)): continue

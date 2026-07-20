@@ -85,3 +85,6 @@
 ## 2026-07-19 — używanie przedmiotów i nagrody frakcyjne
 - Rozszerzono ekwipunek o konsumpcję wszystkich mikstur/wywarów oraz podstawowych ziół.
 - Dodano pancerze jako nagrody za dołączenie do obu frakcji.
+
+## 2026-07-19 — zamki I–III
+- Rozszerzono minigrę o trzy skrzynie, rangi zamków i różne sekwencje.

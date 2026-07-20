@@ -49,6 +49,8 @@ var beds: Array[Vector2] = [Vector2(2400, 2900), Vector2(15100, 10600)]
 var world_pickups: Dictionary = {}
 var world_chests: Dictionary = {}
 var current_chest_id: String = ""
+var shops: Dictionary = {}
+var current_shop_id: String = ""
 var creature_attack_cooldown: float = 0.0
 var dialogue: Dictionary = {}
 var dialogue_open := false
@@ -69,6 +71,7 @@ func _ready() -> void:
 	player = GameState.player_position
 	_load_world_population()
 	_load_creatures()
+	_load_shops()
 	_setup_world_collisions()
 	_setup_world_pickups()
 	_setup_world_chests()
@@ -123,6 +126,36 @@ func _load_world_population() -> void:
 		npc_data[id] = npc
 		if str(npc.get("role", "")) == "bandit": npc_combat_hp[id] = 45
 		index += 1
+
+func _load_shops() -> void:
+	for shop: Dictionary in DataLoader.load_array("res://data/json/shops.json"):
+		shops[str(shop.get("id", ""))] = shop
+
+func _shop_for_npc(npc_id: String) -> String:
+	for shop_id: String in shops:
+		if str(shops[shop_id].get("npc_id", "")) == npc_id:
+			current_shop_id = shop_id
+			return shop_id
+	return ""
+
+func _show_shop() -> void:
+	if current_shop_id.is_empty(): return
+	var shop: Dictionary = shops.get(current_shop_id, {})
+	var options: Array = []
+	for entry: Dictionary in shop.get("stock", []):
+		options.append(["Kup %s — %d Znaków" % [str(entry.get("item_id", "")).replace("_", " ").capitalize(), int(entry.get("price", 0))], "buy_" + str(entry.get("item_id", ""))])
+	options.append(["Odejdź.", "close"])
+	_show_choices("[b]%s[/b]\nMasz: %d Znaków.\nCeny zmienią się, gdy wybierzesz stronę." % [str(shop.get("name", "Handel")), int(GameState.inventory.get("zlote_znaki", 0))], options)
+
+func _buy_item(item_id: String) -> void:
+	var shop: Dictionary = shops.get(current_shop_id, {})
+	for entry: Dictionary in shop.get("stock", []):
+		if str(entry.get("item_id", "")) == item_id:
+			var price := int(entry.get("price", 0))
+			if GameState.remove_item("zlote_znaki", price):
+				GameState.add_item(item_id); _notice(true, "Kupujesz: " + item_id.replace("_", " ") + ".")
+			else: _notice(false, "Brakuje Znaków.")
+			_show_shop(); return
 
 func _setup_world_collisions() -> void:
 	# Ręcznie dobrane przeszkody odpowiadają widocznym landmarkom; ruch ślizga się po ich osiach.
@@ -551,6 +584,8 @@ func _start_dialogue(id: String) -> void:
 			var options: Array = [["Zapytaj o pogłoski.", "rumor"]]
 			var trainer_id := _trainer_for_npc(id)
 			if not trainer_id.is_empty(): options.append(["Pokaż, czego uczysz.", "open_trainer"])
+			var shop_id := _shop_for_npc(id)
+			if not shop_id.is_empty(): options.append(["Pokaż towary.", "open_shop"])
 			options.append(["Odejdź.", "close"])
 			_show_choices("[b]%s:[/b] Na tym trakcie nawet błoto ma stronę. Ja należę do: %s.%s" % [name, faction, trainer], options)
 
@@ -586,6 +621,9 @@ func _choose(choice: String) -> void:
 		return
 	if choice == "lock_r":
 		_lock_input("R")
+		return
+	if choice.begins_with("buy_") and choice != "buy_training":
+		_buy_item(choice.trim_prefix("buy_"))
 		return
 	if choice.begins_with("consume_"):
 		_consume_item(choice.trim_prefix("consume_"))
@@ -637,6 +675,8 @@ func _choose(choice: String) -> void:
 			GameState.equip("luk_1", "weapon"); _show_inventory()
 		"equip_armor":
 			GameState.equip("plaszcz_miernika", "armor"); _show_inventory()
+		"open_shop":
+			_show_shop()
 		"open_trainer":
 			_show_trainer()
 		"buy_training":

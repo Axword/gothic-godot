@@ -91,3 +91,6 @@
 
 ## 2026-07-19 — czterdzieści skrzyń świata
 - Zastąpiono trzy skrzynie 40 skrzyniami danych, z nagrodami walidowanymi względem katalogu przedmiotów.
+
+## 2026-07-19 — handel
+- Dodano shops.json, walidację ofert i dialogowe zakupy u kowala/przemytników.

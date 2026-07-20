@@ -105,3 +105,7 @@
 ## Zrealizowane — gęstość eksploracji
 - [x] 40 skrzyń rozmieszczonych w ośmiu regionach świata.
 - [x] Skrzynie są ładowane z kanonicznego `world_chests.json`, a nie definiowane w kodzie.
+
+## Zrealizowane — handel
+- [x] Trzy działające sklepy powiązane z konkretnymi NPC.
+- [x] Kupowanie broni, łuków, amunicji, mikstur i wywarów za Znaki.

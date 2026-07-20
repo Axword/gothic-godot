@@ -25,3 +25,7 @@ Skrzynie świata wykorzystują stabilne ID, poziom `1–3`, sekwencję i ID nagr
 ### world_chests.json
 
 Kanoniczna lista skrzyń świata. Rekord zawiera stabilne `id`, `position` (`x`, `y`), `level` 1–3, sekwencję zamka oraz `reward` odwołujący się do istniejącego ID przedmiotu. Walidator kontroluje unikalność oraz referencję nagrody.
+
+### shops.json
+
+Sklep ma stabilne ID, `npc_id`, nazwę i listę `stock`. Każdy wpis to `item_id` oraz cena w Znakach. Walidator sprawdza referencję sprzedawcy i towaru.

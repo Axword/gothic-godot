@@ -12,7 +12,9 @@
   "world_minutes": 420,
   "inventory": {
     "miecz_iskrowy": 1,
-    "wytrych": 2
+    "wytrych": 2,
+    "zlote_znaki": 10,
+    "plaszcz_miernika": 1
   },
   "quest": {
     "id": "quest_iskra",

@@ -13,3 +13,7 @@ Zapis w `user://` ma pole `version`; `SaveSystem` odrzuca zapis z nowszego schem
 ## Rozbudowana zawartość
 
 W tej iteracji wszystkie wymagane katalogi danych są obecne: 20 mieczy, 10 łuków, 4 pancerze gracza, 10 roślin, 6 mikstur, trofea, 65 NPC (20 Zakon, 20 Wolny Żar, 25 neutralnych), 260 wpisów rutyn, 6 potworów i spawnów, lokacje, loot, trenerzy, czary, questy oraz trzy pliki dialogowe. Referencje są ID, nigdy ścieżkami do instancji runtime.
+
+### NPC: informacje świata i agresja
+
+`npcs.json` ma pola `lore` (konkretna kwestia o świecie), `can_talk` oraz opcjonalne `aggression: "robbery"`. Dzięki temu interakcja nie tworzy pustego dialogu: każdy rozmówca ma określony temat, a bandyta ma osobną inicjację konfliktu.

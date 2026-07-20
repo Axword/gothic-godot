@@ -15,7 +15,7 @@ var learning_points: int = 1
 var strength: int = 5
 var dexterity: int = 5
 var world_minutes: float = 7.0 * 60.0
-var inventory: Dictionary = {"miecz_iskrowy": 1, "wytrych": 2}
+var inventory: Dictionary = {"miecz_iskrowy": 1, "wytrych": 2, "zlote_znaki": 10, "plaszcz_miernika": 1}
 var active_quest: String = "quest_iskra"
 var quest_stage: String = "start"
 var flags: Dictionary = {}
@@ -30,7 +30,7 @@ func reset() -> void:
 	xp = 0
 	learning_points = 1
 	world_minutes = 7.0 * 60.0
-	inventory = {"miecz_iskrowy": 1, "wytrych": 2}
+	inventory = {"miecz_iskrowy": 1, "wytrych": 2, "zlote_znaki": 10, "plaszcz_miernika": 1}
 	active_quest = "quest_iskra"
 	quest_stage = "start"
 	flags = {}

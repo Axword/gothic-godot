@@ -21,3 +21,7 @@ Są to grafiki własne projektu, nie import cudzych plików ani elementów z ist
 ## Aktywne sprite’y świata
 
 `project/assets/sprites/` zawiera własne grafiki SVG gracza, strażnika Zakonu, członka Wolnego Żaru, postaci neutralnej i wilka. Są one obecnie faktycznie renderowane na mapie jako `Texture2D`, w skali 92×124 jednostek (wilk 184×124), a nie zastępowane kropkami.
+
+## Pancerze
+
+Dodano cztery aktywa pancerzy SVG: `plaszcz_miernika.svg`, `kolczuga_walu.svg`, `skora_zaru.svg`, `pancerz_popiolu.svg`. Każdy ma odrębną sylwetkę i kolory frakcyjne, a dane pancerzy wskazują na prawdziwe ścieżki tych assetów.

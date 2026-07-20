@@ -22,6 +22,10 @@ var player_facing := Vector2.DOWN
 var player_is_walking := false
 var wolf_death_timer := 0.0
 var wolf_hit_timer := 0.0
+var hostile_npcs: Dictionary = {}
+var npc_combat_hp: Dictionary = {}
+var robbery_cooldowns: Dictionary = {}
+var bandit_attack_timer := 0.0
 var wolf_hp := 32
 var wolf_position := Vector2(17200, 7200)
 var npc_positions: Dictionary = {}
@@ -46,6 +50,7 @@ func _ready() -> void:
 	_load_world_population()
 	_create_camera()
 	_build_ui()
+	_show_intro()
 	SaveSystem.saved.connect(_notice)
 	GameState.changed.connect(queue_redraw)
 	queue_redraw()
@@ -91,7 +96,9 @@ func _load_world_population() -> void:
 		var offset := Vector2(float((index * 1731) % 15000 - 7500), float((index * 947) % 8000 - 4000))
 		npc_positions[id] = home + offset; npc_home[id] = home + offset
 		npc_names[id] = "%s, %s" % [str(npc.get("name", "Nieznany")), str(npc.get("role", "mieszkaniec"))]
-		npc_data[id] = npc; index += 1
+		npc_data[id] = npc
+		if str(npc.get("role", "")) == "bandit": npc_combat_hp[id] = 45
+		index += 1
 
 func _build_ui() -> void:
 	ui = CanvasLayer.new(); add_child(ui)
@@ -113,6 +120,7 @@ func _process(delta: float) -> void:
 	wolf_death_timer = maxf(0.0, wolf_death_timer - delta)
 	message_timer = maxf(0.0, message_timer - delta)
 	_update_npc_routines()
+	_update_bandit_aggression(delta)
 	_update_ui()
 	queue_redraw()
 
@@ -156,6 +164,26 @@ func _update_npc_routines() -> void:
 		else:
 			npc_positions[id] = home + Vector2(sin(GameState.world_minutes * 0.07 + home.y) * 6.0, 0.0)
 
+func _update_bandit_aggression(delta: float) -> void:
+	bandit_attack_timer = maxf(0.0, bandit_attack_timer - delta)
+	for id: String in npc_data:
+		var npc: Dictionary = npc_data[id]
+		if str(npc.get("aggression", "")) != "robbery" or GameState.defeated.has(id): continue
+		var pos: Vector2 = npc_positions.get(id, Vector2.ZERO)
+		if hostile_npcs.has(id):
+			if player.distance_to(pos) < 260.0 and bandit_attack_timer <= 0.0:
+				GameState.hp = maxi(0, GameState.hp - 4); bandit_attack_timer = 1.5
+				_notice(false, "%s tnie cię po kieszeni i przy okazji po żebrach." % str(npc.get("name", "Bandyta")))
+		elif not dialogue_open and not lock_open and not journal_open and player.distance_to(pos) < 330.0 and not robbery_cooldowns.has(id):
+			robbery_cooldowns[id] = true
+			_start_robbery(id)
+
+func _start_robbery(id: String) -> void:
+	var npc: Dictionary = npc_data.get(id, {})
+	dialogue_open = true; panel.visible = true
+	GameState.flags["robbery_id"] = id
+	_show_choices("[b]%s:[/b] Stój. Trakt ma opłatę. Pięć Znaków albo trochę twojej krwi na błocie." % str(npc.get("name", "Bandyta")), [["Zapłać 5 Znaków.", "pay_bandit"], ["Nie płacę. Spróbuj.", "fight_bandit"]])
+
 func nearest_target() -> String:
 	var best := ""; var distance := INTERACT_DISTANCE
 	for id: String in npc_positions:
@@ -176,9 +204,24 @@ func interact() -> void:
 			if npc_data.has(selected): _start_dialogue(selected)
 			else: _notice(true, "Tu nic nie odpowiada.")
 
+func _nearest_hostile() -> String:
+	var nearest := ""; var distance := INF
+	for id: String in hostile_npcs:
+		if GameState.defeated.has(id): continue
+		var pos: Vector2 = npc_positions.get(id, Vector2.ZERO)
+		var candidate_distance := player.distance_to(pos)
+		if candidate_distance < distance: nearest = id; distance = candidate_distance
+	return nearest
+
 func attack() -> void:
 	attack_timer = 0.30
-	if player.distance_to(wolf_position) < 70 and wolf_hp > 0:
+	var hostile_id := _nearest_hostile()
+	if not hostile_id.is_empty() and player.distance_to(npc_positions.get(hostile_id, Vector2.ZERO)) < 130.0:
+		npc_combat_hp[hostile_id] = int(npc_combat_hp.get(hostile_id, 45)) - (10 + GameState.strength)
+		if int(npc_combat_hp[hostile_id]) <= 0:
+			GameState.defeated.append(hostile_id); hostile_npcs.erase(hostile_id); GameState.gain_xp(30); _notice(true, "Bandyta pada ogłuszony. Żyje, ale ma gorszy dzień.")
+		else: _notice(true, "Trafiasz bandytę.")
+	elif player.distance_to(wolf_position) < 130 and wolf_hp > 0:
 		wolf_hp -= 10 + GameState.strength
 		wolf_hit_timer = 0.18
 		if wolf_hp <= 0:
@@ -216,6 +259,15 @@ func _start_dialogue(id: String) -> void:
 				trainer = " Potrafię uczyć: " + ", ".join(npc.get("trainer_skills", [])) + "."
 			_show_choices("[b]%s:[/b] Na tym trakcie nawet błoto ma stronę. Ja należę do: %s.%s" % [name, faction, trainer], [["Zapytaj o pogłoski.", "rumor"], ["Odejdź.", "close"]])
 
+func _show_intro() -> void:
+	if bool(GameState.flags.get("intro_seen", false)): return
+	dialogue_open = true; panel.visible = true
+	_show_choices("[b]ZGNILIZNA: ISKRA POD MUŁEM[/b]
+
+Przyszedłeś z wojny, niosąc list bez podpisu. Kanały za tobą płoną, a przed tobą Wał Miary i Obóz Żaru wyrywają sobie ostatni suchy grunt. Pod bagnem budzi się Bezdech.
+
+Nie jesteś wybrańcem. Jesteś człowiekiem z listem i pustymi kieszeniami.", [["Przeczytaj list i ruszaj.", "intro_start"], ["Kim jest Bezdech?", "intro_lore"]])
+
 func _show_choices(text: String, entries: Array) -> void:
 	panel_text.text = text
 	for child: Node in choices.get_children(): child.queue_free()
@@ -230,7 +282,21 @@ func _choose(choice: String) -> void:
 		_lock_input("R")
 		return
 	match choice:
-
+		"intro_start":
+			GameState.flags["intro_seen"] = true
+			_show_choices("[b]List:[/b] „Jeżeli to czytasz, znajdź Iskrę pod Mułem. Nie ufaj ani wałowi, ani ogniowi.”", [["Zaczynajmy.", "close"]])
+		"intro_lore":
+			_show_choices("[b]Głos z pamięci:[/b] Bezdech był bogiem ludzi, którzy bali się mówić prawdę. Pogrzebali go żywcem. Teraz ziemia oddaje mu głos.", [["Wróć do listu.", "intro_start"]])
+		"pay_bandit":
+			var bandit_id := str(GameState.flags.get("robbery_id", ""))
+			if GameState.remove_item("zlote_znaki", 5):
+				_show_choices("[b]Bandyta:[/b] Rozsądnie. Rozsądek boli krócej niż stal.", [["Odejdź.", "close"]])
+			else:
+				hostile_npcs[bandit_id] = true
+				_show_choices("[b]Bandyta:[/b] Nie masz czym zapłacić. To zapłacisz uwagą.", [["Walcz.", "fight_bandit"]])
+		"fight_bandit":
+			var fight_id := str(GameState.flags.get("robbery_id", "")); hostile_npcs[fight_id] = true
+			_close_panel(); _notice(false, "Bandyta rusza do ataku!")
 		"rumor":
 			_show_choices("[b]Pogłoska:[/b] Bezdech nie lubi imion. Dlatego wszyscy tutaj mają po dwa.", [["Wystarczy.", "close"]])
 		"boruta_list":
@@ -364,7 +430,9 @@ func _draw() -> void:
 		var npc_bob: float = sin(Time.get_ticks_msec() * 0.005 + npc_position.x) * 8.0
 		var visual_npc: Vector2 = npc_position + Vector2(0.0, npc_bob)
 		var actor_texture: Texture2D = ORDER_TEXTURE if faction == "Zakon Żelaznej Miary" else (REBEL_TEXTURE if faction == "Wolny Żar" else NEUTRAL_TEXTURE)
-		draw_texture_rect(actor_texture, Rect2(visual_npc - Vector2(46, 62), Vector2(92, 124)), false, color)
+		var actor_modulate := Color("e35c4f") if hostile_npcs.has(id) else color
+		draw_texture_rect(actor_texture, Rect2(visual_npc - Vector2(46, 62), Vector2(92, 124)), false, actor_modulate)
+		if hostile_npcs.has(id): draw_line(visual_npc + Vector2(-55, -10), visual_npc + Vector2(65, -10), Color("e7c486"), 14.0)
 		if player.distance_to(visual_npc) < 260.0:
 			draw_string(ThemeDB.fallback_font, visual_npc + Vector2(-100, -82), str(npc_names[id]).split(",")[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 36, Color.WHITE)
 	# Wilk ma czytelne stany: idle, trafienie z błyskiem i śmierć z zanikiem.

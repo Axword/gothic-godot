@@ -22,7 +22,9 @@
     "schedule_id": "schedule_npc_boruta",
     "trainer_skills": [
       "sword"
-    ]
+    ],
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
   },
   {
     "id": "npc_dargan",
@@ -44,7 +46,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_dargan"
+    "schedule_id": "schedule_npc_dargan",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
   },
   {
     "id": "npc_huta",
@@ -66,7 +70,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_huta"
+    "schedule_id": "schedule_npc_huta",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
   },
   {
     "id": "npc_krzem",
@@ -88,7 +94,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_krzem"
+    "schedule_id": "schedule_npc_krzem",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
   },
   {
     "id": "npc_lenda",
@@ -110,7 +118,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_lenda"
+    "schedule_id": "schedule_npc_lenda",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
   },
   {
     "id": "npc_msciwoj",
@@ -132,7 +142,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_msciwoj"
+    "schedule_id": "schedule_npc_msciwoj",
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
   },
   {
     "id": "npc_narda",
@@ -154,7 +166,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_narda"
+    "schedule_id": "schedule_npc_narda",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
   },
   {
     "id": "npc_oset",
@@ -176,7 +190,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_oset"
+    "schedule_id": "schedule_npc_oset",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
   },
   {
     "id": "npc_przemet",
@@ -198,7 +214,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_przemet"
+    "schedule_id": "schedule_npc_przemet",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
   },
   {
     "id": "npc_ruda",
@@ -220,7 +238,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_ruda"
+    "schedule_id": "schedule_npc_ruda",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
   },
   {
     "id": "npc_sek",
@@ -242,7 +262,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_sek"
+    "schedule_id": "schedule_npc_sek",
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
   },
   {
     "id": "npc_twarda",
@@ -264,7 +286,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_twarda"
+    "schedule_id": "schedule_npc_twarda",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
   },
   {
     "id": "npc_udar",
@@ -286,7 +310,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_udar"
+    "schedule_id": "schedule_npc_udar",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
   },
   {
     "id": "npc_wrzos",
@@ -308,7 +334,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_wrzos"
+    "schedule_id": "schedule_npc_wrzos",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
   },
   {
     "id": "npc_zadra",
@@ -330,7 +358,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_zadra"
+    "schedule_id": "schedule_npc_zadra",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
   },
   {
     "id": "npc_zmij",
@@ -352,7 +382,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_zmij"
+    "schedule_id": "schedule_npc_zmij",
+    "lore": "Zakon liczy worki zboża, ale nigdy groby pod wałem.",
+    "can_talk": true
   },
   {
     "id": "npc_barwa",
@@ -374,7 +406,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_barwa"
+    "schedule_id": "schedule_npc_barwa",
+    "lore": "Wał pęka nocą. Rano pisarz zmienia tylko liczby.",
+    "can_talk": true
   },
   {
     "id": "npc_cios",
@@ -396,7 +430,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_cios"
+    "schedule_id": "schedule_npc_cios",
+    "lore": "Komendant twierdzi, że prawo nie ma twarzy. Ja widziałem jego twarz.",
+    "can_talk": true
   },
   {
     "id": "npc_debik",
@@ -418,7 +454,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_debik"
+    "schedule_id": "schedule_npc_debik",
+    "lore": "W kanałach pod fortem coś stuka trzy razy, zawsze przed burzą.",
+    "can_talk": true
   },
   {
     "id": "npc_iglica",
@@ -440,7 +478,9 @@
     "dialogue": "dialogues_old.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_iglica"
+    "schedule_id": "schedule_npc_iglica",
+    "lore": "Kiedyś służyłem za miskę zupy. Teraz służę za tarczę. Awans.",
+    "can_talk": true
   },
   {
     "id": "npc_mira",
@@ -462,7 +502,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_mira"
+    "schedule_id": "schedule_npc_mira",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
   },
   {
     "id": "npc_pomyk",
@@ -484,7 +526,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_pomyk"
+    "schedule_id": "schedule_npc_pomyk",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
   },
   {
     "id": "npc_rzesa",
@@ -506,7 +550,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_rzesa"
+    "schedule_id": "schedule_npc_rzesa",
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
   },
   {
     "id": "npc_saba",
@@ -528,7 +574,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_saba"
+    "schedule_id": "schedule_npc_saba",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
   },
   {
     "id": "npc_tepa",
@@ -550,7 +598,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_tepa"
+    "schedule_id": "schedule_npc_tepa",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
   },
   {
     "id": "npc_ula",
@@ -572,7 +622,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_ula"
+    "schedule_id": "schedule_npc_ula",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
   },
   {
     "id": "npc_wicher",
@@ -594,7 +646,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_wicher"
+    "schedule_id": "schedule_npc_wicher",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
   },
   {
     "id": "npc_zgar",
@@ -620,7 +674,9 @@
     "trainer_skills": [
       "lockpicking",
       "theft"
-    ]
+    ],
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
   },
   {
     "id": "npc_aga",
@@ -642,7 +698,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_aga"
+    "schedule_id": "schedule_npc_aga",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
   },
   {
     "id": "npc_bruzda",
@@ -664,7 +722,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_bruzda"
+    "schedule_id": "schedule_npc_bruzda",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
   },
   {
     "id": "npc_czajka",
@@ -686,7 +746,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_czajka"
+    "schedule_id": "schedule_npc_czajka",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
   },
   {
     "id": "npc_dym",
@@ -708,7 +770,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_dym"
+    "schedule_id": "schedule_npc_dym",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
   },
   {
     "id": "npc_futra",
@@ -730,7 +794,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_futra"
+    "schedule_id": "schedule_npc_futra",
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
   },
   {
     "id": "npc_gnat",
@@ -752,7 +818,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_gnat"
+    "schedule_id": "schedule_npc_gnat",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
   },
   {
     "id": "npc_huk",
@@ -774,7 +842,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_huk"
+    "schedule_id": "schedule_npc_huk",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
   },
   {
     "id": "npc_igieka",
@@ -796,7 +866,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_igieka"
+    "schedule_id": "schedule_npc_igieka",
+    "lore": "Wolność jest tania, dopóki nie musisz kupić chleba.",
+    "can_talk": true
   },
   {
     "id": "npc_jasiek",
@@ -818,7 +890,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_jasiek"
+    "schedule_id": "schedule_npc_jasiek",
+    "lore": "Żar pali szybko. Popiół zostaje do sprzątania komuś innemu.",
+    "can_talk": true
   },
   {
     "id": "npc_kora",
@@ -840,7 +914,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_kora"
+    "schedule_id": "schedule_npc_kora",
+    "lore": "Mira zna drogę przez bagno, ale nie oddaje jej za darmo.",
+    "can_talk": true
   },
   {
     "id": "npc_ata",
@@ -862,7 +938,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_ata"
+    "schedule_id": "schedule_npc_ata",
+    "lore": "W obozie każdy ma nóż. Problem zaczyna się, gdy wszyscy go wyciągają.",
+    "can_talk": true
   },
   {
     "id": "npc_miedz",
@@ -884,7 +962,9 @@
     "dialogue": "dialogues_new.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_miedz"
+    "schedule_id": "schedule_npc_miedz",
+    "lore": "Stary porządek mówi: stój. My mówimy: biegnij. Bagno mówi: toniesz.",
+    "can_talk": true
   },
   {
     "id": "npc_wrona",
@@ -910,7 +990,9 @@
     "trainer_skills": [
       "fire_spell",
       "ice_spell"
-    ]
+    ],
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
   },
   {
     "id": "npc_biel",
@@ -932,7 +1014,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_biel"
+    "schedule_id": "schedule_npc_biel",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
   },
   {
     "id": "npc_czernica",
@@ -957,7 +1041,9 @@
     "schedule_id": "schedule_npc_czernica",
     "trainer_skills": [
       "bow"
-    ]
+    ],
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
   },
   {
     "id": "npc_dudek",
@@ -979,7 +1065,10 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_dudek"
+    "schedule_id": "schedule_npc_dudek",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
   },
   {
     "id": "npc_echa",
@@ -1001,7 +1090,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_echa"
+    "schedule_id": "schedule_npc_echa",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
   },
   {
     "id": "npc_fala",
@@ -1023,7 +1114,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_fala"
+    "schedule_id": "schedule_npc_fala",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
   },
   {
     "id": "npc_gawron",
@@ -1045,7 +1138,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_gawron"
+    "schedule_id": "schedule_npc_gawron",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
   },
   {
     "id": "npc_hala",
@@ -1067,7 +1162,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_hala"
+    "schedule_id": "schedule_npc_hala",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
   },
   {
     "id": "npc_iskra",
@@ -1089,7 +1186,10 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_iskra"
+    "schedule_id": "schedule_npc_iskra",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
   },
   {
     "id": "npc_jelen",
@@ -1114,7 +1214,9 @@
     "schedule_id": "schedule_npc_jelen",
     "trainer_skills": [
       "skinning"
-    ]
+    ],
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
   },
   {
     "id": "npc_kes",
@@ -1136,7 +1238,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_kes"
+    "schedule_id": "schedule_npc_kes",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
   },
   {
     "id": "npc_lipa",
@@ -1158,7 +1262,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_lipa"
+    "schedule_id": "schedule_npc_lipa",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
   },
   {
     "id": "npc_mewa",
@@ -1180,7 +1286,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_mewa"
+    "schedule_id": "schedule_npc_mewa",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
   },
   {
     "id": "npc_nurek",
@@ -1202,7 +1310,10 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_nurek"
+    "schedule_id": "schedule_npc_nurek",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
   },
   {
     "id": "npc_oko",
@@ -1224,7 +1335,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_oko"
+    "schedule_id": "schedule_npc_oko",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
   },
   {
     "id": "npc_pioun",
@@ -1246,7 +1359,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_pioun"
+    "schedule_id": "schedule_npc_pioun",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
   },
   {
     "id": "npc_rybak",
@@ -1268,7 +1383,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_rybak"
+    "schedule_id": "schedule_npc_rybak",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
   },
   {
     "id": "npc_szum",
@@ -1290,7 +1407,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_szum"
+    "schedule_id": "schedule_npc_szum",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
   },
   {
     "id": "npc_trzcina",
@@ -1312,7 +1431,10 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_trzcina"
+    "schedule_id": "schedule_npc_trzcina",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
   },
   {
     "id": "npc_uskok",
@@ -1334,7 +1456,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_uskok"
+    "schedule_id": "schedule_npc_uskok",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
   },
   {
     "id": "npc_wydra",
@@ -1356,7 +1480,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_wydra"
+    "schedule_id": "schedule_npc_wydra",
+    "lore": "Widziałem ryby płynące pod prąd. Potem zobaczyłem ludzi. Ryby były mądrzejsze.",
+    "can_talk": true
   },
   {
     "id": "npc_zimorodek",
@@ -1378,7 +1504,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_zimorodek"
+    "schedule_id": "schedule_npc_zimorodek",
+    "lore": "Szczelina świeci mocniej, gdy ktoś kłamie blisko niej. Dlatego nocą jest jasno.",
+    "can_talk": true
   },
   {
     "id": "npc_zuraw",
@@ -1400,7 +1528,9 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_zuraw"
+    "schedule_id": "schedule_npc_zuraw",
+    "lore": "Kamieniołom połyka narzędzia. Raz połknął człowieka, ale oddał buty.",
+    "can_talk": true
   },
   {
     "id": "npc_aster",
@@ -1422,7 +1552,10 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_aster"
+    "schedule_id": "schedule_npc_aster",
+    "lore": "Na Wydmach wiatr śpiewa imiona zmarłych. Dobrze, że nie umie śpiewać.",
+    "can_talk": true,
+    "aggression": "robbery"
   },
   {
     "id": "npc_bysk",
@@ -1444,6 +1577,8 @@
     "dialogue": "dialogues_neutral.json",
     "quest_ids": [],
     "crime_reaction": "warn_fine_alarm",
-    "schedule_id": "schedule_npc_bysk"
+    "schedule_id": "schedule_npc_bysk",
+    "lore": "Bagno nie jest złe. Po prostu pamięta wszystkich, którzy je obrazili.",
+    "can_talk": true
   }
 ]

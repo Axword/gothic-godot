@@ -36,3 +36,9 @@
 ## 2026-07-19 — korekta czytelności mapy
 - Usunięto rozciąganie rastrowego tła przez cały świat.
 - Dodano ostre, kontrastowe warstwy środowiskowe i charakterystyczne landmarki wszystkich regionów.
+
+## 2026-07-19 — intro, dialogi świata i bandyci
+- Dodano intro fabularne przed sterowaniem graczem.
+- Dodano informacje lore dla wszystkich NPC oraz rozmowy kontekstowe.
+- Dodano automatyczne wymuszenie haraczu przez bandytów, wybór zapłaty/walki oraz walkę i ogłuszenie bandyty.
+- Dodano cztery własne assety pancerzy SVG i poprawiono ich referencje danych.

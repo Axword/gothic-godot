@@ -29,3 +29,9 @@
 - [x] Widoczne stany wilka: idle, trafienie i śmierć.
 - [x] Kołysanie idle/chodu populacji NPC.
 - [x] Reużywalna scena `ProceduralActor` z sześcioma stanami animacji.
+
+## Zrealizowane — intro i zachowania świata
+- [x] Intro tłumaczące konflikt, list oraz Bezdech.
+- [x] Kontekstowe rozmowy lore dla pełnej populacji NPC.
+- [x] Bandyci inicjują wymuszenie, przechodzą w agresję po odmowie i mogą zostać ogłuszeni.
+- [x] Cztery assety pancerzy z prawidłowymi referencjami JSON.

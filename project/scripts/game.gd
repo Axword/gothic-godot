@@ -113,7 +113,6 @@ func _ensure_input_map() -> void:
 		InputMap.action_add_event("attack", mouse_event)
 
 func _load_world_population() -> void:
-	map_player_marker = Label.new(); map_player_marker.text = "✦ Ty"; map_player_marker.add_theme_font_size_override("font_size", 16); map_player_marker.add_theme_color_override("font_color", Color("ffffff")); map_overlay.add_child(map_player_marker)
 	for location: Dictionary in DataLoader.load_array("res://data/json/world_locations.json"):
 		var marker: Dictionary = location.get("marker", {})
 		location_positions[str(location.get("id", ""))] = Vector2(float(marker.get("x", 500)), float(marker.get("y", 330)))

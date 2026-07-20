@@ -502,19 +502,6 @@ func _harvest_wolf() -> void:
 		_notice(true, "Pozyskujesz: " + trophy.replace("_", " ") + ".")
 
 func _near_bed() -> bool:
-	for chest_id: String in world_chests:
-		if GameState.opened_chests.has(chest_id): continue
-		var chest: Dictionary = world_chests[chest_id]
-		var chest_pos: Vector2 = chest.get("position", Vector2.ZERO)
-		draw_rect(Rect2(chest_pos - Vector2(60, 45), Vector2(120, 90)), Color("6f482c")); draw_rect(Rect2(chest_pos - Vector2(60, 45), Vector2(120, 18)), Color("c29353")); draw_circle(chest_pos + Vector2(0, 5), 9, Color("d7bb68"))
-		if player.distance_to(chest_pos) < 220.0: draw_string(ThemeDB.fallback_font, chest_pos + Vector2(-120, -75), str(chest.get("name", "Skrzynia")), HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Color.WHITE)
-	for item_id: String in world_pickups:
-		var pickup: Dictionary = world_pickups[item_id]
-		if bool(pickup.get("taken", false)): continue
-		var pickup_pos: Vector2 = pickup.get("position", Vector2.ZERO)
-		var pickup_color := Color("77ae55") if not item_id.begins_with("mikstura") and not item_id.begins_with("wywar") and item_id != "olej_ognia" and item_id != "nalewka_lodu" else Color("d5524b")
-		draw_circle(pickup_pos, 42.0, Color("19201a")); draw_circle(pickup_pos, 29.0, pickup_color)
-		if player.distance_to(pickup_pos) < 240.0: draw_string(ThemeDB.fallback_font, pickup_pos + Vector2(-100, -60), item_id.replace("_", " "), HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Color.WHITE)
 	for bed: Vector2 in beds:
 		if player.distance_to(bed) < 180.0: return true
 	return false

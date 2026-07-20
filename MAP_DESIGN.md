@@ -1,6 +1,6 @@
 # Mapa gry — Iskra pod Mułem
 
-Aktualna scena renderuje proceduralną, przechodnią mapę o rozmiarze 1070×530 jednostek i ładuje jej markery z `world_locations.json`.
+Aktualna scena renderuje proceduralną, przechodnią mapę o rozmiarze 26 000×14 000 jednostek i ładuje jej markery z `world_locations.json`.
 
 | Region | Położenie | Rola |
 |---|---:|---|
